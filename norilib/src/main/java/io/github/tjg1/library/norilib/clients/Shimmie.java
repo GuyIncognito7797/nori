@@ -84,8 +84,13 @@ public class Shimmie extends DanbooruLegacy {
   protected String createSearchURL(String tags, int pid, int limit) {
     // Page numbers are 1-indexed for this api.
     final int page = pid + 1;
-
-    return String.format(Locale.US, "%s/api/danbooru/find_posts/index.xml?tags=%s&page=%d&limit=%d", apiEndpoint, tags, page, limit);
+    return String.format(
+            Locale.US, "%s/api/danbooru/find_posts/index.xml?tags=%s&page=%d&limit=%d",
+            apiEndpoint,
+            tags.replace(" ", "%20"),
+            page,
+            limit
+    );
   }
   //endregion
 
