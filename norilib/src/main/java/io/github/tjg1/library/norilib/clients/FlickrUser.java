@@ -65,6 +65,7 @@ public class FlickrUser extends Flickr {
    * @param pid  Page number (0-indexed).
    * @return URL to search results API.
    */
+  @Override
   protected String createSearchURL(String tags, int pid) {
     Pattern p = Pattern.compile(FLICKR_USER_REGEX);
     Matcher m = p.matcher(apiEndpoint.toString());

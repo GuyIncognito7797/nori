@@ -38,7 +38,7 @@ import io.github.tjg1.library.norilib.util.HashUtils;
 
 /** {@link io.github.tjg1.library.norilib.clients.SearchClient} for the E621 imageboard. */
 public class E621 extends DanbooruLegacy {
-
+  final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
   //region Constants
   /** Number of images to fetch with each search. */
   private static final int DEFAULT_LIMIT = 100;
@@ -95,9 +95,9 @@ public class E621 extends DanbooruLegacy {
     final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
 
     try {
-      DocumentBuilderFactory Factory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder Builder = Factory.newDocumentBuilder();
-      Document doc = Builder.parse(new InputSource(new StringReader(body)));
+      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder builder = factory.newDocumentBuilder();
+      Document doc = builder.parse(new InputSource(new StringReader(body)));
 
       NodeList nList = doc.getElementsByTagName("post");
 
@@ -154,8 +154,6 @@ public class E621 extends DanbooruLegacy {
    */
   @Override
   protected Date dateFromString(String date) throws ParseException {
-    final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
-
     // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
     if (!TextUtils.isEmpty(date)) {
       String newDate = date.replace("Z", "+0000");

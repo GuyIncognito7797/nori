@@ -203,7 +203,7 @@ public class Image implements Parcelable {
   public String getFileExtension() {
     String path = Uri.parse(this.fileUrl).getLastPathSegment();
     String fileExt = (!TextUtils.isEmpty(path) && path.contains(".")) ?
-        path.toLowerCase(Locale.US).substring(path.lastIndexOf(".") + 1) : null;
+        path.toLowerCase(Locale.US).substring(path.lastIndexOf('.') + 1) : null;
 
     return "jpeg".equals(fileExt) ? "jpg" : fileExt;
   }

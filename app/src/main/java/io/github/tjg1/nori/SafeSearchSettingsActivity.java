@@ -60,13 +60,11 @@ public class SafeSearchSettingsActivity extends AppCompatActivity
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: // Handle back button in the action bar.
-        onBackPressed();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
   //endregion
 
@@ -75,7 +73,7 @@ public class SafeSearchSettingsActivity extends AppCompatActivity
   public void setContentView(@LayoutRes int layoutResID) {
     super.setContentView(layoutResID);
 
-    if ("google".equals(BuildConfig.FLAVOR)) {
+    if (BuildConfig.FLAVOR.equals("google")) {
       final RadioGroup safeSearchGroup = (RadioGroup) findViewById(R.id.safe_search_radio_group);
       final CheckBox undefinedCheckBox = (CheckBox) findViewById(R.id.safe_search_undefined);
       final SafeSearchCheckedChangeListener listener =

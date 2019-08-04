@@ -316,7 +316,7 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
   @NonNull
   private DownloadManager.Request getImageDownloadRequest(@NonNull String fileUrl) {
     // Extract file name from URL.
-    String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+    String fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
     // Create download directory, if it does not already exist.
     //noinspection ResultOfMethodCallIgnored
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).mkdirs();

@@ -188,12 +188,19 @@ public class IabHelper {
 
     if (code <= IABHELPER_ERROR_BASE) {
       int index = IABHELPER_ERROR_BASE - code;
-      if (index >= 0 && index < iabhelper_msgs.length) return iabhelper_msgs[index];
-      else return String.valueOf(code) + ":Unknown IAB Helper Error";
-    } else if (code < 0 || code >= iab_msgs.length)
+      if (index >= 0 && index < iabhelper_msgs.length) {
+        return iabhelper_msgs[index];
+      }
+      else {
+        return String.valueOf(code) + ":Unknown IAB Helper Error";
+      }
+    }
+    else if (code < 0 || code >= iab_msgs.length) {
       return String.valueOf(code) + ":Unknown";
-    else
+    }
+    else {
       return iab_msgs[code];
+    }
   }
 
   /**
@@ -732,7 +739,7 @@ public class IabHelper {
       throws IabAsyncInProgressException {
     checkNotDisposed();
     checkSetupDone("consume");
-    List<Purchase> purchases = new ArrayList<Purchase>();
+    List<Purchase> purchases = new ArrayList<>();
     purchases.add(purchase);
     consumeAsyncInternal(purchases, listener, null);
   }
@@ -830,7 +837,7 @@ public class IabHelper {
           itemType, continueToken);
 
       int response = getResponseCodeFromBundle(ownedItems);
-      logDebug("Owned items response: " + String.valueOf(response));
+      logDebug("Owned items response: " + response);
       if (response != BILLING_RESPONSE_RESULT_OK) {
         logDebug("getPurchases() failed: " + getResponseDesc(response));
         return response;
@@ -882,7 +889,7 @@ public class IabHelper {
   int querySkuDetails(String itemType, Inventory inv, List<String> moreSkus)
       throws RemoteException, JSONException {
     logDebug("Querying SKU details.");
-    ArrayList<String> skuList = new ArrayList<String>();
+    ArrayList<String> skuList = new ArrayList<>();
     skuList.addAll(inv.getAllOwnedSkus(itemType));
     if (moreSkus != null) {
       for (String sku : moreSkus) {
@@ -892,25 +899,25 @@ public class IabHelper {
       }
     }
 
-    if (skuList.size() == 0) {
+    if (skuList.isEmpty()) {
       logDebug("queryPrices: nothing to do because there are no SKUs.");
       return BILLING_RESPONSE_RESULT_OK;
     }
 
     // Split the sku list in blocks of no more than 20 elements.
-    ArrayList<ArrayList<String>> packs = new ArrayList<ArrayList<String>>();
+    ArrayList<ArrayList<String>> packs = new ArrayList<>();
     ArrayList<String> tempList;
     int n = skuList.size() / 20;
     int mod = skuList.size() % 20;
     for (int i = 0; i < n; i++) {
-      tempList = new ArrayList<String>();
+      tempList = new ArrayList<>();
       for (String s : skuList.subList(i * 20, i * 20 + 20)) {
         tempList.add(s);
       }
       packs.add(tempList);
     }
     if (mod != 0) {
-      tempList = new ArrayList<String>();
+      tempList = new ArrayList<>();
       for (String s : skuList.subList(n * 20, n * 20 + mod)) {
         tempList.add(s);
       }
@@ -955,7 +962,7 @@ public class IabHelper {
     flagStartAsync("consume");
     (new Thread(new Runnable() {
       public void run() {
-        final List<IabResult> results = new ArrayList<IabResult>();
+        final List<IabResult> results = new ArrayList<>();
         for (Purchase purchase : purchases) {
           try {
             consume(purchase);

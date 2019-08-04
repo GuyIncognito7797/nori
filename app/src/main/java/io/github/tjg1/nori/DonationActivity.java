@@ -162,13 +162,11 @@ public class DonationActivity extends AppCompatActivity implements GoogleIAPHand
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: // Handle back button in the action bar.
-        onBackPressed();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
   //endregion
 
