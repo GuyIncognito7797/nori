@@ -54,7 +54,7 @@ dependencies {
   // >4.2 requires higher min-sdk version.
   implementation 'org.apache.commons:commons-collections4:4.2'
   // Android support library.
-  implementation 'com.android.support:support-v4:28.0.0'
+  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
   // FEST for easier unit testing.
   androidTestImplementation 'org.easytesting:fest-assert-core:2.0M10'
 

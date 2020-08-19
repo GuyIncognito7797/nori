@@ -11,7 +11,7 @@ package io.github.tjg1.nori.util;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;;
 
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;

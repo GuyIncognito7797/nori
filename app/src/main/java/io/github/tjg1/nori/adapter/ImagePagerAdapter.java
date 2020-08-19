@@ -6,9 +6,9 @@
 
 package io.github.tjg1.nori.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import io.github.tjg1.library.norilib.Image;
@@ -17,7 +17,7 @@ import io.github.tjg1.nori.fragment.ImageFragment;
 import io.github.tjg1.nori.fragment.RemoteImageFragment;
 import io.github.tjg1.nori.fragment.VideoPlayerFragment;
 
-/** Adapter used to populate {@link android.support.v4.view.ViewPager} with {@link io.github.tjg1.nori.fragment.ImageFragment}s. */
+/** Adapter used to populate {@link androidx.core.view.ViewPager} with {@link io.github.tjg1.nori.fragment.ImageFragment}s. */
 public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
   //region Instance fields
@@ -29,7 +29,7 @@ public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
   //region Constructors
   /**
-   * Create a new {@link android.support.v4.view.PagerAdapter} displaying {@link Image}s using
+   * Create a new {@link androidx.core.view.PagerAdapter} displaying {@link Image}s using
    * Fragments.
    *
    * @param fm       Android support library fragment manager.

@@ -8,8 +8,8 @@ package io.github.tjg1.library.norilib.clients;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.koushikdutta.async.DataEmitter;
 import com.koushikdutta.ion.Ion;

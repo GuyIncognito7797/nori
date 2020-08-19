@@ -9,7 +9,7 @@ package io.github.tjg1.library.norilib.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import io.github.tjg1.library.norilib.clients.Danbooru;
 import io.github.tjg1.library.norilib.clients.DanbooruLegacy;

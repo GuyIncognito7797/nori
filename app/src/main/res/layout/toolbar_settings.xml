@@ -5,7 +5,7 @@
   ~ License: GNU GPLv2
   -->
 
-<android.support.design.widget.AppBarLayout
+<com.google.android.material.appbar.AppBarLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +14,7 @@
   android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
   tools:context=".SettingsActivity">
 
-  <android.support.v7.widget.Toolbar
+  <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -25,4 +25,4 @@
     app:title="@string/action_settings"
     app:titleTextColor="#ffffff"/>
 
-</android.support.design.widget.AppBarLayout>
+</com.google.android.material.appbar.AppBarLayout>

@@ -11,7 +11,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-  <android.support.design.widget.TextInputLayout
+  <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -24,13 +24,13 @@
       android:inputType="text"
       android:singleLine="true"/>
 
-  </android.support.design.widget.TextInputLayout>
+  </com.google.android.material.textfield.TextInputLayout>
 
-  <android.support.design.widget.TextInputLayout
+  <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/uri"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -39,13 +39,13 @@
       android:inputType="textUri"
       android:singleLine="true"/>
 
-  </android.support.design.widget.TextInputLayout>
+  </com.google.android.material.textfield.TextInputLayout>
 
-  <android.support.design.widget.TextInputLayout
+  <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/username"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -55,13 +55,13 @@
       android:singleLine="true"
       android:visibility="gone"/>
 
-  </android.support.design.widget.TextInputLayout>
+  </com.google.android.material.textfield.TextInputLayout>
 
-  <android.support.design.widget.TextInputLayout
+  <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/passphrase"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -71,6 +71,6 @@
       android:singleLine="true"
       android:visibility="gone"/>
 
-  </android.support.design.widget.TextInputLayout>
+  </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
