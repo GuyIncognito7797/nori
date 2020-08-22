@@ -15,14 +15,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;;
+import com.google.android.material.appbar.AppBarLayout;
+//import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -66,9 +67,9 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
   private SharedPreferences sharedPreferences;
   /** View pager used to display the images. */
   private ImageViewerPager viewPager;
-  /** Search result shown by the {@link android.support.v4.app.FragmentStatePagerAdapter}. */
+  /** Search result shown by the {@link androidx.core.app.FragmentStatePagerAdapter}. */
   private SearchResult searchResult;
-  /** Adapter used to populate the {@link android.support.v4.view.ViewPager} used to display and flip through the images. */
+  /** Adapter used to populate the {@link androidx.core.view.ViewPager} used to display and flip through the images. */
   private ImagePagerAdapter imagePagerAdapter;
   /** Search API client used to retrieve more search results for infinite scrolling. */
   private SearchClient searchClient;

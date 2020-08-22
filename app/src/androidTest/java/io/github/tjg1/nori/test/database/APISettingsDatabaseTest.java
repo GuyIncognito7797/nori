@@ -10,7 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.core.content.LocalBroadcastManager;
 import android.test.InstrumentationTestCase;
 import android.test.RenamingDelegatingContext;
 import android.util.Pair;
@@ -126,7 +126,7 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     database.close();
   }
 
-  /** Test if the database sends a Broadcast to the {@link android.support.v4.content.LocalBroadcastManager} when the data is changed. */
+  /** Test if the database sends a Broadcast to the {@link androidx.core.content.LocalBroadcastManager} when the data is changed. */
   public void testUpdateBroadcast() throws Throwable {
     // Create a lock that waits for the broadcast to be received in the background.
     final CountDownLatch lock = new CountDownLatch(3);

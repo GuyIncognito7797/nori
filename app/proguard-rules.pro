@@ -14,16 +14,11 @@
         public <init>(android.content.Context, android.util.AttributeSet, int);
         public void set*(...);
 }
--keep public class android.support.v7.widget.ShareActionProvider {
+
+-keep public class androidx.appcompat.widget.ShareActionProvider {
   public <init>(...);
 }
+
 -dontwarn com.koushikdutta.ion.**
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}

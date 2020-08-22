@@ -12,8 +12,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
+import androidx.annotation.NonNull;;
+import androidx.fragment.app.DialogFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +21,7 @@ import android.widget.EditText;
 
 import io.github.tjg1.nori.R;
 
-/** {@link android.support.v4.app.DialogFragment} to let the users add new tags in {@link io.github.tjg1.nori.TagFilterSettingsActivity}. */
+/** {@link androidx.core.app.DialogFragment} to let the users add new tags in {@link io.github.tjg1.nori.TagFilterSettingsActivity}. */
 public class AddTagFilterDialogFragment extends DialogFragment implements View.OnClickListener {
 
   //region Bundle IDs
