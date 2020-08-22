@@ -9,6 +9,8 @@ package io.github.tjg1.library.norilib;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
+
 /** Image tag */
 public class Tag implements Comparable<Tag>, Parcelable {
 
@@ -193,6 +195,14 @@ public class Tag implements Comparable<Tag>, Parcelable {
     final Tag[] tags = new Tag[strings.length];
     for (int i = 0; i < strings.length; i++) {
       tags[i] = new Tag(strings[i], type);
+    }
+    return tags;
+  }
+
+  public static Tag[] arrayFromStringArray(String[] tagArray, Tag.Type type) {
+    final Tag[] tags = new Tag[tagArray.length];
+    for (int i = 0; i < tagArray.length; i++) {
+      tags[i] = new Tag(tagArray[i], type);
     }
     return tags;
   }
