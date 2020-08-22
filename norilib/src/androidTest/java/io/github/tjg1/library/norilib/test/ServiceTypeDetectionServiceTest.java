@@ -18,11 +18,10 @@ import java.util.concurrent.TimeUnit;
 
 import io.github.tjg1.library.norilib.clients.Danbooru;
 import io.github.tjg1.library.norilib.clients.DanbooruLegacy;
-import io.github.tjg1.library.norilib.clients.E621;
+import io.github.tjg1.library.norilib.clients.E621Legacy;
 import io.github.tjg1.library.norilib.clients.Flickr;
 import io.github.tjg1.library.norilib.clients.FlickrUser;
 import io.github.tjg1.library.norilib.clients.Gelbooru;
-import io.github.tjg1.library.norilib.clients.Shimmie;
 import io.github.tjg1.library.norilib.service.ServiceTypeDetectionService;
 
 import static org.fest.assertions.api.Assertions.assertThat;
@@ -82,7 +81,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
 
   /** Test detection of the Mono-sodium Glutamate API. */
   public void testE621Detection() throws Throwable {
-    String url = E621.detectService(Uri.parse("https://e621.net"));
+    String url = E621Legacy.detectService(Uri.parse("https://e621.net"));
 
     assertThat(url).isNotNull();
     assertThat(url).isEqualTo("https://e621.net");
@@ -90,7 +89,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
 
   /** Test detection of the Chlorine dioxide API. */
   public void testE926Detection() throws Throwable {
-    String url = E621.detectService(Uri.parse("https://e926.net"));
+    String url = E621Legacy.detectService(Uri.parse("https://e926.net"));
 
     assertThat(url).isNotNull();
     assertThat(url).isEqualTo("https://e926.net");

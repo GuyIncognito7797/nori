@@ -48,7 +48,7 @@ import io.github.tjg1.library.norilib.Tag;
  * Client for the Danbooru 2.x API.
  */
 public class Danbooru implements SearchClient {
-
+  static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
   //region Constants
   /**
    * Number of images per search results page.
@@ -65,13 +65,13 @@ public class Danbooru implements SearchClient {
   /** Android context. */
   protected final Context context;
   /** Human-readable service name */
-  private final String name;
+  protected final String name;
   /** URL to the HTTP API Endpoint - the server implementing the API. */
-  private final String apiEndpoint;
+  protected final String apiEndpoint;
   /** Username used for authentication. (optional) */
-  private final String username;
+  protected final String username;
   /** API key used for authentication. (optional) */
-  private final String apiKey;
+  protected final String apiKey;
   //endregion
 
   //region Constructors
@@ -229,6 +229,11 @@ public class Danbooru implements SearchClient {
   //endregion
 
   //region Parsing responses
+
+  protected SearchResult parseAPIResponse(String body, String tags, int offset) throws IOException {
+    return parseXMLResponse(body, tags, offset);
+  }
+
   /**
    * Parse an XML response returned by the API.
    *
@@ -344,8 +349,6 @@ public class Danbooru implements SearchClient {
    * @return Date converted from given String.
    */
   protected static Date dateFromString(String date) throws ParseException {
-    final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
-
     // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
     if (!TextUtils.isEmpty(date)) {
       String newDate = date.replace("Z", "+0000");
@@ -354,7 +357,6 @@ public class Danbooru implements SearchClient {
       }
       return DATE_FORMAT.parse(newDate);
     }
-
     return null;
   }
 
@@ -373,9 +375,9 @@ public class Danbooru implements SearchClient {
   /** Asynchronous search parser to use with ion. */
   protected class SearchResultParser implements AsyncParser<SearchResult> {
     /** Tags searched for. */
-    private final String tags;
+    protected final String tags;
     /** Current page offset. */
-    private final int pageOffset;
+    protected final int pageOffset;
 
     public SearchResultParser(String tags, int pageOffset) {
       this.tags = tags;
@@ -388,7 +390,7 @@ public class Danbooru implements SearchClient {
           .then(new TransformFuture<SearchResult, String>() {
             @Override
             protected void transform(String result) throws Exception {
-              setComplete(parseXMLResponse(result, tags, pageOffset));
+              setComplete(parseAPIResponse(result, tags, pageOffset));
             }
           });
     }

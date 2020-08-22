@@ -8,18 +8,27 @@ package io.github.tjg1.library.norilib.clients;
 
 import android.content.Context;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.koushikdutta.async.DataEmitter;
+import com.koushikdutta.async.DataSink;
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.future.Future;
+import com.koushikdutta.async.future.TransformFuture;
+import com.koushikdutta.async.parser.AsyncParser;
+import com.koushikdutta.async.parser.StringParser;
+import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,143 +36,200 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.concurrent.ExecutionException;
 
 import io.github.tjg1.library.norilib.Image;
 import io.github.tjg1.library.norilib.SearchResult;
 import io.github.tjg1.library.norilib.Tag;
-import io.github.tjg1.library.norilib.util.HashUtils;
+
+import java.lang.System;
 
 /** {@link io.github.tjg1.library.norilib.clients.SearchClient} for the E621 imageboard. */
-public class E621 extends DanbooruLegacy {
-  final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
-  //region Constants
-  /** Number of images to fetch with each search. */
-  private static final int DEFAULT_LIMIT = 100;
-  //endregion
+public class E621 extends Danbooru {
+    final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US);
+    //region Constants
+    /** Number of images to fetch with each search. */
+    private static final int DEFAULT_LIMIT = 100;
+    //endregion
 
-  //region Constructors
-  public E621(Context context, String name, String endpoint) {
-    super(context, name, endpoint);
-  }
+    //region Constructors
+    public E621(Context context, String name, String endpoint) {
+        super(context, name, endpoint);
+    }
 
-  public E621(Context context, String name, String endpoint, String username, String password) {
-    super(context, name, endpoint, username, password);
-  }
-  //endregion
+    public E621(Context context, String name, String endpoint, String username, String password) {
+        super(context, name, endpoint, username, password);
+    }
+    //endregion
 
-  //region Service detection
-  /**
-   * Checks if the given URL exposes a supported API endpoint.
-   *
-   * @param uri URL to test.
-   * @return Detected endpoint URL. null, if no supported endpoint URL was detected.
-   */
-  @Nullable
-  public static String detectService(@NonNull Uri uri) {
-    final String host = uri.getHost();
+    //region Service detection
+    /**
+     * Checks if the given URL exposes a supported API endpoint.
+     *
+     * @param uri URL to test.
+     * @return Detected endpoint URL. null, if no supported endpoint URL was detected.
+     */
+    @Nullable
+    public static String detectService(@NonNull Context context, @NonNull Uri uri, int timeout) {
+        final String endpointUrl = Uri.withAppendedPath(uri, "/posts.json").toString();
+        try {
+            final Response<DataEmitter> response = Ion.with(context)
+                    .load(endpointUrl)
+                    .setTimeout(timeout)
+                    .userAgent(SearchClient.USER_AGENT)
+                    .followRedirect(false)
+                    .noCache()
+                    .asDataEmitter()
+                    .withResponse()
+                    .get();
 
-    // Check hardcoded URLs.
-    if ("c6ce2f20c50fbc7c67fd34489bfb95a8d2ac0de0d4a44c380f8e6a8eea336a6373e8d7c33ab1a23cd64aa62ee7b7a920d0e0245165b337924e26c65f3646641e"
-        .equals(HashUtils.sha512(host, "nori")) ||
-        "29f0eb150146b597205df6b320ce551762459663b1c2333e29b3d08a0a7fcbc98644bf8e558ceefe8ceb3101463f7a04e14ab990215dce6bdbfb941951bb00fe"
-            .equals(HashUtils.sha512(host, "nori")))
-      return "https://" + host;
+            // Close the connection.
+            final DataEmitter dataEmitter = response.getResult();
+            if (dataEmitter != null) dataEmitter.close();
 
-    return null;
-  }
-  //endregion
+            if (response.getHeaders().code() == 200) {
+                return uri.toString();
+            }
+        } catch (InterruptedException | ExecutionException ignored) { }
+        return null;
+    }
+    //endregion
 
-  //region SearchClient methods
-  @Override
-  public Settings getSettings() {
-    return new Settings(Settings.APIType.E621, name, apiEndpoint);
-  }
-  //endregion
+    //region SearchClient methods
+    @Override
+    public Settings getSettings() {
+        return new Settings(Settings.APIType.E621, name, apiEndpoint, username, apiKey);
+    }
+    //endregion
 
-  //region Parsing responses
-  @Override
-  protected String webUrlFromId(String id) {
-    return apiEndpoint + "/post/show/" + id;
-  }
+    @Override
+    protected String createSearchURL(String tags, int pid, int limit) {
+        // Page numbers are 1-indexed for this API.
+        final int page = pid + 1;
 
-  @Override
-  protected SearchResult parseXMLResponse(String body, String tags, int offset) throws IOException {
-
-    final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
-
-    try {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder builder = factory.newDocumentBuilder();
-      Document doc = builder.parse(new InputSource(new StringReader(body)));
-
-      NodeList nList = doc.getElementsByTagName("post");
-
-      for(int i = 0; i < nList.getLength(); i++) {
-
-        Node node = nList.item(i);
-        if(node.getNodeType() == Node.ELEMENT_NODE) {
-
-          Element element = (Element) node;
-
-          final Image image = new Image();
-          image.searchPage = offset;
-          image.searchPagePosition = i;
-
-
-          image.fileUrl = element.getElementsByTagName("file_url").item(0).getTextContent();
-          image.width = Integer.parseInt(element.getElementsByTagName("width").item(0).getTextContent());
-          image.height = Integer.parseInt(element.getElementsByTagName("height").item(0).getTextContent());
-
-          image.previewUrl = element.getElementsByTagName("preview_url").item(0).getTextContent();
-          image.previewWidth = Integer.parseInt(element.getElementsByTagName("preview_width").item(0).getTextContent());
-          image.previewHeight = Integer.parseInt(element.getElementsByTagName("preview_height").item(0).getTextContent());
-
-          image.sampleUrl = element.getElementsByTagName("sample_url").item(0).getTextContent();
-          image.sampleWidth = Integer.parseInt(element.getElementsByTagName("sample_width").item(0).getTextContent());
-          image.sampleHeight = Integer.parseInt(element.getElementsByTagName("sample_height").item(0).getTextContent());
-
-          image.tags = Tag.arrayFromString(element.getElementsByTagName("tags").item(0).getTextContent(), Tag.Type.GENERAL);
-          image.id = element.getElementsByTagName("id").item(0).getTextContent();
-          image.webUrl = webUrlFromId(image.id);
-          image.parentId = element.getElementsByTagName("parent_id").item(0).getTextContent();
-          image.safeSearchRating = Image.SafeSearchRating.fromString(element.getElementsByTagName("rating").item(0).getTextContent());
-          image.score = Integer.parseInt(element.getElementsByTagName("score").item(0).getTextContent());
-          image.md5 = element.getElementsByTagName("md5").item(0).getTextContent();
-          image.createdAt = dateFromString(element.getElementsByTagName("created_at").item(0).getTextContent());
-
-          imageList.add(image);
+        if (!TextUtils.isEmpty(this.username) && !TextUtils.isEmpty(this.apiKey)) {
+            return String.format(Locale.US, apiEndpoint + "/posts.json?tags=%s&page=%d&limit=%d&login=%s&api_key=%s",
+                    Uri.encode(tags), page, limit, Uri.encode(this.username), Uri.encode(this.apiKey));
         }
-      }
-
-    }
-    catch(Exception e) {
-      throw new IOException(e);
+        return String.format(Locale.US, apiEndpoint + "/posts.json?tags=%s&page=%d&limit=%d", Uri.encode(tags), page, limit);
     }
 
-    return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
-  }
-
-  /**
-   * Create a {@link java.util.Date} object from String date representation used by this API.
-   *
-   * @param date Date string.
-   * @return Date converted from given String.
-   */
-  @Override
-  protected Date dateFromString(String date) throws ParseException {
-    // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
-    if (!TextUtils.isEmpty(date)) {
-      String newDate = date.replace("Z", "+0000");
-      if (newDate.length() == 25) {
-        newDate = newDate.substring(0, 22) + newDate.substring(23); // Remove timezone colon.
-      }
-      return DATE_FORMAT.parse(newDate);
+    //region Parsing responses
+    @Override
+    protected String webUrlFromId(String id) {
+        return apiEndpoint + "/post/show/" + id;
     }
 
-    return null;
-  }
-  //endregion
+    protected SearchResult parseAPIResponse(String body, String tags, int offset) throws IOException {
+        return parseJSONResponse(body, tags, offset);
+    }
+
+    protected SearchResult parseJSONResponse(String body, String tags, int offset) throws IOException {
+        final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
+        JSONObject jsonObject;
+
+        try {
+            jsonObject = new JSONObject(body);
+            JSONArray posts = jsonObject.getJSONArray("posts");
+            for (int i = 0; i < posts.length(); i++) {
+                JSONObject post = (JSONObject) posts.get(i);
+                JSONObject postFile = (JSONObject) post.get("file");
+                JSONObject postPreview = (JSONObject) post.get("preview");
+                JSONObject postSample = (JSONObject) post.get("sample");
+                JSONObject postScore = (JSONObject) post.get("score");
+                JSONObject postTags = (JSONObject) post.get("tags");
+                JSONObject postRelationships = (JSONObject) post.get("relationships");
+
+                final Image image = new Image();
+                image.searchPage = offset;
+                image.searchPagePosition = i;
+
+                // Base level attributes
+                image.id = post.get("id").toString();
+                image.createdAt = dateFromString(post.get("created_at").toString());
+                image.safeSearchRating = Image.SafeSearchRating.fromString(post.get("rating").toString());
+
+                // File attributes
+                image.fileUrl = postFile.get("url").toString();
+                image.md5 = postFile.get("md5").toString();
+                image.width = (int) postFile.get("width");
+                image.height = (int) postFile.get("height");
+
+                // Preview attributes
+                image.previewUrl = postPreview.get("url").toString();
+                image.previewWidth = (int) postPreview.get("width");
+                image.previewHeight = (int) postPreview.get("height");
+
+                // Sample attributes
+                image.sampleUrl = postSample.get("url").toString();
+                image.sampleWidth = (int) postSample.get("width");
+                image.sampleHeight = (int) postSample.get("height");
+
+                // Tag array
+                // Get arrays out of JSON
+                JSONArray artistTags = (JSONArray) postTags.get("artist");
+                JSONArray characterTags = (JSONArray) postTags.get("character");
+                JSONArray copyrightTags = (JSONArray) postTags.get("copyright");
+                JSONArray generalTags = (JSONArray) postTags.get("general");
+
+                // Create Tag[] array of the correct size
+                int totalTags = artistTags.length() + characterTags.length() + copyrightTags.length() + generalTags.length();
+                final Tag[] tagsArr = new Tag[totalTags];
+
+                // Create Tag arrays for each type
+                Tag[] artistTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(artistTags), Tag.Type.ARTIST);
+                Tag[] characterTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(characterTags), Tag.Type.CHARACTER);
+                Tag[] copyrightTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(copyrightTags), Tag.Type.COPYRIGHT);
+                Tag[] generalTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(generalTags), Tag.Type.GENERAL);
+
+                // Use array copy to copy the contents of the Tag arrays into tagsArr
+                int totalLength = 0;
+                System.arraycopy(artistTagsArr, 0, tagsArr, 0, artistTagsArr.length);
+                totalLength += artistTagsArr.length;
+                System.arraycopy(characterTagsArr, 0, tagsArr, totalLength, characterTagsArr.length);
+                totalLength += characterTagsArr.length;
+                System.arraycopy(copyrightTagsArr, 0, tagsArr, totalLength, copyrightTagsArr.length);
+                totalLength += copyrightTagsArr.length;
+                System.arraycopy(generalTagsArr, 0, tagsArr, totalLength, generalTagsArr.length);
+                image.tags = tagsArr;
+                image.webUrl = webUrlFromId(image.id);
+                image.parentId = postRelationships.get("parent_id").toString();
+
+                // Score attributes
+                image.score = (int) postScore.get("total");
+
+                if (image.fileUrl != null) {
+                    imageList.add(image);
+                }
+            }
+        } catch (JSONException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
+    }
+
+    String[] stringArrayFromJSONArray(JSONArray jsonArray) throws JSONException {
+        String[] stringArray = new String[jsonArray.length()];
+        for (int i = 0; i < stringArray.length; i++) {
+            stringArray[i] = jsonArray.get(i).toString();
+        }
+        return stringArray;
+    }
+
+    /**
+     * Create a {@link java.util.Date} object from String date representation used by this API.
+     *
+     * @param date Date string.
+     * @return Date converted from given String.
+     */
+    protected static Date dateFromString(String date) throws ParseException {
+        // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
+        if (!TextUtils.isEmpty(date)) {
+            return DATE_FORMAT.parse(date);
+        }
+        return null;
+    }
 }
+
+

@@ -1,6 +1,6 @@
 package io.github.tjg1.library.norilib.test;
 
-import io.github.tjg1.library.norilib.clients.E621;
+import io.github.tjg1.library.norilib.clients.E621Legacy;
 import io.github.tjg1.library.norilib.clients.SearchClient;
 
  /**
@@ -10,7 +10,7 @@ public class E621Test extends SearchClientTestCase{
 
   @Override
   protected SearchClient createSearchClient(){
-    return new E621(getInstrumentation().getContext(), "E926", "https://e926.net");
+    return new E621Legacy(getInstrumentation().getContext(), "E926", "https://e926.net");
   }
 
   @Override

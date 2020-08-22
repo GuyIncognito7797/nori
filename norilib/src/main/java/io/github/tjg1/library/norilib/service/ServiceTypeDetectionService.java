@@ -79,7 +79,7 @@ public class ServiceTypeDetectionService extends IntentService {
     // Detected API endpoint.
     String apiEndpoint;
 
-    // Check for flickr and E621 (services with hardcoded URLs).
+    // Check for Flickr
     apiEndpoint = Flickr.detectService(uri);
     if (apiEndpoint != null) {
       sendBroadcast(RESULT_OK, apiEndpoint, SearchClient.Settings.APIType.FLICKR);
@@ -88,11 +88,6 @@ public class ServiceTypeDetectionService extends IntentService {
     apiEndpoint = FlickrUser.detectService(uri);
     if (apiEndpoint != null) {
       sendBroadcast(RESULT_OK, apiEndpoint, SearchClient.Settings.APIType.FLICKR_USER);
-      return;
-    }
-    apiEndpoint = E621.detectService(uri);
-    if (apiEndpoint != null) {
-      sendBroadcast(RESULT_OK, apiEndpoint, SearchClient.Settings.APIType.E621);
       return;
     }
 
@@ -111,6 +106,12 @@ public class ServiceTypeDetectionService extends IntentService {
       apiEndpoint = DanbooruLegacy.detectService(this, baseUri, timeout);
       if (apiEndpoint != null) {
         sendBroadcast(RESULT_OK, apiEndpoint, SearchClient.Settings.APIType.DANBOARD_LEGACY);
+        return;
+      }
+
+      apiEndpoint = E621.detectService(this, baseUri, timeout);
+      if (apiEndpoint != null) {
+        sendBroadcast(RESULT_OK, apiEndpoint, SearchClient.Settings.APIType.E621);
         return;
       }
 

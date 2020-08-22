@@ -73,8 +73,7 @@ public class Gelbooru extends DanbooruLegacy {
       if (response.getHeaders().code() == 200) {
         return uri.toString();
       }
-    } catch (InterruptedException | ExecutionException ignored) {
-    }
+    } catch (InterruptedException | ExecutionException ignored) { }
     return null;
   }
   //endregion
