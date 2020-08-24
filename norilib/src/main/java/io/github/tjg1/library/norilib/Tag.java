@@ -141,6 +141,8 @@ public class Tag implements Comparable<Tag>, Parcelable {
         return R.color.tag_color_character;
       case COPYRIGHT:
         return R.color.tag_color_copyright;
+      case SPECIES:
+        return R.color.tag_color_species;
       default:
         return R.color.tag_color_general;
     }
@@ -206,6 +208,23 @@ public class Tag implements Comparable<Tag>, Parcelable {
     }
     return tags;
   }
+
+  public static Tag[] arrayFromTagArrays(Tag[] ... arrays) {
+    // Use array copy to copy the contents of the Tag arrays into tagsArr
+    int totalLength = 0;
+    for (Tag[] array: arrays) {
+      totalLength += array.length;
+    }
+    Tag[] newArray = new Tag[totalLength];
+
+    int progressLength = 0;
+    for (Tag[] array: arrays) {
+      System.arraycopy(array, 0, newArray, progressLength, array.length);
+      progressLength += array.length;
+    }
+
+    return newArray;
+  }
   //endregion
 
   //region Tag type enum
@@ -221,7 +240,9 @@ public class Tag implements Comparable<Tag>, Parcelable {
     /** Character tags. List the characters in the image. */
     CHARACTER,
     /** Copyright tags. List the copyrights (shows, comics, etc.) in the image. */
-    COPYRIGHT
+    COPYRIGHT,
+    /** Species tags, used only by E621. */
+    SPECIES
   }
   //endregion
 }

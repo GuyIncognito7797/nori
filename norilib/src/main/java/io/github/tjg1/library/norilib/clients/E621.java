@@ -171,27 +171,16 @@ public class E621 extends Danbooru {
                 JSONArray characterTags = (JSONArray) postTags.get("character");
                 JSONArray copyrightTags = (JSONArray) postTags.get("copyright");
                 JSONArray generalTags = (JSONArray) postTags.get("general");
-
-                // Create Tag[] array of the correct size
-                int totalTags = artistTags.length() + characterTags.length() + copyrightTags.length() + generalTags.length();
-                final Tag[] tagsArr = new Tag[totalTags];
+                JSONArray speciesTags = (JSONArray) postTags.get("species");
 
                 // Create Tag arrays for each type
                 Tag[] artistTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(artistTags), Tag.Type.ARTIST);
                 Tag[] characterTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(characterTags), Tag.Type.CHARACTER);
                 Tag[] copyrightTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(copyrightTags), Tag.Type.COPYRIGHT);
+                Tag[] speciesTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(speciesTags), Tag.Type.SPECIES);
                 Tag[] generalTagsArr = Tag.arrayFromStringArray(stringArrayFromJSONArray(generalTags), Tag.Type.GENERAL);
+                image.tags = Tag.arrayFromTagArrays(artistTagsArr, characterTagsArr, copyrightTagsArr, speciesTagsArr, generalTagsArr);
 
-                // Use array copy to copy the contents of the Tag arrays into tagsArr
-                int totalLength = 0;
-                System.arraycopy(artistTagsArr, 0, tagsArr, 0, artistTagsArr.length);
-                totalLength += artistTagsArr.length;
-                System.arraycopy(characterTagsArr, 0, tagsArr, totalLength, characterTagsArr.length);
-                totalLength += characterTagsArr.length;
-                System.arraycopy(copyrightTagsArr, 0, tagsArr, totalLength, copyrightTagsArr.length);
-                totalLength += copyrightTagsArr.length;
-                System.arraycopy(generalTagsArr, 0, tagsArr, totalLength, generalTagsArr.length);
-                image.tags = tagsArr;
                 image.webUrl = webUrlFromId(image.id);
                 image.parentId = postRelationships.get("parent_id").toString();
 
@@ -231,5 +220,3 @@ public class E621 extends Danbooru {
         return null;
     }
 }
-
-
