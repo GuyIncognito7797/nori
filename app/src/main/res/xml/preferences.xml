@@ -8,78 +8,71 @@
 
 <!-- List of preferences displayed in SettingsActivity. -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <PreferenceCategory
-    android:title="@string/preference_category_services">
-    <Preference
-      android:summary="@string/preference_service_settings_summary"
-      android:title="@string/preference_service_settings_title">
-      <intent
-        android:targetClass="io.github.tjg1.nori.APISettingsActivity"
-        android:targetPackage="io.github.tjg1.nori"/>
-    </Preference>
-  </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_category_services">
+        <Preference
+            android:summary="@string/preference_service_settings_summary"
+            android:title="@string/preference_service_settings_title">
+            <intent
+                android:targetClass="io.github.tjg1.nori.APISettingsActivity"
+                android:targetPackage="io.github.tjg1.nori" />
+        </Preference>
+    </PreferenceCategory>
 
-  <PreferenceCategory
-    android:title="@string/preference_imageViewer">
-    <CheckBoxPreference
-      android:defaultValue="true"
-      android:key="@string/preference_image_viewer_keepScreenOn_key"
-      android:persistent="true"
-      android:summary="@string/preference_image_viewer_keepScreenOn_summary"
-      android:title="@string/preference_image_viewer_keepScreenOn_title"/>
-    <CheckBoxPreference
-      android:defaultValue="true"
-      android:key="@string/preference_image_viewer_conserveBandwidth_key"
-      android:persistent="true"
-      android:summary="@string/preference_image_viewer_conserveBandwidth_summary"
-      android:title="@string/preference_image_viewer_conserveBandwidth_title"/>
-  </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_imageViewer">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/preference_image_viewer_keepScreenOn_key"
+            android:persistent="true"
+            android:summary="@string/preference_image_viewer_keepScreenOn_summary"
+            android:title="@string/preference_image_viewer_keepScreenOn_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/preference_image_viewer_conserveBandwidth_key"
+            android:persistent="true"
+            android:summary="@string/preference_image_viewer_conserveBandwidth_summary"
+            android:title="@string/preference_image_viewer_conserveBandwidth_title" />
+    </PreferenceCategory>
 
-  <PreferenceCategory
-    android:title="@string/preference_category_search">
-    <ListPreference
-      android:defaultValue="@string/preference_previewSize_default"
-      android:dialogTitle="@string/preference_previewSize_title"
-      android:entries="@array/preference_previewSize_entries"
-      android:entryValues="@array/preference_previewSize_entryValues"
-      android:key="@string/preference_previewSize_key"
-      android:title="@string/preference_previewSize_title"/>
-    <Preference
-      android:summary="@string/preference_safeSearch_summary"
-      android:title="@string/preference_safeSearch_title">
-      <intent
-        android:targetClass="io.github.tjg1.nori.SafeSearchSettingsActivity"
-        android:targetPackage="io.github.tjg1.nori"/>
-    </Preference>
-    <Preference
-      android:summary="@string/preference_tagFilter_summary"
-      android:title="@string/preference_tagFilter_title">
-      <intent
-        android:targetClass="io.github.tjg1.nori.TagFilterSettingsActivity"
-        android:targetPackage="io.github.tjg1.nori"/>
-    </Preference>
-    <Preference
-      android:key="preference_clearSearchHistory"
-      android:summary="@string/preference_clearSearchHistory_summary"
-      android:title="@string/preference_clearSearchHistory_title">
-    </Preference>
-  </PreferenceCategory>
-  <PreferenceCategory
-    android:title="@string/app_name">
-    <Preference
-      android:title="@string/preference_about">
-      <intent
-        android:action="io.github.tjg1.nori.ABOUT"
-        android:targetClass="io.github.tjg1.nori.WebViewActivity"
-        android:targetPackage="io.github.tjg1.nori">
-      </intent>
-    </Preference>
-    <Preference
-      android:summary="@string/preference_donate_summary"
-      android:title="@string/preference_donate">
-      <intent
-        android:targetClass="io.github.tjg1.nori.DonationActivity"
-        android:targetPackage="io.github.tjg1.nori"/>
-    </Preference>
-  </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_category_search">
+        <ListPreference
+            android:defaultValue="@string/preference_previewSize_default"
+            android:dialogTitle="@string/preference_previewSize_title"
+            android:entries="@array/preference_previewSize_entries"
+            android:entryValues="@array/preference_previewSize_entryValues"
+            android:key="@string/preference_previewSize_key"
+            android:title="@string/preference_previewSize_title" />
+        <Preference
+            android:summary="@string/preference_safeSearch_summary"
+            android:title="@string/preference_safeSearch_title">
+            <intent
+                android:targetClass="io.github.tjg1.nori.SafeSearchSettingsActivity"
+                android:targetPackage="io.github.tjg1.nori" />
+        </Preference>
+        <Preference
+            android:summary="@string/preference_tagFilter_summary"
+            android:title="@string/preference_tagFilter_title">
+            <intent
+                android:targetClass="io.github.tjg1.nori.TagFilterSettingsActivity"
+                android:targetPackage="io.github.tjg1.nori" />
+        </Preference>
+        <Preference
+            android:key="preference_clearSearchHistory"
+            android:summary="@string/preference_clearSearchHistory_summary"
+            android:title="@string/preference_clearSearchHistory_title"></Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/app_name">
+        <Preference android:title="@string/preference_about">
+            <intent
+                android:action="io.github.tjg1.nori.ABOUT"
+                android:targetClass="io.github.tjg1.nori.WebViewActivity"
+                android:targetPackage="io.github.tjg1.nori"></intent>
+        </Preference>
+        <Preference
+            android:summary="@string/preference_donate_summary"
+            android:title="@string/preference_donate">
+            <intent
+                android:targetClass="io.github.tjg1.nori.DonationActivity"
+                android:targetPackage="io.github.tjg1.nori" />
+        </Preference>
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -14,13 +14,13 @@ import io.github.tjg1.library.norilib.clients.SearchClient;
  */
 public class GelbooruTest extends SearchClientTestCase {
 
-  @Override
-  protected SearchClient createSearchClient() {
-    return new Gelbooru(getInstrumentation().getContext(), "Gelbooru", "http://gelbooru.com");
-  }
+    @Override
+    protected SearchClient createSearchClient() {
+        return new Gelbooru(getInstrumentation().getContext(), "Gelbooru", "http://gelbooru.com");
+    }
 
-  @Override
-  protected String getDefaultTag() {
-    return "blonde_hair";
-  }
+    @Override
+    protected String getDefaultTag() {
+        return "blonde_hair";
+    }
 }

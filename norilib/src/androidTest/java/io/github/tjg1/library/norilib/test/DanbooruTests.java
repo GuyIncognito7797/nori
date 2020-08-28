@@ -13,16 +13,16 @@ import io.github.tjg1.library.norilib.clients.SearchClient;
  * Tests for the Danbooru 2.x API.
  */
 public class DanbooruTests extends SearchClientTestCase {
-  // TODO: Test API key authentication.
+    // TODO: Test API key authentication.
 
-  @Override
-  protected SearchClient createSearchClient() {
-    return new Danbooru(getInstrumentation().getContext(),
-        "Danbooru", "https://danbooru.donmai.us");
-  }
+    @Override
+    protected SearchClient createSearchClient() {
+        return new Danbooru(getInstrumentation().getContext(),
+                "Danbooru", "https://danbooru.donmai.us");
+    }
 
-  @Override
-  protected String getDefaultTag() {
-    return "blonde_hair";
-  }
+    @Override
+    protected String getDefaultTag() {
+        return "blonde_hair";
+    }
 }

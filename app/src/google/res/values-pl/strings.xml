@@ -7,12 +7,12 @@
   -->
 <resources>
 
-  <!-- SafeSearch settings -->
-  <string name="safe_search_on">Włączone</string>
-  <string name="safe_search_moderate">Średnie</string>
-  <string name="safe_search_off">Wyłączone</string>
-  <string name="safe_search_on_summary"/>
-  <string name="safe_search_moderate_summary"/>
-  <string name="safe_search_off_summary"/>
+    <!-- SafeSearch settings -->
+    <string name="safe_search_on">Włączone</string>
+    <string name="safe_search_moderate">Średnie</string>
+    <string name="safe_search_off">Wyłączone</string>
+    <string name="safe_search_on_summary" />
+    <string name="safe_search_moderate_summary" />
+    <string name="safe_search_off_summary" />
 
 </resources>

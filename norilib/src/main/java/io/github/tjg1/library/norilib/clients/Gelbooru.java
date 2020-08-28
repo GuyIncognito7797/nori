@@ -8,6 +8,7 @@ package io.github.tjg1.library.norilib.clients;
 
 import android.content.Context;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -26,83 +27,87 @@ import java.util.concurrent.ExecutionException;
  * The Gelbooru API is based on the Danbooru 1.x API with a few minor differences.
  */
 public class Gelbooru extends DanbooruLegacy {
-  //region Constants
-  /** Date format used by Gelbooru. */
-  private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEE MMM d HH:mm:ss Z yyyy", Locale.US);
-  //endregion
+    //region Constants
+    /**
+     * Date format used by Gelbooru.
+     */
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEE MMM d HH:mm:ss Z yyyy", Locale.US);
+    //endregion
 
-  //region Constructors
-  public Gelbooru(Context context, String name, String endpoint) {
-    super(context, name, endpoint);
-  }
+    //region Constructors
+    public Gelbooru(Context context, String name, String endpoint) {
+        super(context, name, endpoint);
+    }
 
-  public Gelbooru(Context context, String name, String endpoint, String username, String password) {
-    super(context, name, endpoint, username, password);
-  }
-  //endregion
+    public Gelbooru(Context context, String name, String endpoint, String username, String password) {
+        super(context, name, endpoint, username, password);
+    }
+    //endregion
 
-  //region Service detection
-  /**
-   * Checks if the given URL exposes a supported API endpoint.
-   *
-   * @param context Android {@link Context}.
-   * @param uri     URL to test.
-   * @param timeout Timeout in milliseconds.
-   * @return Detected endpoint URL. null, if no supported endpoint URL was detected.
-   */
-  @Nullable
-  public static String detectService(@NonNull Context context, @NonNull Uri uri, int timeout) {
-    final String endpointUrl = Uri.withAppendedPath(uri, "/index.php?page=dapi&s=post&q=index")
-        .toString();
+    //region Service detection
 
-    try {
-      final Response<DataEmitter> response = Ion.with(context)
-          .load(endpointUrl)
-          .setTimeout(timeout)
-          .userAgent(SearchClient.USER_AGENT)
-          .followRedirect(false)
-          .noCache()
-          .asDataEmitter()
-          .withResponse()
-          .get();
+    /**
+     * Checks if the given URL exposes a supported API endpoint.
+     *
+     * @param context Android {@link Context}.
+     * @param uri     URL to test.
+     * @param timeout Timeout in milliseconds.
+     * @return Detected endpoint URL. null, if no supported endpoint URL was detected.
+     */
+    @Nullable
+    public static String detectService(@NonNull Context context, @NonNull Uri uri, int timeout) {
+        final String endpointUrl = Uri.withAppendedPath(uri, "/index.php?page=dapi&s=post&q=index")
+                .toString();
 
-      // Close the connection.
-      final DataEmitter dataEmitter = response.getResult();
-      if (dataEmitter != null) dataEmitter.close();
+        try {
+            final Response<DataEmitter> response = Ion.with(context)
+                    .load(endpointUrl)
+                    .setTimeout(timeout)
+                    .userAgent(SearchClient.USER_AGENT)
+                    .followRedirect(false)
+                    .noCache()
+                    .asDataEmitter()
+                    .withResponse()
+                    .get();
 
-      if (response.getHeaders().code() == 200) {
-        return uri.toString();
-      }
-    } catch (InterruptedException | ExecutionException ignored) { }
-    return null;
-  }
-  //endregion
+            // Close the connection.
+            final DataEmitter dataEmitter = response.getResult();
+            if (dataEmitter != null) dataEmitter.close();
 
-  //region SearchClient methods
-  @Override
-  public Settings getSettings() {
-    return new Settings(Settings.APIType.GELBOARD, name, apiEndpoint, username, password);
-  }
-  //endregion
+            if (response.getHeaders().code() == 200) {
+                return uri.toString();
+            }
+        } catch (InterruptedException | ExecutionException ignored) {
+        }
+        return null;
+    }
+    //endregion
 
-  //region Creating search URLs
-  @Override
-  protected String createSearchURL(String tags, int pid, int limit) {
-    // Unlike DanbooruLegacy, page numbers are 0-indexed for Gelbooru APIs.
-    return String.format(Locale.US, "%s/index.php?page=dapi&s=post&q=index&tags=%s&pid=%d&limit=%d", apiEndpoint, Uri.encode(tags), pid, limit);
-  }
-  //endregion
+    //region SearchClient methods
+    @Override
+    public Settings getSettings() {
+        return new Settings(Settings.APIType.GELBOARD, name, apiEndpoint, username, password);
+    }
+    //endregion
 
-  //region Parsing responses
-  @Override
-  protected String webUrlFromId(String id) {
-    return String.format(Locale.US, "%s/index.php?page=post&s=view&id=%s", apiEndpoint, id);
-  }
+    //region Creating search URLs
+    @Override
+    protected String createSearchURL(String tags, int pid, int limit) {
+        // Unlike DanbooruLegacy, page numbers are 0-indexed for Gelbooru APIs.
+        return String.format(Locale.US, "%s/index.php?page=dapi&s=post&q=index&tags=%s&pid=%d&limit=%d", apiEndpoint, Uri.encode(tags), pid, limit);
+    }
+    //endregion
 
-  @Override
-  protected Date dateFromString(String date) throws ParseException {
-    // Override Danbooru 1.x date format.
-    return DATE_FORMAT.parse(date);
-  }
-  //endregion
+    //region Parsing responses
+    @Override
+    protected String webUrlFromId(String id) {
+        return String.format(Locale.US, "%s/index.php?page=post&s=view&id=%s", apiEndpoint, id);
+    }
+
+    @Override
+    protected Date dateFromString(String date) throws ParseException {
+        // Override Danbooru 1.x date format.
+        return DATE_FORMAT.parse(date);
+    }
+    //endregion
 }

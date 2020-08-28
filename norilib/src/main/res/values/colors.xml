@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: ISC
   -->
 
 <resources>
-  <!-- Tag type color codes, as used by Danbooru, modified to match Android style guidelines. -->
-  <color name="tag_color_general">#33B5E5</color>
-  <color name="tag_color_artist">#FF4444</color>
-  <color name="tag_color_character">#99CC00</color>
-  <color name="tag_color_copyright">#AA66CC</color>
-  <color name="tag_color_species">#ED5D1F</color>
+    <!-- Tag type color codes, as used by Danbooru, modified to match Android style guidelines. -->
+    <color name="tag_color_general">#33B5E5</color>
+    <color name="tag_color_artist">#FF4444</color>
+    <color name="tag_color_character">#99CC00</color>
+    <color name="tag_color_copyright">#AA66CC</color>
+    <color name="tag_color_species">#ED5D1F</color>
 </resources>

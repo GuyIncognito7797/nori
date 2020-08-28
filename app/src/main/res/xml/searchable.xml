@@ -8,12 +8,11 @@
 
 <!-- Define search configuration (including smart completion) for SearchActivity. -->
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
-            android:hint="@string/hint_search_images"
-            android:imeOptions="actionSearch|flagForceAscii"
-            android:includeInGlobalSearch="false"
-            android:inputType="textFilter"
-            android:label="@string/app_name"
-            android:searchMode="queryRewriteFromText"
-            android:searchSuggestAuthority="io.github.tjg1.nori.SearchSuggestionProvider"
-            android:searchSuggestThreshold="3"
-  />
+    android:hint="@string/hint_search_images"
+    android:imeOptions="actionSearch|flagForceAscii"
+    android:includeInGlobalSearch="false"
+    android:inputType="textFilter"
+    android:label="@string/app_name"
+    android:searchMode="queryRewriteFromText"
+    android:searchSuggestAuthority="io.github.tjg1.nori.SearchSuggestionProvider"
+    android:searchSuggestThreshold="3" />

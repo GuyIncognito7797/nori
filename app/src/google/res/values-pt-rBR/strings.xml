@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <!-- SafeSearch settings -->
-  <string name="safe_search_on">Restringir</string>
-  <string name="safe_search_moderate">Moderar</string>
-  <string name="safe_search_off">Desligado</string>
-  <string name="safe_search_on_summary"/>
-  <string name="safe_search_moderate_summary"/>
-  <string name="safe_search_off_summary"/>
+    <!-- SafeSearch settings -->
+    <string name="safe_search_on">Restringir</string>
+    <string name="safe_search_moderate">Moderar</string>
+    <string name="safe_search_off">Desligado</string>
+    <string name="safe_search_on_summary" />
+    <string name="safe_search_moderate_summary" />
+    <string name="safe_search_off_summary" />
 
 </resources>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
@@ -7,130 +6,130 @@
 
 <resources>
 
-  <string name="app_name">Nori</string>
-  <string name="ok">OK</string>
-  <string name="cancel">Cancel</string>
+    <string name="app_name">Nori</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
-  <!-- Activity titles -->
-  <!-- (Image ID): (Image tags) -->
-  <string name="activity_image_viewer_titleFormat" formatted="false">%s: %s</string>
-  <string name="activity_settings">Settings</string>
-  <string name="activity_tag_filter_settings">Tag Filter</string>
-  <string name="activity_safeSearch_settings">SafeSearch</string>
-  <string name="activity_service_settings">Service Settings</string>
-  <string name="activity_donations">Donate</string>
+    <!-- Activity titles -->
+    <!-- (Image ID): (Image tags) -->
+    <string name="activity_image_viewer_titleFormat" formatted="false">%s: %s</string>
+    <string name="activity_settings">Settings</string>
+    <string name="activity_tag_filter_settings">Tag Filter</string>
+    <string name="activity_safeSearch_settings">SafeSearch</string>
+    <string name="activity_service_settings">Service Settings</string>
+    <string name="activity_donations">Donate</string>
 
-  <!-- EditText hints -->
-  <string name="hint_tag">Tag</string>
-  <string name="hint_search_images">Search images</string>
-  <string name="hint_service_name">Service name</string>
-  <string name="hint_service_uri">Service URL</string>
-  <string name="hint_service_username">Username (optional)</string>
-  <string name="hint_service_passphrase">Password/API key (optional)</string>
+    <!-- EditText hints -->
+    <string name="hint_tag">Tag</string>
+    <string name="hint_search_images">Search images</string>
+    <string name="hint_service_name">Service name</string>
+    <string name="hint_service_uri">Service URL</string>
+    <string name="hint_service_username">Username (optional)</string>
+    <string name="hint_service_passphrase">Password/API key (optional)</string>
 
-  <!-- Action bar items -->
-  <string name="action_add">Add</string>
-  <string name="action_settings">Settings</string>
-  <string name="action_search">Search</string>
-  <string name="action_share">Share</string>
-  <string name="action_tags">Tags</string>
-  <string name="action_downloadImage">Download</string>
-  <string name="action_viewOnWeb">View on Web</string>
-  <string name="action_viewOnPixiv">View on Pixiv</string>
-  <string name="action_setAsWallpaper">Set as Wallpaper</string>
-  <string name="service_dropdown_settings">Service settings…</string>
+    <!-- Action bar items -->
+    <string name="action_add">Add</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_share">Share</string>
+    <string name="action_tags">Tags</string>
+    <string name="action_downloadImage">Download</string>
+    <string name="action_viewOnWeb">View on Web</string>
+    <string name="action_viewOnPixiv">View on Pixiv</string>
+    <string name="action_setAsWallpaper">Set as Wallpaper</string>
+    <string name="service_dropdown_settings">Service settings…</string>
 
-  <!-- Dialogs -->
-  <string name="dialog_title_editService">Edit service</string>
-  <string name="dialog_title_addService">Add service</string>
-  <string name="dialog_tags_closeButton">Close</string>
-  <string name="dialog_message_detectingApiType">Detecting API settings…</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_editService">Edit service</string>
+    <string name="dialog_title_addService">Add service</string>
+    <string name="dialog_tags_closeButton">Close</string>
+    <string name="dialog_message_detectingApiType">Detecting API settings…</string>
 
-  <!-- Accessibility image content descriptions -->
-  <string name="content_description_remove">Remove</string>
+    <!-- Accessibility image content descriptions -->
+    <string name="content_description_remove">Remove</string>
 
-  <!-- Toast notifications -->
-  <string name="toast_networkError" formatted="false">Network error: %s</string>
-  <string name="toast_couldNotSetWallpaper" formatted="false">Could not set image as wallpaper: %s</string>
-  <string name="toast_infiniteScrollingFetchError" formatted="false">An error occurred when trying to fetch more images: %s</string>
-  <string name="toast_error_serviceUriInvalid">The given service URL is invalid.</string>
-  <string name="toast_error_noNetwork">Couldn\'t connect to network.</string>
-  <string name="toast_error_noServiceAtGivenUri">Couldn\'t find a supported API at the given URL.</string>
-  <string name="toast_error_noApplicationFound">No application found to handle this request.</string>
-  <string name="toast_error_videoMeteredConnection">Videos won\'t download on metered connections.</string>
-  <string name="toast_searchHistoryCleared">Search history cleared.</string>
-  <string name="toast_imageDownloadPermissionDenied">You need to grant storage permissions to download images.</string>
+    <!-- Toast notifications -->
+    <string name="toast_networkError" formatted="false">Network error: %s</string>
+    <string name="toast_couldNotSetWallpaper" formatted="false">Could not set image as wallpaper: %s</string>
+    <string name="toast_infiniteScrollingFetchError" formatted="false">An error occurred when trying to fetch more images: %s</string>
+    <string name="toast_error_serviceUriInvalid">The given service URL is invalid.</string>
+    <string name="toast_error_noNetwork">Couldn\'t connect to network.</string>
+    <string name="toast_error_noServiceAtGivenUri">Couldn\'t find a supported API at the given URL.</string>
+    <string name="toast_error_noApplicationFound">No application found to handle this request.</string>
+    <string name="toast_error_videoMeteredConnection">Videos won\'t download on metered connections.</string>
+    <string name="toast_searchHistoryCleared">Search history cleared.</string>
+    <string name="toast_imageDownloadPermissionDenied">You need to grant storage permissions to download images.</string>
 
-  <!-- Preferences -->
-  <string name="preference_category_search">Search</string>
-  <string name="preference_previewSize_title">Thumbnail size</string>
-  <string name="preference_safeSearch_title">SafeSearch</string>
-  <string name="preference_safeSearch_summary">Manage the SafeSearch filter settings</string>
-  <string name="preference_tagFilter_summary">Manage tags to remove from search results</string>
-  <string name="preference_tagFilter_title">Tag Filter</string>
-  <string name="preference_clearSearchHistory_summary">Clear the search history</string>
-  <string name="preference_clearSearchHistory_title">Clear History</string>
-  <string name="preference_imageViewer">Image Viewer</string>
-  <string name="preference_image_viewer_keepScreenOn_summary">Keep the screen on in the image viewer</string>
-  <string name="preference_image_viewer_keepScreenOn_title">Keep Screen On</string>
-  <string name="preference_image_viewer_conserveBandwidth_summary">Always fetch scaled-down images, even on fast connections</string>
-  <string name="preference_image_viewer_conserveBandwidth_title">Conserve Bandwidth</string>
-  <string name="preference_category_services">Services</string>
-  <string name="preference_service_settings_summary">Add, edit or remove imageboard service settings</string>
-  <string name="preference_service_settings_title">Service Settings</string>
-  <string name="preference_donate_summary">Support the development of Nori</string>
-  <string name="preference_donate">Donate</string>
-  <string name="preference_about">About Nori</string>
-  <string name="preference_about_summary">Display information about this version of Nori</string>
-  <!-- Untranslatable -->
-  <string name="preference_previewSize_key" translatable="false">preference_previewSize</string>
-  <string name="preference_previewSize_default" translatable="false">medium</string>
-  <string name="preference_safeSearch_key" translatable="false">preference_safeSearch</string>
-  <string name="preference_tagFilter_key" translatable="false">preference_tagFilter</string>
-  <string name="preference_image_viewer_keepScreenOn_key" translatable="false">preference_image_viewer_keepScreenOn</string>
-  <string name="preference_image_viewer_conserveBandwidth_key" translatable="false">preference_image_viewer_conserveBandwidth</string>
-  <string name="preference_donation_dialog_count" translatable="false">preference_donation_dialog_count</string>
+    <!-- Preferences -->
+    <string name="preference_category_search">Search</string>
+    <string name="preference_previewSize_title">Thumbnail size</string>
+    <string name="preference_safeSearch_title">SafeSearch</string>
+    <string name="preference_safeSearch_summary">Manage the SafeSearch filter settings</string>
+    <string name="preference_tagFilter_summary">Manage tags to remove from search results</string>
+    <string name="preference_tagFilter_title">Tag Filter</string>
+    <string name="preference_clearSearchHistory_summary">Clear the search history</string>
+    <string name="preference_clearSearchHistory_title">Clear History</string>
+    <string name="preference_imageViewer">Image Viewer</string>
+    <string name="preference_image_viewer_keepScreenOn_summary">Keep the screen on in the image viewer</string>
+    <string name="preference_image_viewer_keepScreenOn_title">Keep Screen On</string>
+    <string name="preference_image_viewer_conserveBandwidth_summary">Always fetch scaled-down images, even on fast connections</string>
+    <string name="preference_image_viewer_conserveBandwidth_title">Conserve Bandwidth</string>
+    <string name="preference_category_services">Services</string>
+    <string name="preference_service_settings_summary">Add, edit or remove imageboard service settings</string>
+    <string name="preference_service_settings_title">Service Settings</string>
+    <string name="preference_donate_summary">Support the development of Nori</string>
+    <string name="preference_donate">Donate</string>
+    <string name="preference_about">About Nori</string>
+    <string name="preference_about_summary">Display information about this version of Nori</string>
+    <!-- Untranslatable -->
+    <string name="preference_previewSize_key" translatable="false">preference_previewSize</string>
+    <string name="preference_previewSize_default" translatable="false">medium</string>
+    <string name="preference_safeSearch_key" translatable="false">preference_safeSearch</string>
+    <string name="preference_tagFilter_key" translatable="false">preference_tagFilter</string>
+    <string name="preference_image_viewer_keepScreenOn_key" translatable="false">preference_image_viewer_keepScreenOn</string>
+    <string name="preference_image_viewer_conserveBandwidth_key" translatable="false">preference_image_viewer_conserveBandwidth</string>
+    <string name="preference_donation_dialog_count" translatable="false">preference_donation_dialog_count</string>
 
-  <!-- Thumbnail sizes -->
-  <string name="preference_previewSize_small">Small</string>
-  <string name="preference_previewSize_medium">Medium</string>
-  <string name="preference_previewSize_large">Large</string>
+    <!-- Thumbnail sizes -->
+    <string name="preference_previewSize_small">Small</string>
+    <string name="preference_previewSize_medium">Medium</string>
+    <string name="preference_previewSize_large">Large</string>
 
-  <!-- SafeSearch settings -->
-  <string name="safe_search_on">Safe</string>
-  <string name="safe_search_moderate">Questionable</string>
-  <string name="safe_search_off">Explicit</string>
-  <string name="safe_search_undefined">Undefined</string>
-  <string name="safe_search_on_summary">Safe for work</string>
-  <string name="safe_search_moderate_summary">Mild nudity and sexually-suggestive content</string>
-  <string name="safe_search_off_summary">Full nudity and sexually-explicit content</string>
-  <string name="safe_search_undefined_summary">Show content for which no obscenity rating has been defined</string>
+    <!-- SafeSearch settings -->
+    <string name="safe_search_on">Safe</string>
+    <string name="safe_search_moderate">Questionable</string>
+    <string name="safe_search_off">Explicit</string>
+    <string name="safe_search_undefined">Undefined</string>
+    <string name="safe_search_on_summary">Safe for work</string>
+    <string name="safe_search_moderate_summary">Mild nudity and sexually-suggestive content</string>
+    <string name="safe_search_off_summary">Full nudity and sexually-explicit content</string>
+    <string name="safe_search_undefined_summary">Show content for which no obscenity rating has been defined</string>
 
-  <!-- Donations -->
-  <string name="donation_summary">If you enjoy Nori, please consider making a donation to support its continued development.\nWe rely on your support to keep Nori free and free of ads.</string>
-  <string name="donation_method_patreon">Patreon</string>
-  <string name="donation_method_patreonSummary">Make a recurring donation on Patreon</string>
-  <string name="donation_method_paypal">PayPal</string>
-  <string name="donation_method_paypalSummary">Donate via PayPal</string>
-  <string name="donation_method_google">Google</string>
-  <string name="donation_method_googleSummary">Donate using Google Play</string>
-  <string name="donation_method_bitcoin">Bitcoin</string>
-  <string name="donation_method_bitcoinSummary">Donate Bitcoin</string>
-  <string name="donation_paypal_item" translatable="false">Nori Donation</string>
-  <string name="donation_url_copiedToClipboard">Donation URL was copied to clipboard.</string>
-  <string name="donation_method_bitcoin_copiedToClipboard">Bitcoin address was copied to the clipboard.</string>
-  <string name="donation_method_bitcoin_qrCodeContentDescription">Bitcoin QR Code</string>
-  <string name="donation_dialog_donate">Donate</string>
-  <string name="donation_error_connectingToPlayStoreService">Error: Couldn\'t connect to the Play Store service.</string>
-  <string name="donation_toast_completed">Your donation has been received. Thank you for your support.</string>
+    <!-- Donations -->
+    <string name="donation_summary">If you enjoy Nori, please consider making a donation to support its continued development.\nWe rely on your support to keep Nori free and free of ads.</string>
+    <string name="donation_method_patreon">Patreon</string>
+    <string name="donation_method_patreonSummary">Make a recurring donation on Patreon</string>
+    <string name="donation_method_paypal">PayPal</string>
+    <string name="donation_method_paypalSummary">Donate via PayPal</string>
+    <string name="donation_method_google">Google</string>
+    <string name="donation_method_googleSummary">Donate using Google Play</string>
+    <string name="donation_method_bitcoin">Bitcoin</string>
+    <string name="donation_method_bitcoinSummary">Donate Bitcoin</string>
+    <string name="donation_paypal_item" translatable="false">Nori Donation</string>
+    <string name="donation_url_copiedToClipboard">Donation URL was copied to clipboard.</string>
+    <string name="donation_method_bitcoin_copiedToClipboard">Bitcoin address was copied to the clipboard.</string>
+    <string name="donation_method_bitcoin_qrCodeContentDescription">Bitcoin QR Code</string>
+    <string name="donation_dialog_donate">Donate</string>
+    <string name="donation_error_connectingToPlayStoreService">Error: Couldn\'t connect to the Play Store service.</string>
+    <string name="donation_toast_completed">Your donation has been received. Thank you for your support.</string>
 
-  <!-- Crash reporting -->
-  <string name="crash_toast_text">Nori quit unexpectedly.</string>
-  <string name="crash_dialog_text">If you were not doing anything confidential (entering passwords or other private information), you can help to improve the application by reporting the problem.</string>
-  <string name="crash_dialog_title">Problem Report for Nori</string>
-  <string name="crash_dialog_comment_prompt">Provide any steps necessary to reproduce the problem.</string>
-  <string name="crash_dialog_positive_button_text">Send Report</string>
-  <string name="crash_dialog_negative_button_text">Don\'t Send</string>
-  <string name="crash_dialog_ok_toast">Your report was received by the developer.</string>
+    <!-- Crash reporting -->
+    <string name="crash_toast_text">Nori quit unexpectedly.</string>
+    <string name="crash_dialog_text">If you were not doing anything confidential (entering passwords or other private information), you can help to improve the application by reporting the problem.</string>
+    <string name="crash_dialog_title">Problem Report for Nori</string>
+    <string name="crash_dialog_comment_prompt">Provide any steps necessary to reproduce the problem.</string>
+    <string name="crash_dialog_positive_button_text">Send Report</string>
+    <string name="crash_dialog_negative_button_text">Don\'t Send</string>
+    <string name="crash_dialog_ok_toast">Your report was received by the developer.</string>
 
 </resources>

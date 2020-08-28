@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
 <resources>
-  <color name="network_thumbnail_placeholder">#dfdfdf</color>
-  <color name="image_viewer_actionbarBackground">#aa000000</color>
-  <color name="image_viewer_errorTextColor">#ffffff</color>
+    <color name="network_thumbnail_placeholder">#dfdfdf</color>
+    <color name="image_viewer_actionbarBackground">#aa000000</color>
+    <color name="image_viewer_errorTextColor">#ffffff</color>
 
 </resources>

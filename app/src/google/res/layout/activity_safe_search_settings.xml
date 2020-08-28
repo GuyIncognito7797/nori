@@ -1,83 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  tools:context=".SafeSearchSettingsActivity">
-
-  <androidx.appcompat.widget.Toolbar
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="0"
-    android:minHeight="?attr/actionBarSize"/>
-
-  <ScrollView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:scrollbarStyle="outsideOverlay">
+    android:orientation="vertical"
+    tools:context=".SafeSearchSettingsActivity">
 
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:showDividers="middle"
-      android:divider="@drawable/list_divider"
-      android:orientation="vertical">
-
-      <RadioGroup
-        android:id="@+id/safe_search_radio_group"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/list_divider"
-        android:showDividers="middle">
+        android:layout_weight="0"
+        android:minHeight="?attr/actionBarSize" />
 
-        <RadioButton
-          android:id="@+id/safe_search_on"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:minHeight="?listPreferredItemHeight"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:text="@string/safe_search_on"/>
-
-        <RadioButton
-          android:id="@+id/safe_search_moderate"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:minHeight="?listPreferredItemHeight"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:text="@string/safe_search_moderate"/>
-
-        <RadioButton
-          android:id="@+id/safe_search_off"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:minHeight="?listPreferredItemHeight"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:text="@string/safe_search_off"/>
-
-      </RadioGroup>
-
-      <CheckBox
-        android:id="@+id/safe_search_undefined"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?listPreferredItemHeight"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/safe_search_undefined_summary"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:scrollbarStyle="outsideOverlay">
 
-    </LinearLayout>
-  </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:showDividers="middle"
+            android:divider="@drawable/list_divider"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/safe_search_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/list_divider"
+                android:showDividers="middle">
+
+                <RadioButton
+                    android:id="@+id/safe_search_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?listPreferredItemHeight"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/safe_search_on" />
+
+                <RadioButton
+                    android:id="@+id/safe_search_moderate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?listPreferredItemHeight"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/safe_search_moderate" />
+
+                <RadioButton
+                    android:id="@+id/safe_search_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?listPreferredItemHeight"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/safe_search_off" />
+
+            </RadioGroup>
+
+            <CheckBox
+                android:id="@+id/safe_search_undefined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?listPreferredItemHeight"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/safe_search_undefined_summary" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

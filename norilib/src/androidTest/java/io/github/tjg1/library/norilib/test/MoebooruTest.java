@@ -9,16 +9,18 @@ package io.github.tjg1.library.norilib.test;
 import io.github.tjg1.library.norilib.clients.DanbooruLegacy;
 import io.github.tjg1.library.norilib.clients.SearchClient;
 
-/** Tests support for Moebooru-based boards in the DanbooruLegacy client. */
+/**
+ * Tests support for Moebooru-based boards in the DanbooruLegacy client.
+ */
 public class MoebooruTest extends SearchClientTestCase {
 
-  @Override
-  protected SearchClient createSearchClient() {
-    return new DanbooruLegacy(getInstrumentation().getContext(), "yande.re", "https://yande.re");
-  }
+    @Override
+    protected SearchClient createSearchClient() {
+        return new DanbooruLegacy(getInstrumentation().getContext(), "yande.re", "https://yande.re");
+    }
 
-  @Override
-  protected String getDefaultTag() {
-    return "hatsune_miku";
-  }
+    @Override
+    protected String getDefaultTag() {
+        return "hatsune_miku";
+    }
 }

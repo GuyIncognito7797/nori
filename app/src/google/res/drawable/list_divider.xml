@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-  <solid android:color="#1f000000" />
-  <size
-    android:height="1dp"
-    android:width="1dp" />
+    <solid android:color="#1f000000" />
+    <size
+        android:height="1dp"
+        android:width="1dp" />
 </shape>

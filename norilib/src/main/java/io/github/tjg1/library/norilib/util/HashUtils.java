@@ -11,34 +11,37 @@ import android.text.TextUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/** Cryptographic hashing utils. */
+/**
+ * Cryptographic hashing utils.
+ */
 public abstract class HashUtils {
 
-  //region SHA512 helper method
-  /**
-   * SHA-512 hashing function.
-   *
-   * @param plaintext Plaintext to hash.
-   * @param salt Salt to append to the plaintext before hashing.
-   * @return Hashed hex string.
-   */
-  public static String sha512(String plaintext, String salt) {
-    final String s = !TextUtils.isEmpty(salt) ? plaintext + salt : plaintext;
+    //region SHA512 helper method
 
-    try {
-      MessageDigest md = MessageDigest.getInstance("SHA-512");
-      md.update(s.getBytes());
-      byte byteData[] = md.digest();
+    /**
+     * SHA-512 hashing function.
+     *
+     * @param plaintext Plaintext to hash.
+     * @param salt      Salt to append to the plaintext before hashing.
+     * @return Hashed hex string.
+     */
+    public static String sha512(String plaintext, String salt) {
+        final String s = !TextUtils.isEmpty(salt) ? plaintext + salt : plaintext;
 
-      // Convert to hex.
-      StringBuilder hashBuffer = new StringBuilder();
-      for (byte aByteData : byteData) {
-        hashBuffer.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
-      }
-      return hashBuffer.toString();
-    } catch (NoSuchAlgorithmException e) {
-      return null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            md.update(s.getBytes());
+            byte byteData[] = md.digest();
+
+            // Convert to hex.
+            StringBuilder hashBuffer = new StringBuilder();
+            for (byte aByteData : byteData) {
+                hashBuffer.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
+            }
+            return hashBuffer.toString();
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
     }
-  }
-  //endregion
+    //endregion
 }

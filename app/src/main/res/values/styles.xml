@@ -6,27 +6,27 @@
 
 <resources>
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="colorPrimary">#2196f3</item>
-    <item name="colorPrimaryDark">#01579b</item>
-    <item name="colorAccent">#2962ff</item>
-  </style>
-  <!-- Dark theme used by the image viewer activity. -->
-  <style name="ImageViewerTheme" parent="Theme.AppCompat.NoActionBar">
-    <item name="colorPrimary">#000000</item>
-    <item name="colorPrimaryDark">#000000</item>
-    <item name="colorAccent">#ffffff</item>
-  </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#2196f3</item>
+        <item name="colorPrimaryDark">#01579b</item>
+        <item name="colorAccent">#2962ff</item>
+    </style>
+    <!-- Dark theme used by the image viewer activity. -->
+    <style name="ImageViewerTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#ffffff</item>
+    </style>
 
-  <style name="ImageViewerActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="ImageViewerActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-  <style name="CrashDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-    <item name="android:paddingLeft">4dp</item>
-    <item name="android:paddingRight">4dp</item>
-  </style>
+    <style name="CrashDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+    </style>
 
 </resources>

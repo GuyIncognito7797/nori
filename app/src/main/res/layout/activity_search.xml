@@ -4,66 +4,64 @@
   ~ License: GNU GPLv2
   -->
 
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/root"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  >
-
-  <com.google.android.material.appbar.AppBarLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="0">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
-      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      app:layout_scrollFlags="scroll|enterAlways"
-      app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0">
 
-      <Spinner
-        android:id="@+id/spinner_service"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    </androidx.appcompat.widget.Toolbar>
+            <Spinner
+                android:id="@+id/spinner_service"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-  </com.google.android.material.appbar.AppBarLayout>
+        </androidx.appcompat.widget.Toolbar>
 
-  <FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1">
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <fragment
-      android:id="@+id/fragment_searchResultGrid"
-      android:name="io.github.tjg1.nori.fragment.SearchResultGridFragment"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:paddingLeft="@dimen/activity_horizontal_margin"
-      android:paddingRight="@dimen/activity_horizontal_margin"
-      tools:context="io.github.tjg1.nori.SearchActivity"
-      tools:layout="@layout/fragment_search_result_grid"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-    <ProgressBar
-      android:id="@+id/progressBar"
-      style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="top"
-      android:layout_marginTop="-8dp"
-      android:indeterminate="true"
-      android:visibility="gone"/>
+        <fragment
+            android:id="@+id/fragment_searchResultGrid"
+            android:name="io.github.tjg1.nori.fragment.SearchResultGridFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            tools:context="io.github.tjg1.nori.SearchActivity"
+            tools:layout="@layout/fragment_search_result_grid" />
 
-  </FrameLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="-8dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
 </LinearLayout>
 

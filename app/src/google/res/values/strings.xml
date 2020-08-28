@@ -8,12 +8,12 @@
 
 <resources>
 
-  <!-- SafeSearch settings -->
-  <string name="safe_search_on">On</string>
-  <string name="safe_search_moderate">Moderate</string>
-  <string name="safe_search_off">Off</string>
-  <string name="safe_search_on_summary"/>
-  <string name="safe_search_moderate_summary"/>
-  <string name="safe_search_off_summary"/>
+    <!-- SafeSearch settings -->
+    <string name="safe_search_on">On</string>
+    <string name="safe_search_moderate">Moderate</string>
+    <string name="safe_search_off">Off</string>
+    <string name="safe_search_on_summary" />
+    <string name="safe_search_moderate_summary" />
+    <string name="safe_search_off_summary" />
 
 </resources>

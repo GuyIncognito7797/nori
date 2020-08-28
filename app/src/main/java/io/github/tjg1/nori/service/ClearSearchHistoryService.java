@@ -17,24 +17,24 @@ import io.github.tjg1.nori.database.SearchSuggestionDatabase;
  */
 public class ClearSearchHistoryService extends IntentService {
 
-  //region Constructors
-  public ClearSearchHistoryService() {
-    // Set service name (useful for debugging).
-    super("ClearSearchHistoryService");
-  }
-  //endregion
+    //region Constructors
+    public ClearSearchHistoryService() {
+        // Set service name (useful for debugging).
+        super("ClearSearchHistoryService");
+    }
+    //endregion
 
-  //region IntentService methods (onHandleIntent)
-  @Override
-  protected void onHandleIntent(Intent intent) {
-    // Open the search suggestion database
-    SearchSuggestionDatabase db = new SearchSuggestionDatabase(this);
+    //region IntentService methods (onHandleIntent)
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        // Open the search suggestion database
+        SearchSuggestionDatabase db = new SearchSuggestionDatabase(this);
 
-    // Remove recent search history entries.
-    db.eraseSearchHistory();
+        // Remove recent search history entries.
+        db.eraseSearchHistory();
 
-    // Close the database resource.
-    db.close();
-  }
-  //endregion
+        // Close the database resource.
+        db.close();
+    }
+    //endregion
 }

@@ -1,61 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?selectableItemBackground"
-              android:baselineAligned="false"
-              android:gravity="center_vertical"
-              android:minHeight="?android:attr/listPreferredItemHeight"
-              android:paddingRight="?android:attr/scrollbarSize">
-
-  <RelativeLayout
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="6dip"
-    android:layout_marginEnd="6dip"
-    android:layout_marginStart="6dip"
-    android:layout_marginTop="6dip"
-    android:layout_weight="1">
-
-    <TextView
-      android:id="@+id/title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:ellipsize="marquee"
-      android:fadingEdge="horizontal"
-      android:singleLine="true"
-      android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    <TextView
-      android:id="@+id/summary"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@id/title"
-      android:layout_alignStart="@id/title"
-      android:layout_below="@id/title"
-      android:maxLines="4"
-      android:textAppearance="?android:attr/textAppearanceSmall"
-      android:textColor="?android:attr/textColorSecondary"/>
-
-  </RelativeLayout>
-
-  <ImageButton
-    android:id="@+id/action_remove"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
-    android:contentDescription="@string/content_description_remove"
-    android:focusable="false"
-    android:minHeight="36dp"
-    android:minWidth="36dp"
-    android:scaleType="center"
-    android:src="@drawable/ic_action_remove"
-    />
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingRight="?android:attr/scrollbarSize">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dip"
+        android:layout_marginEnd="6dip"
+        android:layout_marginStart="6dip"
+        android:layout_marginTop="6dip"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/title"
+            android:layout_alignStart="@id/title"
+            android:layout_below="@id/title"
+            android:maxLines="4"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/action_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/content_description_remove"
+        android:focusable="false"
+        android:minHeight="36dp"
+        android:minWidth="36dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_action_remove" />
 
 </LinearLayout>

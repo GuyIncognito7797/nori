@@ -5,10 +5,10 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="io.github.tjg1.nori">
+    package="io.github.tjg1.nori">
 
-  <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
-  <application/>
+    <application />
 
 </manifest>

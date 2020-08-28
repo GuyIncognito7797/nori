@@ -1,73 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
 <resources>
-  <!-- Thumbnail size preference entries. -->
-  <string-array name="preference_previewSize_entries" translatable="false">
-    <item>@string/preference_previewSize_small</item>
-    <item>@string/preference_previewSize_medium</item>
-    <item>@string/preference_previewSize_large</item>
-  </string-array>
-  <!-- Thumbnail size preference entry values. -->
-  <string-array name="preference_previewSize_entryValues" translatable="false">
-    <item>small</item>
-    <item>medium</item>
-    <item>large</item>
-  </string-array>
-  <!-- SafeSearch preferences entries. -->
-  <string-array name="preference_safeSearch_entries" translatable="false">
-    <item>@string/safe_search_on</item>
-    <item>@string/safe_search_moderate</item>
-    <item>@string/safe_search_off</item>
-    <item>@string/safe_search_undefined</item>
-  </string-array>
-  <string-array name="preference_safeSearch_summaries" translatable="false">
-    <item>@string/safe_search_on_summary</item>
-    <item>@string/safe_search_moderate_summary</item>
-    <item>@string/safe_search_off_summary</item>
-    <item>@string/safe_search_undefined_summary</item>
-  </string-array>
-  <!-- SafeSearch preferences entry values. -->
-  <string-array name="preference_safeSearch_values" translatable="false">
-    <item>f</item>
-    <item>q</item>
-    <item>x</item>
-    <item>u</item>
-  </string-array>
-  <string-array name="preference_safeSearch_defaultValues" translatable="false">
-    <item>f</item>
-    <item>u</item>
-  </string-array>
-  <!-- Service name suggestions shown when adding or editing service API settings. -->
-  <string-array name="service_suggestions_names" translatable="false">
-    <item>Danbooru</item>
-    <item>Gelbooru</item>
-    <item>Safebooru</item>
-    <item>Konachan</item>
-    <item>yande.re</item>
-    <item>Dollbooru</item>
-    <item>E621</item>
-    <item>E926</item>
-    <item>Flickr</item>
-    <item>Paheal</item>
-    <item>rule34.xxx</item>
-  </string-array>
-  <!-- Service URLs automatically filled in when a suggested service name is picked. -->
-  <string-array name="service_suggestions_uris" translatable="false">
-    <item>https://danbooru.donmai.us</item>
-    <item>http://gelbooru.com</item>
-    <item>http://safebooru.org</item>
-    <item>http://konachan.com</item>
-    <item>https://yande.re</item>
-    <item>http://dollbooru.org</item>
-    <item>https://e621.net</item>
-    <item>https://e926.net</item>
-    <item>https://api.flickr.com/</item>
-    <item>https://rule34.paheal.net</item>
-    <item>https://rule34.xxx</item>
-  </string-array>
+    <!-- Thumbnail size preference entries. -->
+    <string-array name="preference_previewSize_entries" translatable="false">
+        <item>@string/preference_previewSize_small</item>
+        <item>@string/preference_previewSize_medium</item>
+        <item>@string/preference_previewSize_large</item>
+    </string-array>
+    <!-- Thumbnail size preference entry values. -->
+    <string-array name="preference_previewSize_entryValues" translatable="false">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+    <!-- SafeSearch preferences entries. -->
+    <string-array name="preference_safeSearch_entries" translatable="false">
+        <item>@string/safe_search_on</item>
+        <item>@string/safe_search_moderate</item>
+        <item>@string/safe_search_off</item>
+        <item>@string/safe_search_undefined</item>
+    </string-array>
+    <string-array name="preference_safeSearch_summaries" translatable="false">
+        <item>@string/safe_search_on_summary</item>
+        <item>@string/safe_search_moderate_summary</item>
+        <item>@string/safe_search_off_summary</item>
+        <item>@string/safe_search_undefined_summary</item>
+    </string-array>
+    <!-- SafeSearch preferences entry values. -->
+    <string-array name="preference_safeSearch_values" translatable="false">
+        <item>f</item>
+        <item>q</item>
+        <item>x</item>
+        <item>u</item>
+    </string-array>
+    <string-array name="preference_safeSearch_defaultValues" translatable="false">
+        <item>f</item>
+        <item>u</item>
+    </string-array>
+    <!-- Service name suggestions shown when adding or editing service API settings. -->
+    <string-array name="service_suggestions_names" translatable="false">
+        <item>Danbooru</item>
+        <item>Gelbooru</item>
+        <item>Safebooru</item>
+        <item>Konachan</item>
+        <item>yande.re</item>
+        <item>Dollbooru</item>
+        <item>E621</item>
+        <item>E926</item>
+        <item>Flickr</item>
+        <item>Paheal</item>
+        <item>rule34.xxx</item>
+    </string-array>
+    <!-- Service URLs automatically filled in when a suggested service name is picked. -->
+    <string-array name="service_suggestions_uris" translatable="false">
+        <item>https://danbooru.donmai.us</item>
+        <item>http://gelbooru.com</item>
+        <item>http://safebooru.org</item>
+        <item>http://konachan.com</item>
+        <item>https://yande.re</item>
+        <item>http://dollbooru.org</item>
+        <item>https://e621.net</item>
+        <item>https://e926.net</item>
+        <item>https://api.flickr.com/</item>
+        <item>https://rule34.paheal.net</item>
+        <item>https://rule34.xxx</item>
+    </string-array>
 </resources>

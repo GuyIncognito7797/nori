@@ -5,22 +5,22 @@
   -->
 
 <resources>
-  <!-- Default screen margins, per the Android Design guidelines. -->
-  <dimen name="activity_horizontal_margin">16dp</dimen>
-  <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
-  <!-- Search result grid dimensions -->
-  <dimen name="searchResultGrid_spacing">2dp</dimen>
-  <dimen name="searchResultGrid_columnWidth">100dp</dimen>
+    <!-- Search result grid dimensions -->
+    <dimen name="searchResultGrid_spacing">2dp</dimen>
+    <dimen name="searchResultGrid_columnWidth">100dp</dimen>
 
-  <!-- Thumbnail sizes. -->
-  <dimen name="previewSize_small">50dp</dimen>
-  <dimen name="previewSize_medium">100dp</dimen>
-  <dimen name="previewSize_large">150dp</dimen>
+    <!-- Thumbnail sizes. -->
+    <dimen name="previewSize_small">50dp</dimen>
+    <dimen name="previewSize_medium">100dp</dimen>
+    <dimen name="previewSize_large">150dp</dimen>
 
-  <!-- Tag list dialog. -->
-  <dimen name="tag_list_textSize">18sp</dimen>
+    <!-- Tag list dialog. -->
+    <dimen name="tag_list_textSize">18sp</dimen>
 
-  <!-- List items -->
-  <dimen name="list_item_minWidth">48dp</dimen>
+    <!-- List items -->
+    <dimen name="list_item_minWidth">48dp</dimen>
 </resources>

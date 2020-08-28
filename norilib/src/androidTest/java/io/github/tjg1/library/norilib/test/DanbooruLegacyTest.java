@@ -6,16 +6,13 @@
 
 package io.github.tjg1.library.norilib.test;
 
-import io.github.tjg1.library.norilib.clients.DanbooruLegacy;
-import io.github.tjg1.library.norilib.clients.SearchClient;
-
 /**
  * Tests for the Danbooru 1.x API client.
  */
 public class DanbooruLegacyTest /* extends SearchClientTestCase */ {
-  // TODO: Test Basic Auth authentication
-  // Disable Danbooru Legacy tests as I can't think of a site still exposing this
-  // deprecated API
+    // TODO: Test Basic Auth authentication
+    // Disable Danbooru Legacy tests as I can't think of a site still exposing this
+    // deprecated API
   /*
   @Override
   protected SearchClient createSearchClient() {

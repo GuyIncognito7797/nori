@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
 <resources>
-  <!-- Service name suggestions shown when adding or editing service API settings. -->
-  <string-array translatable="false" name="service_suggestions_names">
-    <item>Flickr</item>
-  </string-array>
-  <!-- Service URLs automatically filled in when a suggested service name is picked. -->
-  <string-array translatable="false" name="service_suggestions_uris">
-    <item>https://api.flickr.com/</item>
-  </string-array>
+    <!-- Service name suggestions shown when adding or editing service API settings. -->
+    <string-array translatable="false" name="service_suggestions_names">
+        <item>Flickr</item>
+    </string-array>
+    <!-- Service URLs automatically filled in when a suggested service name is picked. -->
+    <string-array translatable="false" name="service_suggestions_uris">
+        <item>https://api.flickr.com/</item>
+    </string-array>
 </resources>

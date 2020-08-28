@@ -7,67 +7,67 @@
 apply plugin: 'com.android.library'
 
 buildscript {
-  repositories {
-    jcenter()
-    google()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:4.0.1'
-  }
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
 }
 
 android {
-  compileSdkVersion 28
+    compileSdkVersion 28
 
-  defaultConfig {
-    minSdkVersion 24
-    targetSdkVersion 28
-    versionCode 8
-    versionName "3.5.0"
-    testApplicationId "io.github.tjg1.library.norilib.test"
-    testInstrumentationRunner "android.test.InstrumentationTestRunner"
-  }
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 28
+        versionCode 8
+        versionName "3.5.0"
+        testApplicationId "io.github.tjg1.library.norilib.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
-    debug {
-      minifyEnabled false
-      versionNameSuffix "-${gitRevision()}"
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            versionNameSuffix "-${gitRevision()}"
+        }
     }
-  }
-  lintOptions {
-    abortOnError false
-  }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-  // HTTP Client library from Koush. (https://github.com/koush/ion)
-  api 'com.koushikdutta.ion:ion:2.2.1'
-  // Apache utility library for dealing with Collections.
-  // >4.2 requires higher min-sdk version.
-  implementation 'org.apache.commons:commons-collections4:4.4'
-  // Android support library.
-  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-  // FEST for easier unit testing.
-  androidTestImplementation 'org.easytesting:fest-assert-core:2.0M10'
+    // HTTP Client library from Koush. (https://github.com/koush/ion)
+    api 'com.koushikdutta.ion:ion:2.2.1'
+    // Apache utility library for dealing with Collections.
+    // >4.2 requires higher min-sdk version.
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    // Android support library.
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // FEST for easier unit testing.
+    androidTestImplementation 'org.easytesting:fest-assert-core:2.0M10'
 
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 repositories {
-  jcenter()
-  google()
+    jcenter()
+    google()
 }
 
 // Used to append Git commit hash to version names.
 static def gitRevision() {
-  def cmd = "git rev-parse --short HEAD"
-  return cmd.execute().text.trim()
+    def cmd = "git rev-parse --short HEAD"
+    return cmd.execute().text.trim()
 }

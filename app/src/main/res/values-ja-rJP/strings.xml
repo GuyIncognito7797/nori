@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
@@ -7,122 +6,122 @@
 
 <resources>
 
-  <string name="app_name">Nori</string>
-  <string name="ok">OK</string>
-  <string name="cancel">キャンセル</string>
+    <string name="app_name">Nori</string>
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
 
-  <!-- Activity titles -->
-  <!-- (Image ID): (Image tags) -->
-  <string name="activity_image_viewer_titleFormat" formatted="false">%s: %s</string>
-  <string name="activity_settings">設定</string>
-  <string name="activity_tag_filter_settings">タグフィルター</string>
-  <string name="activity_safeSearch_settings">成人向けフィルター</string>
-  <string name="activity_service_settings">サービス設定</string>
-  <string name="activity_donations">寄付</string>
+    <!-- Activity titles -->
+    <!-- (Image ID): (Image tags) -->
+    <string name="activity_image_viewer_titleFormat" formatted="false">%s: %s</string>
+    <string name="activity_settings">設定</string>
+    <string name="activity_tag_filter_settings">タグフィルター</string>
+    <string name="activity_safeSearch_settings">成人向けフィルター</string>
+    <string name="activity_service_settings">サービス設定</string>
+    <string name="activity_donations">寄付</string>
 
-  <!-- EditText hints -->
-  <string name="hint_tag">タグ</string>
-  <string name="hint_search_images">画像の検索</string>
-  <string name="hint_service_name">サービス名</string>
-  <string name="hint_service_uri">サービス URL</string>
-  <string name="hint_service_username">ユーザー名 (オプション)</string>
-  <string name="hint_service_passphrase">パスワード/API キー (オプション)</string>
+    <!-- EditText hints -->
+    <string name="hint_tag">タグ</string>
+    <string name="hint_search_images">画像の検索</string>
+    <string name="hint_service_name">サービス名</string>
+    <string name="hint_service_uri">サービス URL</string>
+    <string name="hint_service_username">ユーザー名 (オプション)</string>
+    <string name="hint_service_passphrase">パスワード/API キー (オプション)</string>
 
-  <!-- Action bar items -->
-  <string name="action_add">追加</string>
-  <string name="action_settings">設定</string>
-  <string name="action_search">検索</string>
-  <string name="action_share">共有</string>
-  <string name="action_tags">タグ</string>
-  <string name="action_downloadImage">ダウンロード</string>
-  <string name="action_viewOnWeb">Web で表示</string>
-  <string name="action_viewOnPixiv">Pixiv で表示</string>
-  <string name="action_setAsWallpaper">壁紙として設定</string>
-  <string name="service_dropdown_settings">サービス設定…</string>
+    <!-- Action bar items -->
+    <string name="action_add">追加</string>
+    <string name="action_settings">設定</string>
+    <string name="action_search">検索</string>
+    <string name="action_share">共有</string>
+    <string name="action_tags">タグ</string>
+    <string name="action_downloadImage">ダウンロード</string>
+    <string name="action_viewOnWeb">Web で表示</string>
+    <string name="action_viewOnPixiv">Pixiv で表示</string>
+    <string name="action_setAsWallpaper">壁紙として設定</string>
+    <string name="service_dropdown_settings">サービス設定…</string>
 
-  <!-- Dialogs -->
-  <string name="dialog_title_editService">サービスを編集</string>
-  <string name="dialog_title_addService">サービスを追加</string>
-  <string name="dialog_tags_closeButton">閉じる</string>
-  <string name="dialog_message_detectingApiType">API 検出設定…</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_editService">サービスを編集</string>
+    <string name="dialog_title_addService">サービスを追加</string>
+    <string name="dialog_tags_closeButton">閉じる</string>
+    <string name="dialog_message_detectingApiType">API 検出設定…</string>
 
-  <!-- Accessibility image content descriptions -->
-  <string name="content_description_remove">削除</string>
+    <!-- Accessibility image content descriptions -->
+    <string name="content_description_remove">削除</string>
 
-  <!-- Toast notifications -->
-  <string name="toast_networkError" formatted="false">ネットワークエラー: %s</string>
-  <string name="toast_couldNotSetWallpaper" formatted="false">壁紙として画像を設定できませんでした: %s</string>
-  <string name="toast_infiniteScrollingFetchError" formatted="false">追加の画像の取得時にエラーが発生しました: %s</string>
-  <string name="toast_error_serviceUriInvalid">指定したサービス URL が正しくありません。</string>
-  <string name="toast_error_noNetwork">ネットワークに接続できませんでした。</string>
-  <string name="toast_error_noServiceAtGivenUri">指定した URL で サポートされた API が見つかりませんでした。</string>
-  <string name="toast_error_noApplicationFound">アプリケーションが見つかりません</string>
-  <string name="toast_error_videoMeteredConnection">従量制課金接続を使っている間、ビデオはダウンロードされません。</string>
-  <string name="toast_searchHistoryCleared">検索履歴をクリアしました。</string>
-  <string name="toast_imageDownloadPermissionDenied">画像をダウンロードするために、ストレージのアクセス許可を付与する必要があります。</string>
+    <!-- Toast notifications -->
+    <string name="toast_networkError" formatted="false">ネットワークエラー: %s</string>
+    <string name="toast_couldNotSetWallpaper" formatted="false">壁紙として画像を設定できませんでした: %s</string>
+    <string name="toast_infiniteScrollingFetchError" formatted="false">追加の画像の取得時にエラーが発生しました: %s</string>
+    <string name="toast_error_serviceUriInvalid">指定したサービス URL が正しくありません。</string>
+    <string name="toast_error_noNetwork">ネットワークに接続できませんでした。</string>
+    <string name="toast_error_noServiceAtGivenUri">指定した URL で サポートされた API が見つかりませんでした。</string>
+    <string name="toast_error_noApplicationFound">アプリケーションが見つかりません</string>
+    <string name="toast_error_videoMeteredConnection">従量制課金接続を使っている間、ビデオはダウンロードされません。</string>
+    <string name="toast_searchHistoryCleared">検索履歴をクリアしました。</string>
+    <string name="toast_imageDownloadPermissionDenied">画像をダウンロードするために、ストレージのアクセス許可を付与する必要があります。</string>
 
-  <!-- Preferences -->
-  <string name="preference_category_search">検索</string>
-  <string name="preference_previewSize_title">サムネイルのサイズ</string>
-  <string name="preference_safeSearch_title">成人向けフィルター</string>
-  <string name="preference_safeSearch_summary">成人向けコンテンツフィルターの設定を管理します</string>
-  <string name="preference_tagFilter_summary">タグを管理して、検索結果から削除します</string>
-  <string name="preference_tagFilter_title">タグフィルター</string>
-  <string name="preference_clearSearchHistory_summary">検索履歴をクリアします</string>
-  <string name="preference_clearSearchHistory_title">履歴のクリア</string>
-  <string name="preference_imageViewer">画像ビューアー</string>
-  <string name="preference_image_viewer_keepScreenOn_summary">画像ビューアーで画面をオンのままにします</string>
-  <string name="preference_image_viewer_keepScreenOn_title">画面をオンのままにする</string>
-  <string name="preference_image_viewer_conserveBandwidth_summary">高速な接続でも、常に縮小した画像を取得します</string>
-  <string name="preference_image_viewer_conserveBandwidth_title">帯域幅の節約</string>
-  <string name="preference_category_services">サービス</string>
-  <string name="preference_service_settings_summary">画像掲示板サービスの設定を追加、編集、削除します</string>
-  <string name="preference_service_settings_title">サービス設定</string>
-  <string name="preference_donate_summary">Nori の開発をサポートします</string>
-  <string name="preference_donate">寄付</string>
-  <string name="preference_about">バージョン情報</string>
-  <string name="preference_about_summary">Nori のバージョン情報を表示します。</string>
+    <!-- Preferences -->
+    <string name="preference_category_search">検索</string>
+    <string name="preference_previewSize_title">サムネイルのサイズ</string>
+    <string name="preference_safeSearch_title">成人向けフィルター</string>
+    <string name="preference_safeSearch_summary">成人向けコンテンツフィルターの設定を管理します</string>
+    <string name="preference_tagFilter_summary">タグを管理して、検索結果から削除します</string>
+    <string name="preference_tagFilter_title">タグフィルター</string>
+    <string name="preference_clearSearchHistory_summary">検索履歴をクリアします</string>
+    <string name="preference_clearSearchHistory_title">履歴のクリア</string>
+    <string name="preference_imageViewer">画像ビューアー</string>
+    <string name="preference_image_viewer_keepScreenOn_summary">画像ビューアーで画面をオンのままにします</string>
+    <string name="preference_image_viewer_keepScreenOn_title">画面をオンのままにする</string>
+    <string name="preference_image_viewer_conserveBandwidth_summary">高速な接続でも、常に縮小した画像を取得します</string>
+    <string name="preference_image_viewer_conserveBandwidth_title">帯域幅の節約</string>
+    <string name="preference_category_services">サービス</string>
+    <string name="preference_service_settings_summary">画像掲示板サービスの設定を追加、編集、削除します</string>
+    <string name="preference_service_settings_title">サービス設定</string>
+    <string name="preference_donate_summary">Nori の開発をサポートします</string>
+    <string name="preference_donate">寄付</string>
+    <string name="preference_about">バージョン情報</string>
+    <string name="preference_about_summary">Nori のバージョン情報を表示します。</string>
 
-  <!-- Thumbnail sizes -->
-  <string name="preference_previewSize_small">小</string>
-  <string name="preference_previewSize_medium">中</string>
-  <string name="preference_previewSize_large">大</string>
+    <!-- Thumbnail sizes -->
+    <string name="preference_previewSize_small">小</string>
+    <string name="preference_previewSize_medium">中</string>
+    <string name="preference_previewSize_large">大</string>
 
-  <!-- SafeSearch ratings -->
-  <string name="safe_search_on">安全</string>
-  <string name="safe_search_moderate">疑い</string>
-  <string name="safe_search_off">明らか</string>
-  <string name="safe_search_undefined">未定義</string>
-  <string name="safe_search_on_summary">安全に利用できます</string>
-  <string name="safe_search_moderate_summary">軽度の裸や性的なものを暗示するコンテンツ</string>
-  <string name="safe_search_off_summary">全裸や性的に露骨なコンテンツ</string>
-  <string name="safe_search_undefined_summary">わいせつの評価が定義されていないコンテンツを表示します</string>
+    <!-- SafeSearch ratings -->
+    <string name="safe_search_on">安全</string>
+    <string name="safe_search_moderate">疑い</string>
+    <string name="safe_search_off">明らか</string>
+    <string name="safe_search_undefined">未定義</string>
+    <string name="safe_search_on_summary">安全に利用できます</string>
+    <string name="safe_search_moderate_summary">軽度の裸や性的なものを暗示するコンテンツ</string>
+    <string name="safe_search_off_summary">全裸や性的に露骨なコンテンツ</string>
+    <string name="safe_search_undefined_summary">わいせつの評価が定義されていないコンテンツを表示します</string>
 
-  <!-- Donations -->
-  <string name="donation_summary">Nori をお楽しみいただけた場合、寄付を検討して頂き、継続的な開発をサポートしてください。\nあなた方のサポートに依存して、無料で、広告のない Nori を維持しています。</string>
-  <string name="donation_method_patreon">Patreon</string>
-  <string name="donation_method_patreonSummary">Patreon に定期的な寄付をします</string>
-  <string name="donation_method_paypal">PayPal</string>
-  <string name="donation_method_paypalSummary">PayPal で寄付します</string>
-  <string name="donation_method_google">Google</string>
-  <string name="donation_method_googleSummary">Google Play を使用して寄付します</string>
-  <string name="donation_method_bitcoin">Bitcoin</string>
-  <string name="donation_method_bitcoinSummary">Bitcoin で寄付します</string>
-  <string name="donation_url_copiedToClipboard">寄付の URL をクリップボードにコピーしました。</string>
-  <string name="donation_method_bitcoin_copiedToClipboard">Bitcoin アドレスをクリップボードにコピーしました。</string>
-  <string name="donation_method_bitcoin_qrCodeContentDescription">Bitcoin QR コード</string>
-  <string name="donation_dialog_donate">寄付</string>
-  <string name="donation_error_connectingToPlayStoreService">Play Store への接続エラーです - サービスへ届きません。</string>
-  <string name="donation_toast_completed">ご寄付をいただきました。 ご厚意、誠にありがとうございました。</string>
+    <!-- Donations -->
+    <string name="donation_summary">Nori をお楽しみいただけた場合、寄付を検討して頂き、継続的な開発をサポートしてください。\nあなた方のサポートに依存して、無料で、広告のない Nori を維持しています。</string>
+    <string name="donation_method_patreon">Patreon</string>
+    <string name="donation_method_patreonSummary">Patreon に定期的な寄付をします</string>
+    <string name="donation_method_paypal">PayPal</string>
+    <string name="donation_method_paypalSummary">PayPal で寄付します</string>
+    <string name="donation_method_google">Google</string>
+    <string name="donation_method_googleSummary">Google Play を使用して寄付します</string>
+    <string name="donation_method_bitcoin">Bitcoin</string>
+    <string name="donation_method_bitcoinSummary">Bitcoin で寄付します</string>
+    <string name="donation_url_copiedToClipboard">寄付の URL をクリップボードにコピーしました。</string>
+    <string name="donation_method_bitcoin_copiedToClipboard">Bitcoin アドレスをクリップボードにコピーしました。</string>
+    <string name="donation_method_bitcoin_qrCodeContentDescription">Bitcoin QR コード</string>
+    <string name="donation_dialog_donate">寄付</string>
+    <string name="donation_error_connectingToPlayStoreService">Play Store への接続エラーです - サービスへ届きません。</string>
+    <string name="donation_toast_completed">ご寄付をいただきました。 ご厚意、誠にありがとうございました。</string>
 
-  <!-- Crash reporting (fuzzy; need proof-reading) -->
-  <string name="crash_toast_text">残念ながら、Noriは予期せず終了しました。</string>
-  <string name="crash_dialog_text">秘密にしておくべき作業(パスワードや個人情報の入力など)を行っていたのでなければ、不具合を報告してアプリケーションの改善に協力することができます。</string>
-  <string name="crash_dialog_title">Nori の問題レポート</string>
-  <string name="crash_dialog_comment_prompt">問題の再現に必要なすべての手順を入力してください。</string>
-  <string name="crash_dialog_positive_button_text">レポートの送信</string>
-  <string name="crash_dialog_negative_button_text">送信しない</string>
-  <string name="crash_dialog_ok_toast">問題は開発者にレポートされています。ありがとうございます!</string>
+    <!-- Crash reporting (fuzzy; need proof-reading) -->
+    <string name="crash_toast_text">残念ながら、Noriは予期せず終了しました。</string>
+    <string name="crash_dialog_text">秘密にしておくべき作業(パスワードや個人情報の入力など)を行っていたのでなければ、不具合を報告してアプリケーションの改善に協力することができます。</string>
+    <string name="crash_dialog_title">Nori の問題レポート</string>
+    <string name="crash_dialog_comment_prompt">問題の再現に必要なすべての手順を入力してください。</string>
+    <string name="crash_dialog_positive_button_text">レポートの送信</string>
+    <string name="crash_dialog_negative_button_text">送信しない</string>
+    <string name="crash_dialog_ok_toast">問題は開発者にレポートされています。ありがとうございます!</string>
 
 
 </resources>

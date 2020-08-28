@@ -4,15 +4,14 @@
   ~ License: GNU GPLv2
   -->
 
-<GridView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/image_grid"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:columnWidth="@dimen/searchResultGrid_columnWidth"
-  android:gravity="center_horizontal"
-  android:horizontalSpacing="@dimen/searchResultGrid_spacing"
-  android:numColumns="auto_fit"
-  android:scrollbarStyle="outsideOverlay"
-  android:stretchMode="columnWidth"
-  android:verticalSpacing="@dimen/searchResultGrid_spacing"/>
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_grid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnWidth="@dimen/searchResultGrid_columnWidth"
+    android:gravity="center_horizontal"
+    android:horizontalSpacing="@dimen/searchResultGrid_spacing"
+    android:numColumns="auto_fit"
+    android:scrollbarStyle="outsideOverlay"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="@dimen/searchResultGrid_spacing" />

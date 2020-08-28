@@ -14,12 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.koushikdutta.async.DataEmitter;
-import com.koushikdutta.async.DataSink;
-import com.koushikdutta.async.callback.CompletedCallback;
-import com.koushikdutta.async.future.Future;
-import com.koushikdutta.async.future.TransformFuture;
-import com.koushikdutta.async.parser.AsyncParser;
-import com.koushikdutta.async.parser.StringParser;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
@@ -28,7 +22,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,13 +35,15 @@ import io.github.tjg1.library.norilib.Image;
 import io.github.tjg1.library.norilib.SearchResult;
 import io.github.tjg1.library.norilib.Tag;
 
-import java.lang.System;
-
-/** {@link io.github.tjg1.library.norilib.clients.SearchClient} for the E621 imageboard. */
+/**
+ * {@link io.github.tjg1.library.norilib.clients.SearchClient} for the E621 imageboard.
+ */
 public class E621 extends Danbooru {
     final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US);
     //region Constants
-    /** Number of images to fetch with each search. */
+    /**
+     * Number of images to fetch with each search.
+     */
     private static final int DEFAULT_LIMIT = 100;
     //endregion
 
@@ -63,6 +58,7 @@ public class E621 extends Danbooru {
     //endregion
 
     //region Service detection
+
     /**
      * Checks if the given URL exposes a supported API endpoint.
      *
@@ -90,7 +86,8 @@ public class E621 extends Danbooru {
             if (response.getHeaders().code() == 200) {
                 return uri.toString();
             }
-        } catch (InterruptedException | ExecutionException ignored) { }
+        } catch (InterruptedException | ExecutionException ignored) {
+        }
         return null;
     }
     //endregion

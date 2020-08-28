@@ -6,22 +6,17 @@
 
 package io.github.tjg1.library.norilib.test;
 
-import io.github.tjg1.library.norilib.clients.SearchClient;
-import io.github.tjg1.library.norilib.clients.Shimmie;
-
 /**
  * Tests for the Shimmie2 API client.
  */
 public class ShimmieTests /*extends SearchClientTestCase*/ {
-  /** DISABLE DOLLBOORU TESTS TEMPORARILY
-  @Override
-  protected SearchClient createSearchClient() {
-    return new Shimmie(getInstrumentation().getContext(), "Dollbooru", "http://dollbooru.org");
-  }
+    /** DISABLE DOLLBOORU TESTS TEMPORARILY
+     @Override protected SearchClient createSearchClient() {
+     return new Shimmie(getInstrumentation().getContext(), "Dollbooru", "http://dollbooru.org");
+     }
 
-  @Override
-  protected String getDefaultTag() {
-    return "blonde_hair";
-  }
-  */
+     @Override protected String getDefaultTag() {
+     return "blonde_hair";
+     }
+     */
 }

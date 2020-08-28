@@ -7,33 +7,33 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-  <item
-    android:id="@+id/action_share"
-    android:title="@string/action_share"
-    app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
-    app:showAsAction="always"/>
-  <item
-    android:id="@+id/action_tags"
-    android:icon="@drawable/ic_action_labels"
-    android:title="@string/action_tags"
-    app:showAsAction="ifRoom"/>
-  <item
-    android:id="@+id/action_download"
-    android:icon="@drawable/ic_action_download"
-    android:title="@string/action_downloadImage"
-    app:showAsAction="ifRoom"/>
-  <item
-    android:id="@+id/action_viewOnWeb"
-    android:title="@string/action_viewOnWeb"
-    app:showAsAction="never"/>
-  <item
-    android:id="@+id/action_viewOnPixiv"
-    android:title="@string/action_viewOnPixiv"
-    app:showAsAction="never"/>
-  <item
-    android:id="@+id/action_setAsWallpaper"
-    android:title="@string/action_setAsWallpaper"
-    app:showAsAction="never"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/action_share"
+        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_tags"
+        android:icon="@drawable/ic_action_labels"
+        android:title="@string/action_tags"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_download"
+        android:icon="@drawable/ic_action_download"
+        android:title="@string/action_downloadImage"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_viewOnWeb"
+        android:title="@string/action_viewOnWeb"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_viewOnPixiv"
+        android:title="@string/action_viewOnPixiv"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_setAsWallpaper"
+        android:title="@string/action_setAsWallpaper"
+        app:showAsAction="never" />
 
 </menu>

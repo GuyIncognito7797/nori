@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ This file is part of nori.
   ~ Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
   ~ License: GNU GPLv2
   -->
 
 <resources>
-  <!-- Layout IDs that are unique to the Google Play flavour of the app -->
-  <item name="safe_search_radio_group" type="id"/>
-  <item name="safe_search_undefined" type="id"/>
-  <item name="safe_search_on" type="id"/>
-  <item name="safe_search_moderate" type="id"/>
-  <item name="safe_search_off" type="id"/>
+    <!-- Layout IDs that are unique to the Google Play flavour of the app -->
+    <item name="safe_search_radio_group" type="id" />
+    <item name="safe_search_undefined" type="id" />
+    <item name="safe_search_on" type="id" />
+    <item name="safe_search_moderate" type="id" />
+    <item name="safe_search_off" type="id" />
 </resources>
