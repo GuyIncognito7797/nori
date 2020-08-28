@@ -220,14 +220,14 @@ public class GoogleIAPHandler extends ArrayAdapter<Pair<String, String>>
          *
          * @param error Error that occurred, can be null if not known.
          */
-        public void onPurchaseError(@Nullable Exception error);
+        void onPurchaseError(@Nullable Exception error);
 
         /**
          * Called when the Google in-app purchase is completed.
          *
          * @param info Information about the purchase.
          */
-        public void onPurchaseComplete(Purchase info);
+        void onPurchaseComplete(Purchase info);
     }
     //endregion
 }

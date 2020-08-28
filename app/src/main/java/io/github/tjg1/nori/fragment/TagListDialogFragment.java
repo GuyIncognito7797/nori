@@ -6,6 +6,7 @@
 
 package io.github.tjg1.nori.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,8 +28,6 @@ import io.github.tjg1.library.norilib.clients.SearchClient;
 import io.github.tjg1.nori.R;
 import io.github.tjg1.nori.SearchActivity;
 
-;
-
 
 /**
  * Dialog showing a list of tags for given image in {@link io.github.tjg1.nori.ImageViewerActivity}.
@@ -37,11 +36,13 @@ public class TagListDialogFragment extends DialogFragment implements DialogInter
 
     //region Bundle IDs
     /**
-     * Identifier used for the parceled {@link io.github.tjg1.library.norilib.clients.SearchClient.Settings} object in this fragment's argument bundle.
+     * Identifier used for the parceled {@link io.github.tjg1.library.norilib.clients.SearchClient.Settings}
+     * object in this fragment's argument bundle.
      */
     private static final String BUNDLE_ID_SEARCH_CLIENT_SETTINGS = "io.github.tjg1.nori.SearchClient.Settings";
     /**
-     * Identifier used for the parceled {@link io.github.tjg1.library.norilib.Image} object in this fragment's argument bundle.
+     * Identifier used for the parceled {@link io.github.tjg1.library.norilib.Image} object in this
+     * fragment's argument bundle.
      */
     private static final String BUNDLE_ID_IMAGE = "io.github.tjg1.nori.Image";
     //endregion
@@ -52,7 +53,8 @@ public class TagListDialogFragment extends DialogFragment implements DialogInter
      */
     private Image image;
     /**
-     * Search client settings object included in {@link android.content.Intent}s to launch {@link io.github.tjg1.nori.SearchActivity}.
+     * Search client settings object included in {@link android.content.Intent}s to launch
+     * {@link io.github.tjg1.nori.SearchActivity}.
      */
     private SearchClient.Settings settings;
     //endregion

@@ -22,8 +22,6 @@ import androidx.fragment.app.DialogFragment;
 
 import io.github.tjg1.nori.R;
 
-;
-
 /**
  * {@link androidx.core.app.DialogFragment} to let the users add new tags in {@link io.github.tjg1.nori.TagFilterSettingsActivity}.
  */
@@ -158,7 +156,7 @@ public class AddTagFilterDialogFragment extends DialogFragment implements View.O
          *
          * @param tag Tag string submitted.
          */
-        public void addTag(String tag);
+        void addTag(String tag);
     }
     //endregion
 }

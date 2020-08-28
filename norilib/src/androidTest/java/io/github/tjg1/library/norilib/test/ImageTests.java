@@ -43,7 +43,7 @@ public class ImageTests extends AndroidTestCase {
     /**
      * Test the {@link Image#writeToParcel(android.os.Parcel, int)} method.
      */
-    public void testWriteToParcel() throws Throwable {
+    public void testWriteToParcel() {
         final Image original = getMockImage(Image.SafeSearchRating.S,
                 new Tag("duck", Tag.Type.GENERAL), new Tag("revolutionary_girl_utena", Tag.Type.ARTIST));
         final Image unParceled;
@@ -84,11 +84,11 @@ public class ImageTests extends AndroidTestCase {
     /**
      * Tests the {@link Image#getPixivIdFromUrl(String)} method.
      */
-    public void testGetPixivIdFromUrl() throws Throwable {
+    public void testGetPixivIdFromUrl() {
         assertThat(Image.getPixivIdFromUrl("http://www.pixiv.net/member_illust.php?mode=medium&illust_id=44466677")).isEqualTo("44466677");
     }
 
-    public void testGetFileExtension() throws Throwable {
+    public void testGetFileExtension() {
         Image image = getMockImage(Image.SafeSearchRating.S, new Tag("duck"), new Tag("bird"));
 
         assertThat(image.getFileExtension()).isEqualTo("png");
@@ -109,7 +109,7 @@ public class ImageTests extends AndroidTestCase {
     /**
      * Tests the {@link Image.SafeSearchRating#fromString(String)} method.
      */
-    public void testSafeSearchRatingFromString() throws Throwable {
+    public void testSafeSearchRatingFromString() {
         assertThat(Image.SafeSearchRating.fromString("Safe")).isEqualTo(Image.SafeSearchRating.S);
         assertThat(Image.SafeSearchRating.fromString("Questionable")).isEqualTo(Image.SafeSearchRating.Q);
         assertThat(Image.SafeSearchRating.fromString("Explicit")).isEqualTo(Image.SafeSearchRating.E);
@@ -150,9 +150,8 @@ public class ImageTests extends AndroidTestCase {
      * Verify validity of an {@link io.github.tjg1.library.norilib.Image} object.
      * Used to ensure that Image values returned by each individual API client are correct.
      *
-     * @throws Throwable Assertion failure.
      */
-    public static void verifyImage(Image image) throws Throwable {
+    public static void verifyImage(Image image) {
         // Verify URLs.
         assertThat(image.fileUrl).matches(urlPattern);
         assertThat(image.previewUrl).matches(urlPattern);

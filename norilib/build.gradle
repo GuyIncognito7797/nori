@@ -17,11 +17,11 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 8
         versionName "3.5.0"
         testApplicationId "io.github.tjg1.library.norilib.test"

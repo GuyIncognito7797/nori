@@ -131,14 +131,12 @@ public class SettingsActivity extends PreferenceActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Make the action bar "up" button behave the same way as the physical "back" button.
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            // Make the action bar "up" button behave the same way as the physical "back" button.
+            onBackPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.github.tjg1.library.norilib.clients.Danbooru;
 import io.github.tjg1.library.norilib.clients.DanbooruLegacy;
-import io.github.tjg1.library.norilib.clients.E621Legacy;
+import io.github.tjg1.library.norilib.clients.E621;
 import io.github.tjg1.library.norilib.clients.Flickr;
 import io.github.tjg1.library.norilib.clients.FlickrUser;
 import io.github.tjg1.library.norilib.clients.Gelbooru;
@@ -42,7 +42,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Danbooru 2.x API
      */
-    public void testDanbooruDetection() throws Throwable {
+    public void testDanbooruDetection() {
         String url = Danbooru.detectService(getInstrumentation().getContext(),
                 Uri.parse("https://danbooru.donmai.us"), RESPONSE_TIMEOUT);
 
@@ -53,7 +53,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Danbooru 1.x API
      */
-    public void testDanbooruLegacyDetection() throws Throwable {
+    public void testDanbooruLegacyDetection() {
         String url = DanbooruLegacy.detectService(getInstrumentation().getContext(),
                 Uri.parse("https://danbooru.donmai.us"), RESPONSE_TIMEOUT);
 
@@ -64,7 +64,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Gelbooru API.
      */
-    public void testGelbooruDetection() throws Throwable {
+    public void testGelbooruDetection() {
         String url = Gelbooru.detectService(getInstrumentation().getContext(),
                 Uri.parse("http://safebooru.org"), RESPONSE_TIMEOUT);
 
@@ -75,7 +75,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Shimmie API.
      */
-    public void testShimmieDetection() throws Throwable {
+    public void testShimmieDetection() {
         // Disable dollbooru tests, as its down.
         //String url = Shimmie.detectService(getInstrumentation().getContext(),
         //    Uri.parse("http://dollbooru.org"), RESPONSE_TIMEOUT);
@@ -87,7 +87,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of Moebooru (Danbooru 1.x fork) boards.
      */
-    public void testMoebooruDetection() throws Throwable {
+    public void testMoebooruDetection() {
         String url = DanbooruLegacy.detectService(getInstrumentation().getContext(),
                 Uri.parse("https://yande.re"), RESPONSE_TIMEOUT);
 
@@ -98,8 +98,8 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Mono-sodium Glutamate API.
      */
-    public void testE621Detection() throws Throwable {
-        String url = E621Legacy.detectService(Uri.parse("https://e621.net"));
+    public void testE621Detection() {
+        String url = E621.detectService(Uri.parse("https://e621.net"));
 
         assertThat(url).isNotNull();
         assertThat(url).isEqualTo("https://e621.net");
@@ -108,8 +108,8 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Chlorine dioxide API.
      */
-    public void testE926Detection() throws Throwable {
-        String url = E621Legacy.detectService(Uri.parse("https://e926.net"));
+    public void testE926Detection() {
+        String url = E621.detectService(Uri.parse("https://e926.net"));
 
         assertThat(url).isNotNull();
         assertThat(url).isEqualTo("https://e926.net");
@@ -118,7 +118,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Chlorine dioxide API.
      */
-    public void testFlickrDetection() throws Throwable {
+    public void testFlickrDetection() {
         String url = Flickr.detectService(Uri.parse("https://api.flickr.com"));
 
         assertThat(url).isNotNull();
@@ -128,7 +128,7 @@ public class ServiceTypeDetectionServiceTest extends InstrumentationTestCase {
     /**
      * Test detection of the Chlorine dioxide API.
      */
-    public void testFlickrUserDetection() throws Throwable {
+    public void testFlickrUserDetection() {
         String url = FlickrUser.detectService(Uri.parse("http://flickr.com/photos/128962151@N05"));
 
         assertThat(url).isNotNull();

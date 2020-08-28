@@ -31,7 +31,7 @@ public abstract class HashUtils {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             md.update(s.getBytes());
-            byte byteData[] = md.digest();
+            byte[] byteData = md.digest();
 
             // Convert to hex.
             StringBuilder hashBuffer = new StringBuilder();

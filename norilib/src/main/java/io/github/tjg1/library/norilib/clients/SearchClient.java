@@ -23,7 +23,7 @@ public interface SearchClient {
     /**
      * Default user agent to use in all HTTP requests.
      */
-    public static final String USER_AGENT = "nori/" + BuildConfig.VERSION_NAME;
+    String USER_AGENT = "nori/" + BuildConfig.VERSION_NAME;
     //endregion
 
     //region Search methods
@@ -35,7 +35,7 @@ public interface SearchClient {
      * @return A {@link io.github.tjg1.library.norilib.SearchResult} containing a set of Images.
      * @throws IOException Network error.
      */
-    public SearchResult search(String tags) throws IOException;
+    SearchResult search(String tags) throws IOException;
 
     /**
      * Search for images with the given set of tags.
@@ -45,7 +45,7 @@ public interface SearchClient {
      * @return A {@link io.github.tjg1.library.norilib.SearchResult} containing a set of Images.
      * @throws java.io.IOException Network error.
      */
-    public SearchResult search(String tags, int pid) throws IOException;
+    SearchResult search(String tags, int pid) throws IOException;
 
     /**
      * Asynchronously fetch first page of results containing image with the given set of tags.
@@ -53,7 +53,7 @@ public interface SearchClient {
      * @param tags     Search query. A space-separated list of tags.
      * @param callback Callback listening for the SearchResult returned in the background.
      */
-    public void search(String tags, SearchCallback callback);
+    void search(String tags, SearchCallback callback);
 
     /**
      * Asynchronously search for images with the given set of tags.
@@ -62,7 +62,7 @@ public interface SearchClient {
      * @param pid      Page number. (zero-indexed)
      * @param callback Callback listening for the SearchResult returned in the background.
      */
-    public void search(String tags, int pid, SearchCallback callback);
+    void search(String tags, int pid, SearchCallback callback);
     //endregion
 
     //region Default query
@@ -72,7 +72,7 @@ public interface SearchClient {
      *
      * @return Safe-for-work query to search for when an app is launched.
      */
-    public String getDefaultQuery();
+    String getDefaultQuery();
     //endregion
 
     //region API Authentication Types
@@ -87,12 +87,12 @@ public interface SearchClient {
      *
      * @return {@link io.github.tjg1.library.norilib.clients.SearchClient.AuthenticationType} value for this API backend.
      */
-    public abstract AuthenticationType requiresAuthentication();
+    AuthenticationType requiresAuthentication();
 
     /**
      * API authentication types
      */
-    public enum AuthenticationType {
+    enum AuthenticationType {
         REQUIRED,
         OPTIONAL,
         NONE
@@ -104,20 +104,20 @@ public interface SearchClient {
     /**
      * Callback listening for an {@link io.github.tjg1.library.norilib.SearchResult} from an asynchronous request fetched on a background thread.
      */
-    public static interface SearchCallback {
+    interface SearchCallback {
         /**
          * Called when the request could not be executed due to cancellation, a connectivity problem or timeout.
          *
          * @param e Exception that caused the failure.
          */
-        public void onFailure(IOException e);
+        void onFailure(IOException e);
 
         /**
          * Called when the SearchResult was successfully returned by the remote server.
          *
          * @param searchResult Search result.
          */
-        public void onSuccess(SearchResult searchResult);
+        void onSuccess(SearchResult searchResult);
     }
     //endregion
 
@@ -129,12 +129,12 @@ public interface SearchClient {
      *
      * @return A serializable {@link io.github.tjg1.library.norilib.clients.SearchClient.Settings} object.
      */
-    public Settings getSettings();
+    Settings getSettings();
 
     /**
      * Class used to handle storing, serializing and deserializing {@link io.github.tjg1.library.norilib.clients.SearchClient} settings.
      */
-    public static class Settings implements Parcelable {
+    class Settings implements Parcelable {
 
         //region Parcelable
         // Parcelable are the standard Android serialization API used to retain data between sessions.

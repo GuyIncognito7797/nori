@@ -31,7 +31,7 @@ public class SearchSuggestionDatabaseTest extends InstrumentationTestCase {
     private Context context;
 
     @Override
-    protected void setUp() throws Exception {
+    protected void setUp() {
         // Set up a new app context before each test.
         context = new RenamingDelegatingContext(getInstrumentation().getTargetContext(), "_test");
     }
@@ -39,13 +39,13 @@ public class SearchSuggestionDatabaseTest extends InstrumentationTestCase {
     /**
      * Tests if the database is created and pre-populated with the Safebooru Top 1000 data set.
      */
-    public void testDatabaseCreation() throws Throwable {
+    public void testDatabaseCreation() {
         // Get a read-only instance of the database.
         SearchSuggestionDatabase searchSuggestionDatabase = new SearchSuggestionDatabase(context);
         SQLiteDatabase db = searchSuggestionDatabase.getReadableDatabase();
 
         // Get all suggestions added from the Safebooru Top 1000 data set from the database.
-        Cursor c = db.query(TABLE_NAME, null, COLUMN_ICON + " = " + Integer.toString(R.drawable.ic_search_suggestion_builtin), null, null, null, COLUMN_ID);
+        Cursor c = db.query(TABLE_NAME, null, COLUMN_ICON + " = " + R.drawable.ic_search_suggestion_builtin, null, null, null, COLUMN_ID);
 
         // Number of returned rows should match the number of lines in the "tags.txt" asset file.
         if (!"google".equals(BuildConfig.FLAVOR)) {

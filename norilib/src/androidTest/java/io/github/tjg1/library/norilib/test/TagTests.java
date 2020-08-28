@@ -25,7 +25,7 @@ public class TagTests extends AndroidTestCase {
     /**
      * Verify that Tags are read and written to Parcels correctly.
      */
-    public void testWriteToParcel() throws Throwable {
+    public void testWriteToParcel() {
         final Tag original = new Tag("quack", Tag.Type.COPYRIGHT);
         final Bundle bundle = new Bundle();
         final Tag unParceled;
@@ -42,7 +42,7 @@ public class TagTests extends AndroidTestCase {
     /**
      * Tests the {@link Tag#equals(Object)}  method.
      */
-    public void testEquals() throws Throwable {
+    public void testEquals() {
         final Tag tag1 = new Tag("duck", Tag.Type.CHARACTER);
         final Tag tag2 = new Tag("duck", Tag.Type.CHARACTER);
         final Tag tag3 = new Tag("bird", Tag.Type.CHARACTER);
@@ -57,7 +57,7 @@ public class TagTests extends AndroidTestCase {
     /**
      * Tests sorting collections of Tags using the {@link Tag#compareTo(Tag)} method.
      */
-    public void testCompareTo() throws Throwable {
+    public void testCompareTo() {
         final List<Tag> tagList = new ArrayList<>();
         tagList.add(new Tag("duck", Tag.Type.CHARACTER));
         tagList.add(new Tag("quack", Tag.Type.GENERAL));
@@ -74,7 +74,7 @@ public class TagTests extends AndroidTestCase {
     /**
      * Test creating space-separated queries using the {@link Tag#stringFromArray(Tag[])} method.
      */
-    public void testStringFromArray() throws Throwable {
+    public void testStringFromArray() {
         final String tags = Tag.stringFromArray(new Tag[]{new Tag("duck"), new Tag("quack")});
         assertThat(tags).isEqualTo("duck quack");
     }
@@ -82,7 +82,7 @@ public class TagTests extends AndroidTestCase {
     /**
      * Test creating tag arrays from space-separated queries using the {@link Tag#arrayFromString(String) method.
      */
-    public void testArrayFromString() throws Throwable {
+    public void testArrayFromString() {
         final Tag[] tags = Tag.arrayFromString("duck quack", Tag.Type.CHARACTER);
         assertThat(tags).hasSize(2);
         assertThat(tags[0]).isEqualTo(new Tag("duck", Tag.Type.CHARACTER));

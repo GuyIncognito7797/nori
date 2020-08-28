@@ -303,15 +303,15 @@ public class DanbooruLegacy implements SearchClient {
                             } else if ("preview_url".equals(name)) {
                                 image.previewUrl = normalizeUrl(value);
                             } else if ("preview_width".equals(name)) {
-                                image.previewWidth = Integer.valueOf(value);
+                                image.previewWidth = Integer.parseInt(value);
                             } else if ("preview_height".equals(name)) {
-                                image.previewHeight = Integer.valueOf(value);
+                                image.previewHeight = Integer.parseInt(value);
                             } else if ("sample_url".equals(name)) {
                                 image.sampleUrl = normalizeUrl(value);
                             } else if ("sample_width".equals(name)) {
-                                image.sampleWidth = Integer.valueOf(value);
+                                image.sampleWidth = Integer.parseInt(value);
                             } else if ("sample_height".equals(name)) {
-                                image.sampleHeight = Integer.valueOf(value);
+                                image.sampleHeight = Integer.parseInt(value);
                             } else if ("tags".equals(name)) {
                                 image.tags = Tag.arrayFromString(value, Tag.Type.GENERAL);
                             } else if ("id".equals(name)) {
@@ -399,7 +399,7 @@ public class DanbooruLegacy implements SearchClient {
 
         if (TextUtils.isDigitsOnly(date)) {
             // Moebooru-based boards (Danbooru 1.x fork) use Unix timestamps.
-            return new Date(Integer.valueOf(date));
+            return new Date(Integer.parseInt(date));
         } else {
             return DATE_FORMAT_DEFAULT.parse(date);
         }

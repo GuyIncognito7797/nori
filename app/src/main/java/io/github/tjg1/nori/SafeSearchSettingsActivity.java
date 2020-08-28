@@ -33,8 +33,6 @@ import java.util.List;
 import io.github.tjg1.nori.adapter.SafeSearchListAdapter;
 import io.github.tjg1.nori.util.StringUtils;
 
-;
-
 public class SafeSearchSettingsActivity extends AppCompatActivity
         implements SafeSearchListAdapter.Listener {
 
@@ -295,9 +293,6 @@ public class SafeSearchSettingsActivity extends AppCompatActivity
 
             // Set SearchClient setting from radio group selected item id.
             switch (safeSearchCheckedRadioButtonId) {
-                case R.id.safe_search_on:
-                    safeSearchSettings[0] = "f";
-                    break;
                 case R.id.safe_search_moderate:
                     safeSearchSettings[0] = "f q";
                     break;

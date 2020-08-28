@@ -34,8 +34,6 @@ import io.github.tjg1.nori.BuildConfig;
 import io.github.tjg1.nori.R;
 import io.github.tjg1.nori.widget.SquareImageView;
 
-;
-
 /**
  * Shows images from a {@link SearchResult} as a scrollable grid of thumbnails.
  */
@@ -79,7 +77,7 @@ public class SearchResultGridFragment extends Fragment implements AdapterView.On
     /**
      * Adapter used by the GridView in this fragment.
      */
-    private BaseAdapter gridAdapter = new BaseAdapter() {
+    private final BaseAdapter gridAdapter = new BaseAdapter() {
         @Override
         public int getCount() {
             // Return count of images.
@@ -97,7 +95,7 @@ public class SearchResultGridFragment extends Fragment implements AdapterView.On
 
         @Override
         public long getItemId(int position) {
-            return Long.valueOf(getItem(position).id);
+            return Long.parseLong(getItem(position).id);
         }
 
         @Override
@@ -323,7 +321,7 @@ public class SearchResultGridFragment extends Fragment implements AdapterView.On
          * @param image    Image selected.
          * @param position Index of the image in the {@link SearchResult}.
          */
-        public void onImageSelected(Image image, int position);
+        void onImageSelected(Image image, int position);
 
         /**
          * Called when the user scrolls the thumbnail {@link android.widget.GridView} near the end and more images should be fetched
@@ -331,7 +329,7 @@ public class SearchResultGridFragment extends Fragment implements AdapterView.On
          *
          * @param searchResult Search result for which more images should be fetched.
          */
-        public void fetchMoreImages(SearchResult searchResult);
+        void fetchMoreImages(SearchResult searchResult);
 
         /**
          * Called when the {@link SearchResult} has to fetched to restore this SearchResultGridFragment's saved instance state.
@@ -339,7 +337,7 @@ public class SearchResultGridFragment extends Fragment implements AdapterView.On
          * @param savedQuery             Saved search query.
          * @param firstVisiblePageOffset Last visible page offset to retrieve for infinite scrolling.
          */
-        public void onRestoreSearchGridState(@NonNull String savedQuery, int firstVisiblePageOffset);
+        void onRestoreSearchGridState(@NonNull String savedQuery, int firstVisiblePageOffset);
     }
     //endregion
 }

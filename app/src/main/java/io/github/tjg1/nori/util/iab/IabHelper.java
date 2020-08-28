@@ -191,10 +191,10 @@ public class IabHelper {
             if (index >= 0 && index < iabhelper_msgs.length) {
                 return iabhelper_msgs[index];
             } else {
-                return String.valueOf(code) + ":Unknown IAB Helper Error";
+                return code + ":Unknown IAB Helper Error";
             }
         } else if (code < 0 || code >= iab_msgs.length) {
-            return String.valueOf(code) + ":Unknown";
+            return code + ":Unknown";
         } else {
             return iab_msgs[code];
         }
@@ -468,8 +468,8 @@ public class IabHelper {
             mPurchasingItemType = itemType;
             act.startIntentSenderForResult(pendingIntent.getIntentSender(),
                     requestCode, new Intent(),
-                    Integer.valueOf(0), Integer.valueOf(0),
-                    Integer.valueOf(0));
+                    0, 0,
+                    0);
         } catch (SendIntentException e) {
             logError("SendIntentException while launching purchase flow for sku " + sku);
             e.printStackTrace();
@@ -575,7 +575,7 @@ public class IabHelper {
             result = new IabResult(IABHELPER_USER_CANCELLED, "User canceled.");
             if (mPurchaseListener != null) mPurchaseListener.onIabPurchaseFinished(result, null);
         } else {
-            logError("Purchase failed. Result code: " + Integer.toString(resultCode)
+            logError("Purchase failed. Result code: " + resultCode
                     + ". Response: " + getResponseDesc(responseCode));
             result = new IabResult(IABHELPER_UNKNOWN_PURCHASE_RESPONSE, "Unknown purchase response.");
             if (mPurchaseListener != null) mPurchaseListener.onIabPurchaseFinished(result, null);
@@ -773,7 +773,7 @@ public class IabHelper {
         if (o == null) {
             logDebug("Bundle with null response code, assuming OK (known issue)");
             return BILLING_RESPONSE_RESULT_OK;
-        } else if (o instanceof Integer) return ((Integer) o).intValue();
+        } else if (o instanceof Integer) return (Integer) o;
         else if (o instanceof Long) return (int) ((Long) o).longValue();
         else {
             logError("Unexpected type for bundle response code.");
@@ -788,7 +788,7 @@ public class IabHelper {
         if (o == null) {
             logError("Intent with no response code, assuming OK (known issue)");
             return BILLING_RESPONSE_RESULT_OK;
-        } else if (o instanceof Integer) return ((Integer) o).intValue();
+        } else if (o instanceof Integer) return (Integer) o;
         else if (o instanceof Long) return (int) ((Long) o).longValue();
         else {
             logError("Unexpected type for intent response code.");
@@ -891,8 +891,7 @@ public class IabHelper {
     int querySkuDetails(String itemType, Inventory inv, List<String> moreSkus)
             throws RemoteException, JSONException {
         logDebug("Querying SKU details.");
-        ArrayList<String> skuList = new ArrayList<>();
-        skuList.addAll(inv.getAllOwnedSkus(itemType));
+        ArrayList<String> skuList = new ArrayList<>(inv.getAllOwnedSkus(itemType));
         if (moreSkus != null) {
             for (String sku : moreSkus) {
                 if (!skuList.contains(sku)) {
@@ -912,17 +911,11 @@ public class IabHelper {
         int n = skuList.size() / 20;
         int mod = skuList.size() % 20;
         for (int i = 0; i < n; i++) {
-            tempList = new ArrayList<>();
-            for (String s : skuList.subList(i * 20, i * 20 + 20)) {
-                tempList.add(s);
-            }
+            tempList = new ArrayList<>(skuList.subList(i * 20, i * 20 + 20));
             packs.add(tempList);
         }
         if (mod != 0) {
-            tempList = new ArrayList<>();
-            for (String s : skuList.subList(n * 20, n * 20 + mod)) {
-                tempList.add(s);
-            }
+            tempList = new ArrayList<>(skuList.subList(n * 20, n * 20 + mod));
             packs.add(tempList);
         }
 

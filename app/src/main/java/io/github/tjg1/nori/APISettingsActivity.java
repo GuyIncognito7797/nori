@@ -28,8 +28,6 @@ import io.github.tjg1.nori.adapter.APISettingsListAdapter;
 import io.github.tjg1.nori.database.APISettingsDatabase;
 import io.github.tjg1.nori.fragment.EditAPISettingDialogFragment;
 
-//import android.support.design.widget.Snackbar;
-
 /**
  * Adds, edits or removes API settings from {@link io.github.tjg1.nori.database.APISettingsDatabase}.
  */

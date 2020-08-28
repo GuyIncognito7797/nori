@@ -21,7 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -117,11 +116,11 @@ public class E621 extends Danbooru {
         return apiEndpoint + "/post/show/" + id;
     }
 
-    protected SearchResult parseAPIResponse(String body, String tags, int offset) throws IOException {
+    protected SearchResult parseAPIResponse(String body, String tags, int offset) {
         return parseJSONResponse(body, tags, offset);
     }
 
-    protected SearchResult parseJSONResponse(String body, String tags, int offset) throws IOException {
+    protected SearchResult parseJSONResponse(String body, String tags, int offset) {
         final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
         JSONObject jsonObject;
 

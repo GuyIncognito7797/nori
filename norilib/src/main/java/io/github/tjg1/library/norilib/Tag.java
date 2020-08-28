@@ -9,6 +9,8 @@ package io.github.tjg1.library.norilib;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 /**
  * Image tag
  */
@@ -97,7 +99,7 @@ public class Tag implements Comparable<Tag>, Parcelable {
 
         Tag tag = (Tag) o;
 
-        return !(name != null ? !name.equals(tag.name) : tag.name != null) && type == tag.type;
+        return Objects.equals(name, tag.name) && type == tag.type;
     }
 
     @Override

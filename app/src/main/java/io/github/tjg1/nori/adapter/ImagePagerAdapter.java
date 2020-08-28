@@ -106,7 +106,7 @@ public class ImagePagerAdapter extends FragmentStatePagerAdapter {
         /**
          * Get the {@link SearchResult} containing {@link Image}s displayed by this adapter.
          */
-        public SearchResult getSearchResult();
+        SearchResult getSearchResult();
 
     }
     //endregion

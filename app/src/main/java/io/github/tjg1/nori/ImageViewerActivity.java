@@ -41,9 +41,6 @@ import io.github.tjg1.nori.adapter.ImagePagerAdapter;
 import io.github.tjg1.nori.fragment.ImageFragment;
 import io.github.tjg1.nori.view.ImageViewerPager;
 
-;
-//import android.support.design.widget.Snackbar;
-
 /**
  * Activity used to display full-screen images.
  */
@@ -212,13 +209,11 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle menu item interactions.
-        switch (item.getItemId()) {
-            case android.R.id.home: // Action bar "back button".
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) { // Action bar "back button".
+            onBackPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

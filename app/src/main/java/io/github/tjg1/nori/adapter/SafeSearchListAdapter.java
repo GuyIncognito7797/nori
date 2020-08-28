@@ -22,8 +22,6 @@ import java.util.List;
 
 import io.github.tjg1.nori.R;
 
-;
-
 /**
  * Adapter for the SafeSearch setting List (in the fdroid version)
  */
@@ -104,7 +102,7 @@ public class SafeSearchListAdapter extends BaseAdapter implements
 
         if (checked && !safeSearchCurrentSetting.contains(compoundButton.getTag())) {
             safeSearchCurrentSetting.add((String) compoundButton.getTag());
-        } else if (!checked && safeSearchCurrentSetting.contains(compoundButton.getTag())) {
+        } else if (!checked) {
             safeSearchCurrentSetting.remove(compoundButton.getTag());
         }
 
@@ -124,27 +122,27 @@ public class SafeSearchListAdapter extends BaseAdapter implements
         /**
          * Get the human-readable labels for each SafeSearch setting.
          */
-        public String[] getSafeSearchEntries();
+        String[] getSafeSearchEntries();
 
         /**
          * Get the human-readable summaries for each SafeSearch setting.
          */
-        public String[] getSafeSearchSummaries();
+        String[] getSafeSearchSummaries();
 
         /**
          * Get values for each SafeSearch setting stored in {@link android.content.SharedPreferences}
          */
-        public String[] getSafeSearchValues();
+        String[] getSafeSearchValues();
 
         /**
          * Get current values of the preference_safeSearch preference.
          */
-        public List<String> getSafeSearchCurrentSetting();
+        List<String> getSafeSearchCurrentSetting();
 
         /**
          * Update the value of the preference_safeSearch shared preference.
          */
-        public void updateSafeSearchSettings(@NonNull String[] safeSearchCurrentSetting);
+        void updateSafeSearchSettings(@NonNull String[] safeSearchCurrentSetting);
     }
     //endregion
 }

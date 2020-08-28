@@ -46,8 +46,6 @@ import static org.acra.ReportField.STACK_TRACE;
 import static org.acra.ReportField.USER_COMMENT;
 import static org.acra.ReportField.USER_EMAIL;
 
-;
-
 public class HockeyIonSender implements ReportSender {
     private static final String BASE_URL = "https://rink.hockeyapp.net/api/2/apps/";
     private static final String CRASHES_PATH = "/crashes/";
@@ -75,7 +73,7 @@ public class HockeyIonSender implements ReportSender {
             int responseCode = response.getHeaders().code();
             if (responseCode != 201 && responseCode != 202) {
                 throw new ReportSenderException("Failed to submit crash data with response code: "
-                        + String.valueOf(responseCode));
+                        + responseCode);
             }
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             throw new ReportSenderException("Failed to submit crash data.", e);

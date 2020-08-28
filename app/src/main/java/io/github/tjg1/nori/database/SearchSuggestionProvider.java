@@ -23,8 +23,6 @@ import static io.github.tjg1.nori.database.SearchSuggestionDatabase.COLUMN_ID;
 import static io.github.tjg1.nori.database.SearchSuggestionDatabase.COLUMN_NAME;
 import static io.github.tjg1.nori.database.SearchSuggestionDatabase.TABLE_NAME;
 
-;
-
 public class SearchSuggestionProvider extends ContentProvider {
 
     //region ContentProvider constants
@@ -55,7 +53,7 @@ public class SearchSuggestionProvider extends ContentProvider {
     /**
      * Content provider authority. (Unique ID)
      */
-    public static String AUTHORITY = "io.github.tjg1.nori.SearchSuggestionProvider";
+    public static final String AUTHORITY = "io.github.tjg1.nori.SearchSuggestionProvider";
 
     static {
         // Set up the parser used to match ContentProvider URIs.

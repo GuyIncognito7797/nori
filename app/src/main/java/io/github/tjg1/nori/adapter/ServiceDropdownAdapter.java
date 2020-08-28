@@ -31,8 +31,6 @@ import io.github.tjg1.nori.APISettingsActivity;
 import io.github.tjg1.nori.R;
 import io.github.tjg1.nori.database.APISettingsDatabase;
 
-;
-
 /**
  * Adapter populating the Search API picker in the ActionBar.
  */
@@ -245,7 +243,7 @@ public class ServiceDropdownAdapter extends BaseAdapter
          * @param settings         Selected {@link SearchClient.Settings} object.
          * @param expandActionView Should the SearchView action view be expanded?
          */
-        public void onSearchAPISelected(SearchClient.Settings settings, boolean expandActionView);
+        void onSearchAPISelected(SearchClient.Settings settings, boolean expandActionView);
     }
     //endregion
 }

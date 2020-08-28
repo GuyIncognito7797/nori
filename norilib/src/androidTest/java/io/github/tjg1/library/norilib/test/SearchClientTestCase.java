@@ -113,17 +113,17 @@ public abstract class SearchClientTestCase extends InstrumentationTestCase {
         assertThat(searchResults[0].getImages()).isNotEmpty();
     }
 
-    public void testGetDefaultQuery() throws Throwable {
+    public void testGetDefaultQuery() {
         final SearchClient client = createSearchClient();
         assertThat(client.getDefaultQuery()).isNotNull();
     }
 
-    public void testRequiredAuthentication() throws Throwable {
+    public void testRequiredAuthentication() {
         final SearchClient client = createSearchClient();
         assertThat(client.getDefaultQuery()).isNotNull();
     }
 
-    public void testGetSettings() throws Throwable {
+    public void testGetSettings() {
         SearchClient client = createSearchClient();
         SearchClient.Settings settings = client.getSettings();
         assertThat(settings).isNotNull();

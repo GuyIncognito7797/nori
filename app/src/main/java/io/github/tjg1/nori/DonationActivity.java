@@ -39,8 +39,6 @@ import io.github.tjg1.nori.adapter.GoogleIAPHandler;
 import io.github.tjg1.nori.util.iab.IabHelper;
 import io.github.tjg1.nori.util.iab.Purchase;
 
-//import android.support.design.widget.Snackbar;
-
 /**
  * Activity used to support the continued development of Nori using PayPal, Patreon or Google IAP.
  */
@@ -106,7 +104,7 @@ public class DonationActivity extends AppCompatActivity implements GoogleIAPHand
     /**
      * Handle donation button method clicks.
      */
-    private View.OnClickListener donationButtonListener = new View.OnClickListener() {
+    private final View.OnClickListener donationButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             // Handle donation method buttons.
@@ -128,7 +126,7 @@ public class DonationActivity extends AppCompatActivity implements GoogleIAPHand
     /**
      * Show the Bitcoin donation {@link AlertDialog}, even if a Bitcoin wallet app is installed.
      */
-    private View.OnLongClickListener bitcoinButtonLongClickListener = new View.OnLongClickListener() {
+    private final View.OnLongClickListener bitcoinButtonLongClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
             // Inflate the Bitcoin donation dialog View.

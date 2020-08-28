@@ -44,9 +44,6 @@ import io.github.tjg1.nori.adapter.ServiceDropdownAdapter;
 import io.github.tjg1.nori.database.SearchSuggestionDatabase;
 import io.github.tjg1.nori.fragment.SearchResultGridFragment;
 
-;
-//import android.support.design.widget.Snackbar;
-
 /**
  * Searches for images and displays the results in a scrollable grid of thumbnails.
  */
@@ -56,15 +53,18 @@ public class SearchActivity extends AppCompatActivity
 
     //region Bundle IDs
     /**
-     * Identifier used to send the active {@link io.github.tjg1.library.norilib.SearchResult} to {@link io.github.tjg1.nori.ImageViewerActivity}.
+     * Identifier used to send the active {@link io.github.tjg1.library.norilib.SearchResult}
+     * to {@link io.github.tjg1.nori.ImageViewerActivity}.
      */
     public static final String BUNDLE_ID_SEARCH_RESULT = "io.github.tjg1.nori.SearchResult";
     /**
-     * Identifier used to send the position of the selected {@link io.github.tjg1.library.norilib.Image} to {@link io.github.tjg1.nori.ImageViewerActivity}.
+     * Identifier used to send the position of the selected {@link io.github.tjg1.library.norilib.Image}
+     * to {@link io.github.tjg1.nori.ImageViewerActivity}.
      */
     public static final String BUNDLE_ID_IMAGE_INDEX = "io.github.tjg1.nori.ImageIndex";
     /**
-     * Identifier used to send {@link io.github.tjg1.library.norilib.clients.SearchClient} settings to {@link io.github.tjg1.nori.ImageViewerActivity}.
+     * Identifier used to send {@link io.github.tjg1.library.norilib.clients.SearchClient} settings
+     * to {@link io.github.tjg1.nori.ImageViewerActivity}.
      */
     public static final String BUNDLE_ID_SEARCH_CLIENT_SETTINGS = "io.github.tjg1.nori.SearchClient.Settings";
     /**
@@ -72,7 +72,8 @@ public class SearchActivity extends AppCompatActivity
      */
     private static final String BUNDLE_ID_SEARCH_QUERY = "io.github.tjg1.nori.SearchQuery";
     /**
-     * Identifier used to preserve iconified/expanded state of the SearchView in {@link #onSaveInstanceState(android.os.Bundle)}.
+     * Identifier used to preserve iconified/expanded state of the SearchView in
+     * {@link #onSaveInstanceState(android.os.Bundle)}.
      */
     private static final String BUNDLE_ID_SEARCH_VIEW_IS_EXPANDED = "io.github.tjg1.nori.SearchView.isExpanded";
     /**
@@ -83,7 +84,8 @@ public class SearchActivity extends AppCompatActivity
 
     //region Intent extra IDs
     /**
-     * Identifier used for the query string to search when starting this activity with an {@link android.content.Intent}
+     * Identifier used for the query string to search when starting this activity with
+     * an {@link android.content.Intent}
      */
     public static final String INTENT_EXTRA_SEARCH_QUERY = "io.github.tjg1.nori.SearchQuery";
     /**
@@ -146,7 +148,8 @@ public class SearchActivity extends AppCompatActivity
         searchProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         // Get search result grid fragment from fragment manager.
-        searchResultGridFragment = (SearchResultGridFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_searchResultGrid);
+        searchResultGridFragment = (SearchResultGridFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_searchResultGrid);
 
         SearchClient.Settings searchClientSettings;
         // Try restoring the SearchClient from savedInstanceState
@@ -160,7 +163,11 @@ public class SearchActivity extends AppCompatActivity
         } else {
             Intent intent = getIntent();
             // If the activity was started from a Search intent, create the SearchClient object and submit search.
-            if (intent != null && intent.getAction().equals(Intent.ACTION_SEARCH) && searchResultGridFragment.getSearchResult() == null) {
+            if (
+                    intent != null &&
+                    intent.getAction().equals(Intent.ACTION_SEARCH) &&
+                    searchResultGridFragment.getSearchResult() == null
+            ) {
                 searchClientSettings = intent.getParcelableExtra(BUNDLE_ID_SEARCH_CLIENT_SETTINGS);
                 searchClient = searchClientSettings.createSearchClient(this);
                 doSearch(intent.getStringExtra(BUNDLE_ID_SEARCH_QUERY));
@@ -218,13 +225,11 @@ public class SearchActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                startActivity(new Intent(SearchActivity.this, SettingsActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(SearchActivity.this, SettingsActivity.class));
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
     //endregion
 
@@ -255,8 +260,9 @@ public class SearchActivity extends AppCompatActivity
 
         searchClientSettings = settings;
 
-        // If a SearchClient wasn't included in the Intent that started this activity, create one now and search for the default query.
-        // Only do this if SearchSearch filter is enabled.
+        // If a SearchClient wasn't included in the Intent that started this activity,
+        // create one now and search for the default query. Only do this if SearchSearch
+        // filter is enabled.
         if (searchClient == null && searchResultGridFragment.getSearchResult() == null) {
             searchClient = settings.createSearchClient(this);
             if (shouldLoadDefaultQuery()) {
@@ -290,7 +296,10 @@ public class SearchActivity extends AppCompatActivity
         searchProgressBar.setVisibility(View.VISIBLE);
         // Request search result from API client.
         searchCallback = new SearchResultCallback(searchResult);
-        searchClient.search(Tag.stringFromArray(searchResult.getQuery()), searchResult.getCurrentOffset() + 1, searchCallback);
+        searchClient.search(
+                Tag.stringFromArray(searchResult.getQuery()),
+                searchResult.getCurrentOffset() + 1, searchCallback
+        );
     }
 
     @Override
@@ -331,7 +340,8 @@ public class SearchActivity extends AppCompatActivity
         searchView.setQueryRefinementEnabled(true);
 
         // Set submit action and allow empty queries.
-        SearchView.SearchAutoComplete searchTextView = (SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
+        SearchView.SearchAutoComplete searchTextView = (SearchView.SearchAutoComplete)
+                searchView.findViewById(R.id.search_src_text);
         searchTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
@@ -344,14 +354,16 @@ public class SearchActivity extends AppCompatActivity
                     intent.putExtra(BUNDLE_ID_SEARCH_CLIENT_SETTINGS, searchClientSettings);
                     intent.putExtra(BUNDLE_ID_SEARCH_QUERY, query.toString());
 
-                    // Collapse the ActionView. This makes navigating through previous results using the back key less painful.
+                    // Collapse the ActionView. This makes navigating through previous results
+                    // using the back key less painful.
                     MenuItemCompat.collapseActionView(searchMenuItem);
 
                     // Start a new activity with the created Intent.
                     startActivity(intent);
                 }
 
-                // Returns true to override the default behaviour and stop another search Intent from being sent.
+                // Returns true to override the default behaviour and stop another search
+                // Intent from being sent.
                 return true;
             }
         });
@@ -581,7 +593,11 @@ public class SearchActivity extends AppCompatActivity
                             sharedPreferences.getString(getString(R.string.preference_safeSearch_key), "").split(" ")));
                 } else {
                     // Get default filter from resources.
-                    searchResult.filter(Image.SafeSearchRating.arrayFromStrings(getResources().getStringArray(R.array.preference_safeSearch_defaultValues)));
+                    searchResult.filter(
+                            Image.SafeSearchRating.arrayFromStrings(
+                                    getResources().getStringArray(R.array.preference_safeSearch_defaultValues)
+                            )
+                    );
                 }
                 if (sharedPreferences.contains(getString(R.string.preference_tagFilter_key))) {
                     // Get tag filters from shared preferences and filter the result.

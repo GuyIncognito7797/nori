@@ -171,7 +171,7 @@ public class APISettingsListAdapter extends BaseAdapter
          * @param serviceId       Database ID of the service.
          * @param serviceSettings {@link SearchClient.Settings} with settings for the selected service.
          */
-        public void onServiceSelected(long serviceId, SearchClient.Settings serviceSettings);
+        void onServiceSelected(long serviceId, SearchClient.Settings serviceSettings);
 
         /**
          * Called when the user clicks on the "Remove service" button on an item in the
@@ -179,7 +179,7 @@ public class APISettingsListAdapter extends BaseAdapter
          *
          * @param serviceId Database ID of the service to be removed.
          */
-        public void onServiceRemoved(long serviceId);
+        void onServiceRemoved(long serviceId);
 
     }
     //endregion

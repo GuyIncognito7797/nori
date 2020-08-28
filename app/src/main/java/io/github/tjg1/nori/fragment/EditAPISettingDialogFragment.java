@@ -29,8 +29,6 @@ import io.github.tjg1.library.norilib.clients.SearchClient;
 import io.github.tjg1.library.norilib.util.HashUtils;
 import io.github.tjg1.nori.R;
 
-;
-
 /**
  * Dialog fragment used to add new and edit existing {@link io.github.tjg1.nori.database.APISettingsDatabase} entries in {@link io.github.tjg1.nori.APISettingsActivity}.
  */
@@ -289,7 +287,7 @@ public class EditAPISettingDialogFragment extends DialogFragment
     /**
      * Interface implemented by the parent Context to receive values from the dialog.
      */
-    public static interface Listener {
+    public interface Listener {
         /**
          * Add a new service to the database.
          *
@@ -298,7 +296,7 @@ public class EditAPISettingDialogFragment extends DialogFragment
          * @param username   Service authentication username (optional).
          * @param passphrase Service authentication passphrase (optional).
          */
-        public void addService(String name, String url, String username, String passphrase);
+        void addService(String name, String url, String username, String passphrase);
 
         /**
          * Edit an existing service in the database.
@@ -309,7 +307,7 @@ public class EditAPISettingDialogFragment extends DialogFragment
          * @param username   Service authentication username (optional).
          * @param passphrase Service authentication passphrase (optional).
          */
-        public void editService(long rowId, String name, String url, String username, String passphrase);
+        void editService(long rowId, String name, String url, String username, String passphrase);
     }
     //endregion
 }

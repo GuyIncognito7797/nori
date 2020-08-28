@@ -26,8 +26,6 @@ import io.github.tjg1.nori.BuildConfig;
 import io.github.tjg1.nori.R;
 import io.github.tjg1.nori.util.NetworkUtils;
 
-//import android.support.design.widget.Snackbar;
-
 /**
  * A fragment for playing back MP4 and WebM videos in {@link io.github.tjg1.nori.ImageViewerActivity}.
  */
@@ -46,7 +44,7 @@ public class VideoPlayerFragment extends ImageFragment {
     /**
      * Gesture detector used to detect single taps (to toggle the ActionBar).
      */
-    private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
+    private final GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (listener != null) {

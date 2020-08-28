@@ -32,14 +32,14 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     private Context context;
 
     @Override
-    protected void setUp() throws Exception {
+    protected void setUp() {
         context = new RenamingDelegatingContext(getInstrumentation().getTargetContext(), "_test");
     }
 
     /**
      * Test if the database is correctly initialized and pre-populated with data.
      */
-    public void testDatabaseCreation() throws Throwable {
+    public void testDatabaseCreation() {
         APISettingsDatabase database = new APISettingsDatabase(context);
         List<Pair<Integer, SearchClient.Settings>> settingsList = database.getAll();
         database.close();
@@ -59,7 +59,7 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     /**
      * Test the {@link io.github.tjg1.nori.database.APISettingsDatabase#getAll()} method.
      */
-    public void testGetAll() throws Throwable {
+    public void testGetAll() {
         APISettingsDatabase database = new APISettingsDatabase(context);
         List<Pair<Integer, SearchClient.Settings>> settingsList = database.getAll();
         database.close();
@@ -71,7 +71,7 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     /**
      * Test the {@link io.github.tjg1.nori.database.APISettingsDatabase#get(long)} method.
      */
-    public void testGet() throws Throwable {
+    public void testGet() {
         APISettingsDatabase database = new APISettingsDatabase(context);
         SearchClient.Settings settings = database.get(1);
         database.close();
@@ -83,7 +83,7 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     /**
      * Test the {@link io.github.tjg1.nori.database.APISettingsDatabase#insert(io.github.tjg1.library.norilib.clients.SearchClient.Settings)} method.
      */
-    public void testInsert() throws Throwable {
+    public void testInsert() {
         APISettingsDatabase database = new APISettingsDatabase(context);
         // Insert new row into the database.
         long rowID = database.insert(new SearchClient.Settings(SearchClient.Settings.APIType.DANBOARD,
@@ -102,7 +102,7 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     /**
      * Test the {@link io.github.tjg1.nori.database.APISettingsDatabase#update(long, io.github.tjg1.library.norilib.clients.SearchClient.Settings)} method.
      */
-    public void testUpdate() throws Throwable {
+    public void testUpdate() {
         APISettingsDatabase database = new APISettingsDatabase(context);
 
         // Insert new row into the database.
@@ -123,7 +123,7 @@ public class APISettingsDatabaseTest extends InstrumentationTestCase {
     /**
      * Test the {@link io.github.tjg1.nori.database.APISettingsDatabase#delete(long)} method.
      */
-    public void testDelete() throws Throwable {
+    public void testDelete() {
         APISettingsDatabase database = new APISettingsDatabase(context);
 
         // Insert new row into the database.

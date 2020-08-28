@@ -24,7 +24,7 @@ public class FlickrUser extends Flickr {
     /**
      * Regex pattern used to match Flickr user URLs.
      */
-    public static final String FLICKR_USER_REGEX = "^https?:\\/\\/(?:www\\.|m\\.)?flickr\\.com\\/(?:#\\/)?photos\\/(.+?)\\/?$";
+    public static final String FLICKR_USER_REGEX = "^https?://(?:www\\.|m\\.)?flickr\\.com/(?:#/)?photos/(.+?)/?$";
     //endregion
 
     //region Constructors

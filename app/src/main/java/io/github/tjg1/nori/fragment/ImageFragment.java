@@ -39,9 +39,6 @@ import io.github.tjg1.library.norilib.clients.SearchClient;
 import io.github.tjg1.nori.R;
 import io.github.tjg1.nori.util.NetworkUtils;
 
-;
-//import android.support.design.widget.Snackbar;
-
 
 /**
  * Fragment used to display images in {@link io.github.tjg1.nori.ImageViewerActivity}.
@@ -267,21 +264,21 @@ public abstract class ImageFragment extends Fragment {
     //endregion
 
     //region Activity listener interface
-    public static interface ImageFragmentListener {
+    public interface ImageFragmentListener {
         /**
          * Should return the {@link SearchClient.Settings} object with the same settings used to fetch the image displayed by this fragment.
          */
-        public SearchClient.Settings getSearchClientSettings();
+        SearchClient.Settings getSearchClientSettings();
 
         /**
          * Downloads an image using {@link android.app.DownloadManager}, asking the user to grant storage write permission, if necessary.
          */
-        public void downloadImage(@NonNull String fireUrl);
+        void downloadImage(@NonNull String fireUrl);
 
         /**
          * Called when the ImageView within the fragment is single-tapped.
          */
-        public void onViewTap(View view, float x, float y);
+        void onViewTap(View view, float x, float y);
     }
     //endregion
 }

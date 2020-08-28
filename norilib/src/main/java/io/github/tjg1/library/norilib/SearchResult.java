@@ -74,7 +74,7 @@ public class SearchResult implements Parcelable {
     /**
      * Current offset. Used for paging.
      */
-    private int offset = 0;
+    private int offset;
 
     /**
      * List of tags originally used to retrieve this SearchResult.

@@ -48,11 +48,11 @@ public class TagFilterSettingsActivity extends AppCompatActivity implements View
     /**
      * List of filtered tags currently stored in {@link #sharedPreferences}.
      */
-    private List<String> filteredTags = new ArrayList<>();
+    private final List<String> filteredTags = new ArrayList<>();
     /**
      * Adapter used by the tag {@link android.widget.ListView}.
      */
-    private BaseAdapter tagListAdapter = new BaseAdapter() {
+    private final BaseAdapter tagListAdapter = new BaseAdapter() {
 
         @Override
         public int getCount() {
