@@ -24,18 +24,16 @@ import com.koushikdutta.async.parser.StringParser;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -49,7 +47,7 @@ import io.github.tjg1.library.norilib.Tag;
  * Client for the Danbooru 2.x API.
  */
 public class Danbooru implements SearchClient {
-    static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
+    static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
     //region Constants
     /**
      * Number of images per search results page.
@@ -134,7 +132,7 @@ public class Danbooru implements SearchClient {
      */
     @Nullable
     public static String detectService(@NonNull Context context, @NonNull Uri uri, int timeout) {
-        final String endpointUrl = Uri.withAppendedPath(uri, "/posts.xml").toString();
+        final String endpointUrl = Uri.withAppendedPath(uri, "/post.json").toString();
 
         try {
             final Response<DataEmitter> response = Ion.with(context)
@@ -159,6 +157,24 @@ public class Danbooru implements SearchClient {
         return null;
     }
     //endregion
+
+    /**
+     * Create a {@link java.util.Date} object from String date representation used by this API.
+     *
+     * @param date Date string.
+     * @return Date converted from given String.
+     */
+    protected static Date dateFromString(String date) throws ParseException {
+        // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
+        if (!TextUtils.isEmpty(date)) {
+            String newDate = date.replace("Z", "+0000");
+            if (newDate.length() == 25) {
+                newDate = newDate.substring(0, 22) + newDate.substring(23); // Remove timezone colon.
+            }
+            return DATE_FORMAT.parse(newDate);
+        }
+        return null;
+    }
 
     //region SearchClient methods
     @Override
@@ -216,6 +232,9 @@ public class Danbooru implements SearchClient {
     public Settings getSettings() {
         return new Settings(Settings.APIType.DANBOARD, name, apiEndpoint, username, apiKey);
     }
+    //endregion
+
+    //region Creating search URLs
 
     @Override
     public AuthenticationType requiresAuthentication() {
@@ -223,7 +242,7 @@ public class Danbooru implements SearchClient {
     }
     //endregion
 
-    //region Creating search URLs
+    //region Parsing responses
 
     /**
      * Generate request URL to the search API endpoint.
@@ -238,143 +257,91 @@ public class Danbooru implements SearchClient {
         final int page = pid + 1;
 
         if (!TextUtils.isEmpty(this.username) && !TextUtils.isEmpty(this.apiKey)) {
-            return String.format(Locale.US, apiEndpoint + "/posts.xml?tags=%s&page=%d&limit=%d&login=%s&api_key=%s",
-                    Uri.encode(tags), page, limit, Uri.encode(this.username), Uri.encode(this.apiKey));
+
+            return String.format(Locale.US, "%s/posts.json?tags=%s&page=%d&limit=%d&login=%s&api_key=%s",
+                    apiEndpoint, Uri.encode(tags), page, limit, Uri.encode(this.username), Uri.encode(this.apiKey));
         }
-        return String.format(Locale.US, apiEndpoint + "/posts.xml?tags=%s&page=%d&limit=%d", Uri.encode(tags), page, limit);
+        return String.format(Locale.US,  "%s/posts.json?tags=%s&page=%d&limit=%d",
+                apiEndpoint, Uri.encode(tags), page, limit);
     }
-    //endregion
 
-    //region Parsing responses
-
-    protected SearchResult parseAPIResponse(String body, String tags, int offset) throws IOException {
-        return parseXMLResponse(body, tags, offset);
+    protected SearchResult parseAPIResponse(String body, String tags, int offset) {
+        return parseJSONResponse(body, tags, offset);
     }
 
     /**
-     * Parse an XML response returned by the API.
+     * Parse a JSON response returned by the API.
      *
      * @param body   HTTP Response body.
      * @param tags   Tags used to retrieve the response.
      * @param offset Current paging offset.
-     * @return A {@link io.github.tjg1.library.norilib.SearchResult} parsed from given XML.
+     * @return A {@link io.github.tjg1.library.norilib.SearchResult} parsed from given JSON.
      */
     @SuppressWarnings("FeatureEnvy")
-    protected SearchResult parseXMLResponse(String body, String tags, int offset) throws IOException {
-        // Create variables to hold the values as XML is being parsed.
+    protected SearchResult parseJSONResponse(String body, String tags, int offset) {
+        // Create variables to hold the values as JSON is being parsed.
         final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
-        Image image = new Image();
-        List<Tag> imageTags = new ArrayList<>();
-        int position = 0;
 
         try {
-            // Create an XML parser factory and disable namespace awareness for security reasons.
-            // See: (http://lists.w3.org/Archives/Public/public-xmlsec/2009Dec/att-0000/sws5-jensen.pdf).
-            final XmlPullParserFactory xmlParserFactory = XmlPullParserFactory.newInstance();
-            xmlParserFactory.setNamespaceAware(false);
+            JSONArray jsonArray = new JSONArray(body);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                final Image image = new Image();
+                image.searchPage = offset;
+                image.searchPagePosition = i;
 
-            // Create a new XML parser from factory and feed HTTP response data into it.
-            final XmlPullParser xpp = xmlParserFactory.newPullParser();
-            xpp.setInput(new StringReader(body));
+                // Base level attributes
+                image.id = jsonObject.get("id").toString();
+                image.createdAt = dateFromString(jsonObject.get("created_at").toString());
+                image.safeSearchRating = Image.SafeSearchRating.fromString(jsonObject.get("rating").toString());
 
-            // Iterate over each XML element and handle pull parser "events".
-            while (xpp.getEventType() != XmlPullParser.END_DOCUMENT) {
-                if (xpp.getEventType() == XmlPullParser.START_TAG) {
-                    // Get the tag's name.
-                    final String name = xpp.getName();
+                // File attributes
+                image.fileUrl = jsonObject.get("file_url").toString();
+                image.md5 = jsonObject.get("md5").toString();
+                image.width = (int) jsonObject.get("image_width");
+                image.height = (int) jsonObject.get("image_height");
 
-                    if ("post".equals(name)) {
-                        // Create a new image for each <post> tag.
-                        image = new Image();
-                        imageTags = new ArrayList<>();
-                        image.searchPage = offset;
-                        image.searchPagePosition = position;
-                    }
-                    // Extract image metadata from XML tags.
-                    else if ("large-file-url".equals(name)) {
-                        image.sampleUrl = xpp.nextText();
-                    } else if ("image-width".equals(name)) {
-                        image.width = Integer.parseInt(xpp.nextText());
-                    } else if ("image-height".equals(name)) {
-                        image.height = Integer.parseInt(xpp.nextText());
-                    } else if ("preview-file-url".equals(name)) {
-                        image.previewUrl = xpp.nextText();
-                    } else if ("file-url".equals(name)) {
-                        image.fileUrl = xpp.nextText();
-                    } else if ("tag-string-general".equals(name)) {
-                        imageTags.addAll(Arrays.asList(Tag.arrayFromString(xpp.nextText(), Tag.Type.GENERAL)));
-                    } else if ("tag-string-artist".equals(name)) {
-                        imageTags.addAll(Arrays.asList(Tag.arrayFromString(xpp.nextText(), Tag.Type.ARTIST)));
-                    } else if ("tag-string-character".equals(name)) {
-                        imageTags.addAll(Arrays.asList(Tag.arrayFromString(xpp.nextText(), Tag.Type.CHARACTER)));
-                    } else if ("tag-string-copyright".equals(name)) {
-                        imageTags.addAll(Arrays.asList(Tag.arrayFromString(xpp.nextText(), Tag.Type.COPYRIGHT)));
-                    } else if ("id".equals(name)) {
-                        image.id = xpp.nextText();
-                    } else if ("parent-id".equals(name)) {
-                        image.parentId = xpp.getAttributeValue(null, "nil") != null ? null : xpp.nextText();
-                    } else if ("pixiv-id".equals(name)) {
-                        image.pixivId = xpp.getAttributeValue(null, "nil") != null ? null : xpp.nextText();
-                    } else if ("rating".equals(name)) {
-                        image.safeSearchRating = Image.SafeSearchRating.fromString(xpp.nextText());
-                    } else if ("score".equals(name)) {
-                        image.score = Integer.parseInt(xpp.nextText());
-                    } else if ("source".equals(name)) {
-                        image.source = xpp.nextText();
-                    } else if ("md5".equals(name)) {
-                        image.md5 = xpp.nextText();
-                    } else if ("created-at".equals(name)) {
-                        image.createdAt = dateFromString(xpp.nextText());
-                    }
-                    // createdAt
-                } else if (xpp.getEventType() == XmlPullParser.END_TAG) {
-                    if ("post".equals(xpp.getName())) {
-                        // Convert tag list to array.
-                        image.tags = imageTags.toArray(new Tag[imageTags.size()]);
-                        // Append values not returned by API to image.
-                        image.webUrl = webUrlFromId(image.id);
-                        // FIXME: API does not return thumbnail sizes.
-                        image.previewWidth = THUMBNAIL_SIZE;
-                        image.previewHeight = THUMBNAIL_SIZE;
-                        // FIXME: API does not return sample sizes.
-                        image.sampleWidth = SAMPLE_SIZE;
-                        image.sampleHeight = SAMPLE_SIZE;
-                        // Discard images requiring a gold account. They do not return a valid file_url.
-                        if (image.fileUrl != null) {
-                            // Add to result.
-                            imageList.add(image);
-                            position++;
-                        }
-                    }
-                }
-                xpp.next();
+                // Preview attributes
+                image.previewUrl = jsonObject.get("preview_file_url").toString();
+                // FIXME: API does not return thumbnail sizes.
+                image.previewWidth = THUMBNAIL_SIZE;
+                image.previewHeight = THUMBNAIL_SIZE;
+
+                // Sample attributes
+                image.sampleUrl = jsonObject.get("large_file_url").toString();
+                // FIXME: API does not return sample sizes.
+                image.sampleWidth = SAMPLE_SIZE;
+                image.sampleHeight = SAMPLE_SIZE;
+
+                // Tags string
+                String artistTags = jsonObject.get("tag_string_artist").toString();
+                String characterTags = jsonObject.get("tag_string_character").toString();
+                String copyrightTags = jsonObject.get("tag_string_copyright").toString();
+                String generalTags = jsonObject.get("tag_string_general").toString();
+                String metaTags = jsonObject.get("tag_string_meta").toString();
+
+                Tag[] artistTagsArr = Tag.arrayFromString(artistTags, Tag.Type.ARTIST);
+                Tag[] characterTagsArr = Tag.arrayFromString(characterTags, Tag.Type.CHARACTER);
+                Tag[] copyrightTagsArr = Tag.arrayFromString(copyrightTags, Tag.Type.COPYRIGHT);
+                Tag[] generalTagsArr = Tag.arrayFromString(generalTags, Tag.Type.GENERAL);
+                Tag[] metaTagsArr = Tag.arrayFromString(metaTags, Tag.Type.GENERAL);
+
+                // Create Tag arrays for each type
+                image.tags = Tag.arrayFromTagArrays(artistTagsArr, characterTagsArr, copyrightTagsArr, generalTagsArr, metaTagsArr);
+
+                image.webUrl = webUrlFromId(image.id);
+                image.parentId = jsonObject.get("parent_id").toString();
+
+                // Score attributes
+                image.score = (int) jsonObject.get("score");
+
+                imageList.add(image);
             }
-        } catch (XmlPullParserException | ParseException e) {
-            // Convert into IOException.
-            // Needed for consistent method signatures in the SearchClient interface for different APIs.
-            // (Throwing an XmlPullParserException would be fine, until dealing with an API using JSON, etc.)
-            throw new IOException(e);
+        } catch (ParseException | JSONException e) {
+            e.printStackTrace();
         }
 
-        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
-    }
-
-    /**
-     * Create a {@link java.util.Date} object from String date representation used by this API.
-     *
-     * @param date Date string.
-     * @return Date converted from given String.
-     */
-    protected static Date dateFromString(String date) throws ParseException {
-        // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
-        if (!TextUtils.isEmpty(date)) {
-            String newDate = date.replace("Z", "+0000");
-            if (newDate.length() == 25) {
-                newDate = newDate.substring(0, 22) + newDate.substring(23); // Remove timezone colon.
-            }
-            return DATE_FORMAT.parse(newDate);
-        }
-        return null;
+        return new SearchResult(imageList.toArray(new Image[0]), Tag.arrayFromString(tags), offset);
     }
 
     /**
@@ -413,7 +380,7 @@ public class Danbooru implements SearchClient {
             return new StringParser().parse(emitter)
                     .then(new TransformFuture<SearchResult, String>() {
                         @Override
-                        protected void transform(String result) throws Exception {
+                        protected void transform(String result) {
                             setComplete(parseAPIResponse(result, tags, pageOffset));
                         }
                     });
