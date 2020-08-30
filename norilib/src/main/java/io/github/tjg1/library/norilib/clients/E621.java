@@ -38,12 +38,12 @@ import io.github.tjg1.library.norilib.Tag;
  * {@link io.github.tjg1.library.norilib.clients.SearchClient} for the E621 imageboard.
  */
 public class E621 extends Danbooru {
-    final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US);
     //region Constants
     /**
      * Number of images to fetch with each search.
      */
     private static final int DEFAULT_LIMIT = 100;
+    final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US);
     //endregion
 
     //region Constructors
@@ -193,9 +193,7 @@ public class E621 extends Danbooru {
                 // Score attributes
                 image.score = (int) postScore.get("total");
 
-                if (image.fileUrl != null) {
-                    imageList.add(image);
-                }
+                imageList.add(image);
             }
         } catch (JSONException | ParseException e) {
             e.printStackTrace();

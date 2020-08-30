@@ -1,6 +1,6 @@
 /*
  * This file is part of nori.
- * Copyright (c) 2014 Tomasz Jan Góralczyk <tomg@fastmail.uk>
+ * Copyright (c) 2014-2016 Tomasz Jan Góralczyk <tomg@fastmail.uk>
  * License: ISC
  */
 
@@ -8,6 +8,8 @@ package io.github.tjg1.library.norilib.clients;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,21 +18,33 @@ import com.koushikdutta.async.DataEmitter;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
+import io.github.tjg1.library.norilib.Image;
+import io.github.tjg1.library.norilib.SearchResult;
+import io.github.tjg1.library.norilib.Tag;
+
 /**
- * Client for the Gelbooru API.
- * The Gelbooru API is based on the Danbooru 1.x API with a few minor differences.
+ * {@link io.github.tjg1.library.norilib.clients.SearchClient} for the Gelbooru imageboard.
  */
-public class Gelbooru extends DanbooruLegacy {
+public class Gelbooru extends Danbooru {
     //region Constants
     /**
-     * Date format used by Gelbooru.
+     * Number of images to fetch with each search.
      */
+    private static final int DEFAULT_LIMIT = 100;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEE MMM d HH:mm:ss Z yyyy", Locale.US);
     //endregion
 
@@ -49,16 +63,12 @@ public class Gelbooru extends DanbooruLegacy {
     /**
      * Checks if the given URL exposes a supported API endpoint.
      *
-     * @param context Android {@link Context}.
-     * @param uri     URL to test.
-     * @param timeout Timeout in milliseconds.
+     * @param uri URL to test.
      * @return Detected endpoint URL. null, if no supported endpoint URL was detected.
      */
     @Nullable
     public static String detectService(@NonNull Context context, @NonNull Uri uri, int timeout) {
-        final String endpointUrl = Uri.withAppendedPath(uri, "/index.php?page=dapi&s=post&q=index")
-                .toString();
-
+        final String endpointUrl = Uri.withAppendedPath(uri, "/index.php?page=dapi&s=post&q=index").toString();
         try {
             final Response<DataEmitter> response = Ion.with(context)
                     .load(endpointUrl)
@@ -77,8 +87,7 @@ public class Gelbooru extends DanbooruLegacy {
             if (response.getHeaders().code() == 200) {
                 return uri.toString();
             }
-        } catch (InterruptedException | ExecutionException ignored) {
-        }
+        } catch (InterruptedException | ExecutionException ignored) { }
         return null;
     }
     //endregion
@@ -86,28 +95,112 @@ public class Gelbooru extends DanbooruLegacy {
     //region SearchClient methods
     @Override
     public Settings getSettings() {
-        return new Settings(Settings.APIType.GELBOARD, name, apiEndpoint, username, password);
+        return new Settings(Settings.APIType.GELBOARD, name, apiEndpoint, username, apiKey);
     }
     //endregion
 
-    //region Creating search URLs
     @Override
     protected String createSearchURL(String tags, int pid, int limit) {
         // Unlike DanbooruLegacy, page numbers are 0-indexed for Gelbooru APIs.
-        return String.format(Locale.US, "%s/index.php?page=dapi&s=post&q=index&tags=%s&pid=%d&limit=%d", apiEndpoint, Uri.encode(tags), pid, limit);
+        return String.format(Locale.US, "%s/index.php?page=dapi&s=post&q=index&tags=%s&pid=%d&limit=%d&json=1",
+                apiEndpoint, Uri.encode(tags), pid, limit);
     }
-    //endregion
 
     //region Parsing responses
     @Override
     protected String webUrlFromId(String id) {
-        return String.format(Locale.US, "%s/index.php?page=post&s=view&id=%s", apiEndpoint, id);
+        return String.format(Locale.US, "%s/index.php?page=post&s=view&id=%s",
+                apiEndpoint, id);
     }
 
     @Override
-    protected Date dateFromString(String date) throws ParseException {
-        // Override Danbooru 1.x date format.
-        return DATE_FORMAT.parse(date);
+    protected SearchResult parseAPIResponse(String body, String tags, int offset) {
+        return parseJSONResponse(body, tags, offset);
     }
-    //endregion
+
+    @Override
+    protected SearchResult parseJSONResponse(String body, String tags, int offset) {
+        final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
+        JSONObject jsonObject;
+        String sampleURL;
+        int sampleWidth;
+        int sampleHeight;
+
+        try {
+            JSONArray jsonArray = new JSONArray(body);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject post = (JSONObject) jsonArray.get(i);
+
+                final Image image = new Image();
+                image.searchPage = offset;
+                image.searchPagePosition = i;
+
+                // Base level attributes
+                image.id = post.get("id").toString();
+                image.createdAt = dateFromString(post.get("created_at").toString());
+                image.safeSearchRating = Image.SafeSearchRating.fromString(post.get("rating").toString());
+
+                // File attributes
+                image.fileUrl = post.get("file_url").toString();
+                image.md5 = post.get("hash").toString();
+                image.width = (int) post.get("width");
+                image.height = (int) post.get("height");
+
+                // Sample attributes
+                if ( (int) post.get("sample") == 1 ) {
+                    sampleURL = getSampleURL(image.fileUrl, post.get("image").toString(), image.md5);
+                    sampleWidth = image.previewWidth = (int) post.get("sample_width");
+                    sampleHeight = image.previewWidth = (int) post.get("sample_height");
+                } else {
+                    sampleURL = image.fileUrl;
+                    sampleWidth = image.width;
+                    sampleHeight = image.height;
+                }
+
+                image.previewUrl = sampleURL;
+                image.previewWidth = sampleWidth;
+                image.previewHeight = sampleHeight;
+                image.sampleUrl = sampleURL;
+                image.sampleWidth = sampleWidth;
+                image.sampleHeight = sampleHeight;
+
+                // Sources
+                image.source = post.get("source").toString();
+
+                // TODO - Use Tag API to get tag types
+                image.tags = Tag.arrayFromString(post.get("tags").toString());
+
+                image.webUrl = webUrlFromId(image.id);
+                image.parentId = post.get("parent_id").toString();
+//
+//                // Score attributes
+                image.score = (int) post.get("score");
+
+                imageList.add(image);
+            }
+        } catch ( JSONException | ParseException e ) {
+            Log.e("nori", Objects.requireNonNull(e.getMessage()));
+        }
+
+        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
+    }
+
+    /**
+     * Create a {@link java.util.Date} object from String date representation used by this API.
+     *
+     * @param date Date string.
+     * @return Date converted from given String.
+     */
+    protected static Date dateFromString(String date) throws ParseException {
+        // Normalise the ISO8601 time zone into a format parse-able by SimpleDateFormat.
+        if (!TextUtils.isEmpty(date)) {
+            return DATE_FORMAT.parse(date);
+        }
+        return null;
+    }
+
+    protected static String getSampleURL(String file_url, String filename, String hash) {
+        file_url = file_url.replace("images", "samples").replace(filename, "sample_" + hash + ".jpg");
+        return file_url;
+    }
 }
