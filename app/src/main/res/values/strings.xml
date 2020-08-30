@@ -36,6 +36,7 @@
     <string name="action_downloadImage">Download</string>
     <string name="action_viewOnWeb">View on Web</string>
     <string name="action_viewOnPixiv">View on Pixiv</string>
+    <string name="action_viewSource">View Source</string>
     <string name="action_setAsWallpaper">Set as Wallpaper</string>
     <string name="service_dropdown_settings">Service settings…</string>
 

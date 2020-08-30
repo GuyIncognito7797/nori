@@ -313,6 +313,9 @@ public class Danbooru implements SearchClient {
                 image.sampleWidth = SAMPLE_SIZE;
                 image.sampleHeight = SAMPLE_SIZE;
 
+                // Sources
+                image.source = jsonObject.get("source").toString();
+
                 // Tags string
                 String artistTags = jsonObject.get("tag_string_artist").toString();
                 String characterTags = jsonObject.get("tag_string_character").toString();

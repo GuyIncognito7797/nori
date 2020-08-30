@@ -28,6 +28,10 @@
         android:title="@string/action_viewOnWeb"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_viewSource"
+        android:title="@string/action_viewSource"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_viewOnPixiv"
         android:title="@string/action_viewOnPixiv"
         app:showAsAction="never" />

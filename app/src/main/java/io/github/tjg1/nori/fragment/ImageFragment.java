@@ -117,6 +117,12 @@ public abstract class ImageFragment extends Fragment {
         if (image.pixivId == null || TextUtils.isEmpty(image.pixivId)) {
             shareOnPixivItem.setVisible(false);
         }
+
+        // Hide the view source menu item, if the Image does not have a source URL.
+        MenuItem viewSourceItem = menu.findItem(R.id.action_viewSource);
+        if (image.source == null || TextUtils.isEmpty(image.source)) {
+            viewSourceItem.setVisible(false);
+        }
     }
 
     @Override
@@ -133,6 +139,9 @@ public abstract class ImageFragment extends Fragment {
                 return true;
             case R.id.action_viewOnPixiv:
                 viewOnPixiv();
+                return true;
+            case R.id.action_viewSource:
+                viewSource();
                 return true;
             case R.id.action_setAsWallpaper:
                 setAsWallpaper();
@@ -208,6 +217,15 @@ public abstract class ImageFragment extends Fragment {
     protected void viewOnPixiv() {
         // Create and send to intent to display the image's pixiv page in the web browser.
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(PIXIV_URL_PREFIX + image.pixivId));
+        startActivity(intent);
+    }
+
+    /**
+     * Opens the image Pixiv page in the system web browser.
+     */
+    protected void viewSource() {
+        // Create and send to intent to display the image's pixiv page in the web browser.
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(image.source));
         startActivity(intent);
     }
 

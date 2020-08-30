@@ -104,22 +104,25 @@ public class E621 extends Danbooru {
         final int page = pid + 1;
 
         if (!TextUtils.isEmpty(this.username) && !TextUtils.isEmpty(this.apiKey)) {
-            return String.format(Locale.US, apiEndpoint + "/posts.json?tags=%s&page=%d&limit=%d&login=%s&api_key=%s",
-                    Uri.encode(tags), page, limit, Uri.encode(this.username), Uri.encode(this.apiKey));
+            return String.format(Locale.US,  "%s/posts.json?tags=%s&page=%d&limit=%d&login=%s&api_key=%s",
+                    apiEndpoint, Uri.encode(tags), page, limit, Uri.encode(this.username), Uri.encode(this.apiKey));
         }
-        return String.format(Locale.US, apiEndpoint + "/posts.json?tags=%s&page=%d&limit=%d", Uri.encode(tags), page, limit);
+        return String.format(Locale.US,  "%s/posts.json?tags=%s&page=%d&limit=%d",
+                apiEndpoint, Uri.encode(tags), page, limit);
     }
 
     //region Parsing responses
     @Override
     protected String webUrlFromId(String id) {
-        return apiEndpoint + "/post/show/" + id;
+        return String.format("%s/%s/%s", apiEndpoint, "post/show", id);
     }
 
+    @Override
     protected SearchResult parseAPIResponse(String body, String tags, int offset) {
         return parseJSONResponse(body, tags, offset);
     }
 
+    @Override
     protected SearchResult parseJSONResponse(String body, String tags, int offset) {
         final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
         JSONObject jsonObject;
@@ -133,6 +136,7 @@ public class E621 extends Danbooru {
                 JSONObject postPreview = (JSONObject) post.get("preview");
                 JSONObject postSample = (JSONObject) post.get("sample");
                 JSONObject postScore = (JSONObject) post.get("score");
+                JSONArray postSources = (JSONArray) post.get("sources");
                 JSONObject postTags = (JSONObject) post.get("tags");
                 JSONObject postRelationships = (JSONObject) post.get("relationships");
 
@@ -160,6 +164,12 @@ public class E621 extends Danbooru {
                 image.sampleUrl = postSample.get("url").toString();
                 image.sampleWidth = (int) postSample.get("width");
                 image.sampleHeight = (int) postSample.get("height");
+
+                // Sources
+                // Just use the first source for now
+                if ( postSources.length() > 0 ) {
+                    image.source = postSources.get(0).toString();
+                }
 
                 // Tag array
                 // Get arrays out of JSON

@@ -249,7 +249,8 @@ public class DanbooruLegacy implements SearchClient {
         // Page numbers are 1-indexed for this API.
         final int page = pid + 1;
 
-        return String.format(Locale.US, apiEndpoint + "/post/index.xml?tags=%s&limit=%d&page=%d", Uri.encode(tags), limit, page);
+        return String.format(Locale.US,  "%s/post/index.xml?tags=%s&limit=%d&page=%d",
+                apiEndpoint, Uri.encode(tags), limit, page);
     }
     //endregion
 
@@ -360,7 +361,7 @@ public class DanbooruLegacy implements SearchClient {
             throw new IOException(e);
         }
         // Create and return a SearchResult.
-        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
+        return new SearchResult(imageList.toArray(new Image[0]), Tag.arrayFromString(tags), offset);
     }
 
     /**
