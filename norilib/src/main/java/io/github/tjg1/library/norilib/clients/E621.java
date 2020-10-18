@@ -151,6 +151,9 @@ public class E621 extends Danbooru {
 
                 // File attributes
                 image.fileUrl = postFile.get("url").toString();
+                if (image.fileUrl.equals("null")) {
+                    continue;
+                }
                 image.md5 = postFile.get("md5").toString();
                 image.width = (int) postFile.get("width");
                 image.height = (int) postFile.get("height");
