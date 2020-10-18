@@ -108,7 +108,7 @@ public class SafeSearchListAdapter extends BaseAdapter implements
 
         // Update SharedPreferences.
         listener.updateSafeSearchSettings(safeSearchCurrentSetting
-                .toArray(new String[safeSearchCurrentSetting.size()]));
+                .toArray(new String[0]));
     }
     //endregion
 

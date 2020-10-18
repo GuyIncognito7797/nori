@@ -141,7 +141,7 @@ public class IabHelper {
     // The item type of the current purchase flow
     String mPurchasingItemType;
     // Public key for verifying signature, in base64 encoding
-    String mSignatureBase64 = null;
+    String mSignatureBase64;
     // The listener registered on launchPurchaseFlow, which we have to call back when
     // the purchase finishes
     OnIabPurchaseFinishedListener mPurchaseListener;
@@ -537,7 +537,7 @@ public class IabHelper {
                 return true;
             }
 
-            Purchase purchase = null;
+            Purchase purchase;
             try {
                 purchase = new Purchase(mPurchasingItemType, purchaseData, dataSignature);
                 String sku = purchase.getSku();
@@ -567,7 +567,7 @@ public class IabHelper {
             // result code was OK, but in-app billing response was not OK.
             logDebug("Result code was OK but in-app billing response was not OK: " + getResponseDesc(responseCode));
             if (mPurchaseListener != null) {
-                result = new IabResult(responseCode, "Problem purchashing item.");
+                result = new IabResult(responseCode, "Problem purchasing item.");
                 mPurchaseListener.onIabPurchaseFinished(result, null);
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {

@@ -91,7 +91,7 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
      */
     private SearchResult searchResult;
     /**
-     * Adapter used to populate the {@link androidx.core.view.ViewPager} used to display and flip through the images.
+     * Adapter used to populate the {@link androidx.viewpager.widget.ViewPager} used to display and flip through the images.
      */
     private ImagePagerAdapter imagePagerAdapter;
     /**

@@ -8,12 +8,13 @@ package io.github.tjg1.nori.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * A {@link android.widget.ImageView} widget forcefully maintaining a 1:1 aspect ratio.
  */
-public class SquareImageView extends ImageView {
+public class SquareImageView extends AppCompatImageView {
 
     //region Constructors
     public SquareImageView(Context context) {

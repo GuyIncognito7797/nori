@@ -185,7 +185,7 @@ public class TagFilterSettingsActivity extends AppCompatActivity implements View
     private void updateSharedPreferences() {
         sharedPreferences.edit()
                 .putString(getString(R.string.preference_tagFilter_key),
-                        StringUtils.mergeStringArray(filteredTags.toArray(new String[filteredTags.size()]), " ").trim())
+                        StringUtils.mergeStringArray(filteredTags.toArray(new String[0]), " ").trim())
                 .apply();
         tagListAdapter.notifyDataSetChanged();
     }

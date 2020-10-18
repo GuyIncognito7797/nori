@@ -421,7 +421,7 @@ public class SearchActivity extends AppCompatActivity
     }
 
     /**
-     * Set up the {@link android.support.v7.app.ActionBar}, including the API service picker dropdown.
+     * Set up the {@link androidx.appcompat.app.ActionBar}, including the API service picker dropdown.
      */
     private void setUpActionBar() {
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);

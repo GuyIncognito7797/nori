@@ -1,11 +1,11 @@
-/**
- * HockeyIonSender.java
- * Hockey ACRA-to-HockeyApp crash report sender based on Ion. (https://github.com/koush/ion)
- * <p>
- * To the extent possible under law, Tomasz J Góralczyk has waived all copyright and related
- * or neighboring rights to HockeyIonSender.java.
- * <p>
- * This work is published from: United Kingdom.
+/*
+  HockeyIonSender.java
+  Hockey ACRA-to-HockeyApp crash report sender based on Ion. (https://github.com/koush/ion)
+  <p>
+  To the extent possible under law, Tomasz J Góralczyk has waived all copyright and related
+  or neighboring rights to HockeyIonSender.java.
+  <p>
+  This work is published from: United Kingdom.
  */
 package io.github.tjg1.nori.util;
 

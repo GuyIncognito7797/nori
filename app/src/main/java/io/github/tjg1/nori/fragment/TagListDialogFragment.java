@@ -6,7 +6,6 @@
 
 package io.github.tjg1.nori.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;

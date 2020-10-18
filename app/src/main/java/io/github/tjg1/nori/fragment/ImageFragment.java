@@ -173,7 +173,7 @@ public abstract class ImageFragment extends Fragment {
     //region Options menu item helper methods
 
     /**
-     * Get {@link android.content.Intent} to be sent by the {@link android.support.v7.widget.ShareActionProvider}.
+     * Get {@link android.content.Intent} to be sent by the {@link androidx.appcompat.widget.ShareActionProvider}.
      *
      * @return Share intent.
      */
