@@ -36,6 +36,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -81,6 +82,8 @@ public class DanbooruLegacy implements SearchClient {
     //endregion
 
     //region Constructors
+
+    protected static final List<String> XML_IMAGE_TAG_NAMES = Arrays.asList("tag", "post");
 
     /**
      * Create a new Danbooru 1.x client without authentication.
@@ -282,7 +285,10 @@ public class DanbooruLegacy implements SearchClient {
             // Iterate over each XML element and handle pull parser "events".
             while (xpp.getEventType() != XmlPullParser.END_DOCUMENT) {
                 if (xpp.getEventType() == XmlPullParser.START_TAG) {
-                    if ("post".equals(xpp.getName())) {
+                    // At some point Paheal/Shimmie changed their Danbooru API to return images
+                    // starting with <tag> posts. I don't know why and I don't trust them not to
+                    // randomly change back so this .contains should be robust enough to handle it
+                    if (XML_IMAGE_TAG_NAMES.contains(xpp.getName())) {
                         // <post> tags contain metadata for each image.
                         final Image image = new Image();
                         image.searchPage = offset;
