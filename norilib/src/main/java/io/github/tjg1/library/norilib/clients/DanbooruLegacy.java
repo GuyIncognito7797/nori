@@ -9,6 +9,7 @@ package io.github.tjg1.library.norilib.clients;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Xml;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -280,6 +281,7 @@ public class DanbooruLegacy implements SearchClient {
 
             // Create a new XML parser and feed HTTP response data into it.
             final XmlPullParser xpp = xmlParserFactory.newPullParser();
+            xpp.setFeature(Xml.FEATURE_RELAXED, true);
             xpp.setInput(new StringReader(body));
 
             // Iterate over each XML element and handle pull parser "events".
