@@ -125,8 +125,9 @@ public class WebViewActivity extends AppCompatActivity {
         if (intent.hasExtra(INTENT_EXTRA_URL)) {
             webView.loadUrl(intent.getStringExtra(INTENT_EXTRA_URL));
         } else if ("io.github.tjg1.nori.ABOUT".equals(intent.getAction())) {
+            // TODO - One day have a nice site like tjg1 used to.
             mProgressBar.setVisibility(View.VISIBLE);
-            webView.loadUrl("https://tjg1.github.io/nori/about.html?version=" + Uri.encode(BuildConfig.VERSION_NAME));
+            webView.loadUrl("https://github.com/jwilliams9707/nori");
         } else {
             this.finish();
         }
