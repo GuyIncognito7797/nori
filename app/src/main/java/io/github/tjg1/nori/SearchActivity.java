@@ -172,8 +172,6 @@ public class SearchActivity extends AppCompatActivity
                 searchClient = searchClientSettings.createSearchClient(this);
                 doSearch(intent.getStringExtra(BUNDLE_ID_SEARCH_QUERY));
             }
-            // disabled
-            //showDonationDialog();
         }
 
         // Set up the dropdown API server picker.
@@ -443,57 +441,6 @@ public class SearchActivity extends AppCompatActivity
                 this);
         serviceSpinner.setAdapter(serviceDropdownAdapter);
         serviceSpinner.setOnItemSelectedListener(serviceDropdownAdapter);
-    }
-    //endregion
-
-    //region Donation Dialog
-
-    /**
-     * Show the donation dialog at defined app launch count thresholds.
-     */
-    private void showDonationDialog() {
-        // Get the number of times the dialog was already shown and current time.
-        int donationDialogShownTimes = sharedPreferences
-                .getInt(getString(R.string.preference_donation_dialog_count), 0);
-        long currentTime = System.currentTimeMillis();
-
-        // Get Nori installation date.
-        long installationDate;
-        try {
-            installationDate = getPackageManager().getPackageInfo(getPackageName(), 0)
-                    .firstInstallTime;
-        } catch (PackageManager.NameNotFoundException e) {
-            return;
-        }
-
-        // Show the donation dialog 7 days after installation, 30 days thereafter and
-        // then every 3 months thereafter.
-        if (donationDialogShownTimes == 0 && (currentTime - installationDate) > 604800000L ||
-                donationDialogShownTimes == 1 && (currentTime - installationDate) > 3196800000L ||
-                (currentTime - installationDate) > (donationDialogShownTimes * 7776000000L + 3196800000L)) {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.activity_donations)
-                    .setMessage(R.string.donation_summary)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.donation_dialog_donate,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    startActivity(new Intent(SearchActivity.this, DonationActivity.class));
-                                    dialogInterface.cancel();
-                                }
-                            })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    }).create().show();
-
-            // Increment donation dialog count shared preference.
-            sharedPreferences.edit().putInt(getString(R.string.preference_donation_dialog_count),
-                    ++donationDialogShownTimes).apply();
-        }
     }
     //endregion
 

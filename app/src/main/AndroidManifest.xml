@@ -62,9 +62,6 @@
             android:name=".APISettingsActivity"
             android:label="@string/activity_service_settings" />
         <activity
-            android:name=".DonationActivity"
-            android:label="@string/activity_donations" />
-        <activity
             android:name=".WebViewActivity"
             android:label="@string/app_name" />
 

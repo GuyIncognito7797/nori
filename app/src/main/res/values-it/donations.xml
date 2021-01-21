@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- Pay what you want currency. -->
-    <string name="donation_currency">EUR</string>
-
-</resources>

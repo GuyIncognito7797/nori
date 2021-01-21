@@ -58,20 +58,13 @@
         <Preference
             android:key="preference_clearSearchHistory"
             android:summary="@string/preference_clearSearchHistory_summary"
-            android:title="@string/preference_clearSearchHistory_title"></Preference>
+            android:title="@string/preference_clearSearchHistory_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/app_name">
         <Preference android:title="@string/preference_about">
             <intent
                 android:action="io.github.tjg1.nori.ABOUT"
                 android:targetClass="io.github.tjg1.nori.WebViewActivity"
-                android:targetPackage="io.github.tjg1.nori"></intent>
-        </Preference>
-        <Preference
-            android:summary="@string/preference_donate_summary"
-            android:title="@string/preference_donate">
-            <intent
-                android:targetClass="io.github.tjg1.nori.DonationActivity"
                 android:targetPackage="io.github.tjg1.nori" />
         </Preference>
     </PreferenceCategory>

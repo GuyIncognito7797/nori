@@ -17,7 +17,6 @@
     <string name="activity_tag_filter_settings">Tag Filter</string>
     <string name="activity_safeSearch_settings">SafeSearch</string>
     <string name="activity_service_settings">Service Settings</string>
-    <string name="activity_donations">Donate</string>
 
     <!-- EditText hints -->
     <string name="hint_tag">Tag</string>
@@ -78,8 +77,6 @@
     <string name="preference_category_services">Services</string>
     <string name="preference_service_settings_summary">Add, edit or remove imageboard service settings</string>
     <string name="preference_service_settings_title">Service Settings</string>
-    <string name="preference_donate_summary">Support the development of Nori</string>
-    <string name="preference_donate">Donate</string>
     <string name="preference_about">About Nori</string>
     <string name="preference_about_summary">Display information about this version of Nori</string>
     <!-- Untranslatable -->
@@ -89,7 +86,6 @@
     <string name="preference_tagFilter_key" translatable="false">preference_tagFilter</string>
     <string name="preference_image_viewer_keepScreenOn_key" translatable="false">preference_image_viewer_keepScreenOn</string>
     <string name="preference_image_viewer_conserveBandwidth_key" translatable="false">preference_image_viewer_conserveBandwidth</string>
-    <string name="preference_donation_dialog_count" translatable="false">preference_donation_dialog_count</string>
 
     <!-- Thumbnail sizes -->
     <string name="preference_previewSize_small">Small</string>
@@ -105,24 +101,6 @@
     <string name="safe_search_moderate_summary">Mild nudity and sexually-suggestive content</string>
     <string name="safe_search_off_summary">Full nudity and sexually-explicit content</string>
     <string name="safe_search_undefined_summary">Show content for which no obscenity rating has been defined</string>
-
-    <!-- Donations -->
-    <string name="donation_summary">If you enjoy Nori, please consider making a donation to support its continued development.\nWe rely on your support to keep Nori free and free of ads.</string>
-    <string name="donation_method_patreon">Patreon</string>
-    <string name="donation_method_patreonSummary">Make a recurring donation on Patreon</string>
-    <string name="donation_method_paypal">PayPal</string>
-    <string name="donation_method_paypalSummary">Donate via PayPal</string>
-    <string name="donation_method_google">Google</string>
-    <string name="donation_method_googleSummary">Donate using Google Play</string>
-    <string name="donation_method_bitcoin">Bitcoin</string>
-    <string name="donation_method_bitcoinSummary">Donate Bitcoin</string>
-    <string name="donation_paypal_item" translatable="false">Nori Donation</string>
-    <string name="donation_url_copiedToClipboard">Donation URL was copied to clipboard.</string>
-    <string name="donation_method_bitcoin_copiedToClipboard">Bitcoin address was copied to the clipboard.</string>
-    <string name="donation_method_bitcoin_qrCodeContentDescription">Bitcoin QR Code</string>
-    <string name="donation_dialog_donate">Donate</string>
-    <string name="donation_error_connectingToPlayStoreService">Error: Couldn\'t connect to the Play Store service.</string>
-    <string name="donation_toast_completed">Your donation has been received. Thank you for your support.</string>
 
     <!-- Crash reporting -->
     <string name="crash_toast_text">Nori quit unexpectedly.</string>

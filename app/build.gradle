@@ -13,15 +13,7 @@ android {
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
 
         buildConfigField "boolean", "GOOGLE_BUILD", "false"
-        buildConfigField "boolean", "DONATIONS_PAYPAL", "true"
-        buildConfigField "boolean", "DONATIONS_PATREON", "false"
-        buildConfigField "boolean", "DONATIONS_BITCOIN", "true"
-        buildConfigField "boolean", "DONATIONS_GOOGLE", "true"
 
-        buildConfigField "String", "DONATIONS_PAYPAL_EMAIL", "null"
-        buildConfigField "String", "DONATIONS_PATREON_ACCOUNT", "null"
-        buildConfigField "String", "DONATIONS_BITCOIN_ADDRESS", "null"
-        buildConfigField "String", "DONATIONS_GOOGLE_PUB_KEY", "null"
         buildConfigField "String", "HOCKEYAPP_APP_ID", "\"73abce41065f421f993f9309d969aaa9\""
     }
     buildTypes {
@@ -45,18 +37,10 @@ android {
     flavorDimensions "storefront"
     productFlavors {
         fdroid {
-            buildConfigField "boolean", "DONATIONS_GOOGLE", "false"
-            buildConfigField "String", "DONATIONS_PAYPAL_EMAIL", "\"tomg@fastmail.uk\""
-            buildConfigField "String", "DONATIONS_PATREON_ACCOUNT", "\"3696048\""
-            buildConfigField "String", "DONATIONS_BITCOIN_ADDRESS", "\"3PKxcCKcccHNizeZJNG1dcBaAN4eWEqqG5\""
             dimension "storefront"
         }
         google {
             buildConfigField "boolean", "GOOGLE_BUILD", "true"
-            buildConfigField "boolean", "DONATIONS_PAYPAL", "false"
-            buildConfigField "boolean", "DONATIONS_PATREON", "false"
-            buildConfigField "boolean", "DONATIONS_BITCOIN", "false"
-            buildConfigField "String", "DONATIONS_GOOGLE_PUB_KEY", "\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArXl8mF/3pfc+wk6DPaZV8jQoWmw2+/1f5Hc8Rb66Ykv5muiTDEnDtGdaQjfTOHPJrlYGzK3V/KP5zT1X7+kxHzuoATgr0aeOUpu6SQjOKsYlG92yb6ga1+Gj/7zak/gxRcu2ivSxM7TEYeCsxlqfqvdN6EZKRrSy6m5jVqPDwClcQfgWkN+fzb19Jooetb3IrJv73LoB93D82SvndrhuTzMSX4j5ecBMuXVCACGDNYBBZO/B7j+J3/I+p5XmB6bHBH2EqG2BJVXRfvDz424MIW9UpEYvITWZ5XaqOwRKdiBEEkeT/RF/Pe4DnlVArG0TIjKYhPKg3IINQLQ0ZG30dQIDAQAB\""
             dimension "storefront"
         }
     }

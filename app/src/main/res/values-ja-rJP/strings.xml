@@ -17,7 +17,6 @@
     <string name="activity_tag_filter_settings">タグフィルター</string>
     <string name="activity_safeSearch_settings">成人向けフィルター</string>
     <string name="activity_service_settings">サービス設定</string>
-    <string name="activity_donations">寄付</string>
 
     <!-- EditText hints -->
     <string name="hint_tag">タグ</string>
@@ -77,8 +76,6 @@
     <string name="preference_category_services">サービス</string>
     <string name="preference_service_settings_summary">画像掲示板サービスの設定を追加、編集、削除します</string>
     <string name="preference_service_settings_title">サービス設定</string>
-    <string name="preference_donate_summary">Nori の開発をサポートします</string>
-    <string name="preference_donate">寄付</string>
     <string name="preference_about">バージョン情報</string>
     <string name="preference_about_summary">Nori のバージョン情報を表示します。</string>
 
@@ -96,23 +93,6 @@
     <string name="safe_search_moderate_summary">軽度の裸や性的なものを暗示するコンテンツ</string>
     <string name="safe_search_off_summary">全裸や性的に露骨なコンテンツ</string>
     <string name="safe_search_undefined_summary">わいせつの評価が定義されていないコンテンツを表示します</string>
-
-    <!-- Donations -->
-    <string name="donation_summary">Nori をお楽しみいただけた場合、寄付を検討して頂き、継続的な開発をサポートしてください。\nあなた方のサポートに依存して、無料で、広告のない Nori を維持しています。</string>
-    <string name="donation_method_patreon">Patreon</string>
-    <string name="donation_method_patreonSummary">Patreon に定期的な寄付をします</string>
-    <string name="donation_method_paypal">PayPal</string>
-    <string name="donation_method_paypalSummary">PayPal で寄付します</string>
-    <string name="donation_method_google">Google</string>
-    <string name="donation_method_googleSummary">Google Play を使用して寄付します</string>
-    <string name="donation_method_bitcoin">Bitcoin</string>
-    <string name="donation_method_bitcoinSummary">Bitcoin で寄付します</string>
-    <string name="donation_url_copiedToClipboard">寄付の URL をクリップボードにコピーしました。</string>
-    <string name="donation_method_bitcoin_copiedToClipboard">Bitcoin アドレスをクリップボードにコピーしました。</string>
-    <string name="donation_method_bitcoin_qrCodeContentDescription">Bitcoin QR コード</string>
-    <string name="donation_dialog_donate">寄付</string>
-    <string name="donation_error_connectingToPlayStoreService">Play Store への接続エラーです - サービスへ届きません。</string>
-    <string name="donation_toast_completed">ご寄付をいただきました。 ご厚意、誠にありがとうございました。</string>
 
     <!-- Crash reporting (fuzzy; need proof-reading) -->
     <string name="crash_toast_text">残念ながら、Noriは予期せず終了しました。</string>

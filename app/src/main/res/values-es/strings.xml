@@ -7,7 +7,6 @@
     <!-- Activity titles -->
     <!-- (Image ID): (Image tags) -->
     <string name="activity_image_viewer_titleFormat" formatted="false">%s: %s</string>
-    <string name="activity_donations">Donar</string>
     <string name="activity_safeSearch_settings">Búsqueda Segura</string>
     <string name="activity_service_settings">Ajustes del Servicio</string>
     <string name="activity_settings">Ajustes</string>
@@ -62,8 +61,6 @@
     <string name="preference_category_services">Servicios</string>
     <string name="preference_clearSearchHistory_summary">Limpiar el historial de búsqueda</string>
     <string name="preference_clearSearchHistory_title">Limpiar Historial</string>
-    <string name="preference_donate">Donar</string>
-    <string name="preference_donate_summary">Apoya al desarrollo de Nori</string>
     <string name="preference_imageViewer">Visor de Imágenes</string>
     <string name="preference_image_viewer_conserveBandwidth_summary">Obtener siempre imágenes en una escala reducida, incluso en conexiones rápidas</string>
     <string name="preference_image_viewer_conserveBandwidth_title">Conservar Ancho de Banda</string>
@@ -91,24 +88,6 @@
     <string name="safe_search_on_summary">Seguro para el trabajo</string>
     <string name="safe_search_undefined">Sin definir</string>
     <string name="safe_search_undefined_summary">Mostrar contenido para el que no se ha definido ningún grado de obscenidad</string>
-
-    <!-- Donations -->
-    <string name="donation_currency">EUR</string>
-    <string name="donation_dialog_donate">Donar</string>
-    <string name="donation_error_connectingToPlayStoreService">Error: No se pudo conectar al servicio de la Play Store</string>
-    <string name="donation_method_bitcoin">Bitcoin</string>
-    <string name="donation_method_bitcoinSummary">Donar Bitcoin</string>
-    <string name="donation_method_bitcoin_copiedToClipboard">Se ha copiado la dirección bitcoin al portapapeles</string>
-    <string name="donation_method_bitcoin_qrCodeContentDescription">Código QR bitcoin</string>
-    <string name="donation_method_google">Google</string>
-    <string name="donation_method_googleSummary">Donar usando Google Play</string>
-    <string name="donation_method_patreon">Patreon</string>
-    <string name="donation_method_patreonSummary">Hacer una donación periódica en Patreon</string>
-    <string name="donation_method_paypal">PayPal</string>
-    <string name="donation_method_paypalSummary">Donar vía PayPal</string>
-    <string name="donation_summary">Si disfrutas de Nori, por favor considere hacer una donación para apoyar un desarrollo continuado. Dependemos de su apoyo para mantener Nori gratis y libre de publicidad.</string>
-    <string name="donation_toast_completed">Se ha recibido su donación. Gracias por su apoyo.</string>
-    <string name="donation_url_copiedToClipboard">Se ha copiado la URL para donar al portapapeles.</string>
 
     <!-- Crash reporting (fuzzy; need proof-reading) -->
     <string name="crash_toast_text">"Nori se cerró inesperadamente.</string>

@@ -17,7 +17,6 @@
     <string name="activity_tag_filter_settings">Filtro de Tags</string>
     <string name="activity_safeSearch_settings">SafeSearch</string>
     <string name="activity_service_settings">Serviços</string>
-    <string name="activity_donations">Doar</string>
 
     <!-- EditText hints -->
     <string name="hint_tag">Tag</string>
@@ -77,8 +76,6 @@
     <string name="preference_category_services">Serviços</string>
     <string name="preference_service_settings_summary">Adiciona, edita ou remove configurações de imageboard</string>
     <string name="preference_service_settings_title">Serviços</string>
-    <string name="preference_donate_summary">Apoia o desenvolvimento do Nori</string>
-    <string name="preference_donate">Doar</string>
     <string name="preference_about">Sobre Nori</string>
     <string name="preference_about_summary">Mostra informações sobre esta versão do Nori</string>
     <!-- Untranslatable -->
@@ -88,7 +85,6 @@
     <string name="preference_tagFilter_key" translatable="false">preference_tagFilter</string>
     <string name="preference_image_viewer_keepScreenOn_key" translatable="false">preference_image_viewer_keepScreenOn</string>
     <string name="preference_image_viewer_conserveBandwidth_key" translatable="false">preference_image_viewer_conserveBandwidth</string>
-    <string name="preference_donation_dialog_count" translatable="false">preference_donation_dialog_count</string>
 
     <!-- Thumbnail sizes -->
     <string name="preference_previewSize_small">Pequeno</string>
@@ -104,24 +100,6 @@
     <string name="safe_search_moderate_summary">Sexualmente sugestivo</string>
     <string name="safe_search_off_summary">Pornografia pura</string>
     <string name="safe_search_undefined_summary">Mostrar conteúdo em que não foi definido se a imagem é segura</string>
-
-    <!-- Donations -->
-    <string name="donation_summary">Se você gostou do Nori, considere fazer uma doação para permitir a continuidade do desenvolvimento.\nContamos com a sua doação para manter Nori gratuito e sem propagandas.</string>
-    <string name="donation_method_patreon">Patreon</string>
-    <string name="donation_method_patreonSummary">Doar de forma recorrente pelo Patreon </string>
-    <string name="donation_method_paypal">PayPal</string>
-    <string name="donation_method_paypalSummary">Doar pelo PayPal</string>
-    <string name="donation_method_google">Google</string>
-    <string name="donation_method_googleSummary">Doar usando Google Play</string>
-    <string name="donation_method_bitcoin">Bitcoin</string>
-    <string name="donation_method_bitcoinSummary">Doar em Bitcoins</string>
-    <string name="donation_paypal_item" translatable="false">Nori Donation</string>
-    <string name="donation_url_copiedToClipboard">O URL de doação foi copiado.</string>
-    <string name="donation_method_bitcoin_copiedToClipboard">O endereço da carteira Bitcoin foi copiada.</string>
-    <string name="donation_method_bitcoin_qrCodeContentDescription">QR Code da carteira Bitcoin</string>
-    <string name="donation_dialog_donate">Doar</string>
-    <string name="donation_error_connectingToPlayStoreService">Erro: Não foi possível conectar à Play Store.</string>
-    <string name="donation_toast_completed">Sua doação foi recebida. Muito obrigado pelo suporte.</string>
 
     <!-- Crash reporting -->
     <string name="crash_toast_text">Nori fechou inesperadamente.</string>
