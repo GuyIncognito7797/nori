@@ -116,12 +116,7 @@ public class APISettingsListAdapter extends BaseAdapter
         // Attach onClickListener to the remove button and hook it up to the #removeSetting method.
         ImageButton actionRemove = (ImageButton) view.findViewById(R.id.action_remove);
         actionRemove.setFocusable(false);
-        actionRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onServiceRemoved(id);
-            }
-        });
+        actionRemove.setOnClickListener(view1 -> listener.onServiceRemoved(id));
 
         return view;
     }

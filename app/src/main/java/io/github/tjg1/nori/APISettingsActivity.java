@@ -117,12 +117,7 @@ public class APISettingsActivity extends AppCompatActivity
     public void onServiceRemoved(final long serviceId) {
         // Remove setting from database on a background thread.
         // This is so database I/O doesn't block the UI thread.
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                new APISettingsDatabase(APISettingsActivity.this).delete(serviceId);
-            }
-        }).start();
+        new Thread(() -> new APISettingsDatabase(APISettingsActivity.this).delete(serviceId)).start();
     }
     //endregion
 
@@ -154,17 +149,14 @@ public class APISettingsActivity extends AppCompatActivity
                             SearchClient.Settings.APIType.values()[intent.getIntExtra(ServiceTypeDetectionService.API_TYPE, 0)];
                     String endpointUrl = intent.getStringExtra(ServiceTypeDetectionService.ENDPOINT_URL);
                     final SearchClient.Settings settings = new SearchClient.Settings(apiType, name, endpointUrl, username, passphrase);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            APISettingsDatabase database = new APISettingsDatabase(APISettingsActivity.this);
-                            if (rowId == ROW_ID_INSERT) {
-                                database.insert(settings);
-                            } else {
-                                database.update(rowId, settings);
-                            }
-                            database.close();
+                    new Thread(() -> {
+                        APISettingsDatabase database = new APISettingsDatabase(APISettingsActivity.this);
+                        if (rowId == ROW_ID_INSERT) {
+                            database.insert(settings);
+                        } else {
+                            database.update(rowId, settings);
                         }
+                        database.close();
                     }).start();
                 } else if (resultCode == ServiceTypeDetectionService.RESULT_FAIL_INVALID_URL) {
                     Snackbar.make(findViewById(R.id.root), R.string.toast_error_serviceUriInvalid, Snackbar.LENGTH_LONG).show();

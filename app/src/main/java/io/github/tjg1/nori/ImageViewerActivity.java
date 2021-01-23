@@ -183,22 +183,19 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
 
         // Collapse the ActionBar.
         final AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (verticalOffset < 0) {
-                    appBarCollapsed = true;
-                    viewPager.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
-                } else {
-                    appBarCollapsed = false;
-                    viewPager.setSystemUiVisibility(0);
-                }
-
-                // Set progress bar position relative to action bar.
-                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) searchProgressBar.getLayoutParams();
-                params.setMargins(0, appBarLayout.getTotalScrollRange() + verticalOffset + layoutMargin, 0, 0);
-                searchProgressBar.setLayoutParams(params);
+        appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
+            if (verticalOffset < 0) {
+                appBarCollapsed = true;
+                viewPager.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+            } else {
+                appBarCollapsed = false;
+                viewPager.setSystemUiVisibility(0);
             }
+
+            // Set progress bar position relative to action bar.
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) searchProgressBar.getLayoutParams();
+            params.setMargins(0, appBarLayout1.getTotalScrollRange() + verticalOffset + layoutMargin, 0, 0);
+            searchProgressBar.setLayoutParams(params);
         });
         appBarLayout.setExpanded(false, true);
 
@@ -325,11 +322,7 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
     private void toggleActionBar() {
         // Toggle the action bar and UI dim.
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
-        if (appBarCollapsed) {
-            appBarLayout.setExpanded(true, true);
-        } else {
-            appBarLayout.setExpanded(false, true);
-        }
+        appBarLayout.setExpanded(appBarCollapsed, true);
     }
     //endregion
 

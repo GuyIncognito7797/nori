@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.Checkable;
@@ -98,12 +97,9 @@ public class SafeSearchSettingsActivity extends AppCompatActivity
             // Set up ListView.
             final ListView listView = (ListView) findViewById(android.R.id.list);
             listView.setAdapter(new SafeSearchListAdapter(this, this));
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    final Checkable checkBox = (Checkable) view.findViewById(R.id.checkbox);
-                    checkBox.toggle();
-                }
+            listView.setOnItemClickListener((AdapterView.OnItemClickListener) (adapterView, view, i, l) -> {
+                final Checkable checkBox = (Checkable) view.findViewById(R.id.checkbox);
+                checkBox.toggle();
             });
         }
     }

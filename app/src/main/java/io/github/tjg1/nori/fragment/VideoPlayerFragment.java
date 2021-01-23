@@ -6,7 +6,6 @@
 
 package io.github.tjg1.nori.fragment;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -92,12 +91,9 @@ public class VideoPlayerFragment extends ImageFragment {
 
         // Detect single taps to toggle the ActionBar.
         final GestureDetector gestureDetector = new GestureDetector(getContext(), gestureListener);
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                gestureDetector.onTouchEvent(motionEvent);
-                return true;
-            }
+        view.setOnTouchListener((view1, motionEvent) -> {
+            gestureDetector.onTouchEvent(motionEvent);
+            return true;
         });
 
         videoView = (VideoView) view.findViewById(R.id.video_view);
@@ -158,24 +154,18 @@ public class VideoPlayerFragment extends ImageFragment {
             } else {
                 videoView.setVideoURI(Uri.parse(image.fileUrl));
             }
-            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    // Start video, if the fragment is active.
-                    VideoPlayerFragment.this.isPrepared = true;
-                    if (VideoPlayerFragment.this.isActive) {
-                        // TODO: Progress bar.
-                        mediaPlayer.start();
-                    }
+            videoView.setOnPreparedListener(mediaPlayer -> {
+                // Start video, if the fragment is active.
+                VideoPlayerFragment.this.isPrepared = true;
+                if (VideoPlayerFragment.this.isActive) {
+                    // TODO: Progress bar.
+                    mediaPlayer.start();
                 }
             });
-            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    // Loop the video.
-                    if (VideoPlayerFragment.this.isPrepared) {
-                        mediaPlayer.start();
-                    }
+            videoView.setOnCompletionListener(mediaPlayer -> {
+                // Loop the video.
+                if (VideoPlayerFragment.this.isPrepared) {
+                    mediaPlayer.start();
                 }
             });
         }

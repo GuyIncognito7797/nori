@@ -99,13 +99,7 @@ public class TagListDialogFragment extends DialogFragment implements DialogInter
 
         return new AlertDialog.Builder(getContext())
                 .setAdapter(new TagListAdapter(), this)
-                .setPositiveButton(R.string.dialog_tags_closeButton, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dismiss();
-                    }
-
-                }).create();
+                .setPositiveButton(R.string.dialog_tags_closeButton, (dialogInterface, i) -> dismiss()).create();
     }
     //endregion
 

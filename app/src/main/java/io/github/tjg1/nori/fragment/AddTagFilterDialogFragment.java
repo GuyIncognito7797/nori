@@ -10,7 +10,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -108,24 +107,17 @@ public class AddTagFilterDialogFragment extends DialogFragment implements View.O
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setView(view)
                 .setPositiveButton(R.string.action_add, null)
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // Dismiss dialog.
-                                dismiss();
-                            }
-                        }
+                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
+                    // Dismiss dialog.
+                    dismiss();
+                }
                 ).create();
 
         // onShowListener is used here as a hack to override Android DialogInterface's default onClickInterface
         // that doesn't provide a way to prevent the dialog from getting dismissed when a button is clicked.
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(AddTagFilterDialogFragment.this);
-            }
-        });
-
+        alertDialog.setOnShowListener(
+                dialogInterface -> alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(AddTagFilterDialogFragment.this)
+        );
         return alertDialog;
     }
     //endregion

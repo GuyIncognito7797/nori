@@ -9,7 +9,7 @@ package io.github.tjg1.nori.util;
 /**
  * Class of utility methods related to Java {@link String}s.
  */
-public abstract class StringUtils {
+public interface StringUtils {
 
     //region Merge array into string
 

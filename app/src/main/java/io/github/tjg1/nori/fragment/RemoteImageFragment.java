@@ -14,10 +14,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.github.chrisbanes.photoview.OnViewTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.koushikdutta.async.future.Future;
-import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.builder.AnimateGifMode;
 
@@ -93,12 +91,7 @@ public class RemoteImageFragment extends ImageFragment {
         this.photoView = (PhotoView) view.findViewById(R.id.imageView);
         this.photoView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         this.photoView.setMaximumScale(4);
-        this.photoView.setOnViewTapListener(new OnViewTapListener() {
-            @Override
-            public void onViewTap(View view, float x, float y) {
-                listener.onViewTap(view, x, y);
-            }
-        });
+        this.photoView.setOnViewTapListener((view1, x, y) -> listener.onViewTap(view1, x, y));
 
         // Defer loading GIF images until the fragment is active.
         if (!"gif".equals(image.getFileExtension()) || this.isActive) {
@@ -154,16 +147,13 @@ public class RemoteImageFragment extends ImageFragment {
                 .animateGif(AnimateGifMode.ANIMATE)
                 //.deepZoom() // (disabled due to poor scaling quality)
                 .intoImageView(photoView)
-                .setCallback(new FutureCallback<ImageView>() {
-                    @Override
-                    public void onCompleted(Exception e, ImageView result) {
-                        if (e != null) {
-                            errorTextView.setVisibility(View.VISIBLE);
-                            errorTextView.setText(e.getLocalizedMessage());
-                        }
-                        progressBar.setProgress(100); // for cached images.
-                        progressBar.setVisibility(View.GONE);
+                .setCallback((e, result) -> {
+                    if (e != null) {
+                        errorTextView.setVisibility(View.VISIBLE);
+                        errorTextView.setText(e.getLocalizedMessage());
                     }
+                    progressBar.setProgress(100); // for cached images.
+                    progressBar.setVisibility(View.GONE);
                 });
     }
     //endregion

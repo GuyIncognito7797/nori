@@ -10,7 +10,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -178,23 +177,17 @@ public class EditAPISettingDialogFragment extends DialogFragment
                 .setView(view)
                 .setTitle(rowId == -1 ? R.string.dialog_title_addService : R.string.dialog_title_editService)
                 .setPositiveButton(R.string.ok, null)
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Dismiss dialog without saving changes.
-                        dismiss();
-                    }
-                }).create();
+                .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
+                    // Dismiss dialog without saving changes.
+                    dismiss()
+                ).create();
 
         // Use OnShowListener to override positive button behaviour.
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                // OnShowListener here is used as a hack to override Android Dialog's default OnClickListener
-                // that doesn't provide a way to prevent the dialog from getting dismissed when a button is clicked.
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(EditAPISettingDialogFragment.this);
-            }
-        });
+        alertDialog.setOnShowListener(dialogInterface ->
+            // OnShowListener here is used as a hack to override Android Dialog's default OnClickListener
+            // that doesn't provide a way to prevent the dialog from getting dismissed when a button is clicked.
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(EditAPISettingDialogFragment.this)
+        );
 
         return alertDialog;
     }
