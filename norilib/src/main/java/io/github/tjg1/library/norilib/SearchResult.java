@@ -10,7 +10,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
