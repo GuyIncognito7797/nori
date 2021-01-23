@@ -22,7 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -121,7 +120,6 @@ public class Gelbooru extends Danbooru {
     @Override
     protected SearchResult parseJSONResponse(String body, String tags, int offset) {
         final List<Image> imageList = new ArrayList<>(DEFAULT_LIMIT);
-        JSONObject jsonObject;
         String sampleURL;
         int sampleWidth;
         int sampleHeight;
@@ -137,22 +135,44 @@ public class Gelbooru extends Danbooru {
 
                 // Base level attributes
                 image.id = post.get("id").toString();
-                image.createdAt = dateFromString(post.get("created_at").toString());
+                try {
+                    image.createdAt = dateFromString(post.get("created_at").toString());
+                } catch (JSONException e) {
+                    image.createdAt = null;
+                }
                 image.safeSearchRating = Image.SafeSearchRating.fromString(post.get("rating").toString());
 
                 // File attributes
                 image.fileUrl = post.get("file_url").toString();
                 image.md5 = post.get("hash").toString();
-                image.width = (int) post.get("width");
-                image.height = (int) post.get("height");
+                image.width = Integer.parseInt(post.get("width").toString());
+                image.height = Integer.parseInt(post.get("height").toString());
 
                 // Sample attributes
-                if ( (int) post.get("sample") == 1 ) {
-                    sampleURL = getSampleURL(image.fileUrl, post.get("image").toString(), image.md5);
+                boolean sampleBoolean = false;
+                try {
+                    // Gelbooru returns an integer here while...
+                    sampleBoolean = (int) post.get("sample") == 1;
+                } catch ( ClassCastException e ) {
+                    // ... rule34.xxx returns a boolean!
+                    sampleBoolean = (boolean) post.get("sample");
+                }
+
+                // TODO - This is a bit of a mess and could do with a cleanup.
+                if ( sampleBoolean || post.has("sample_url")) {
+                    if (post.has("sample_url")) {
+                        sampleURL = post.getString("sample_url");
+                    } else {
+                        sampleURL = getSampleURL(image.fileUrl, post.get("image").toString(), image.md5);
+                    }
                     sampleWidth = image.previewWidth = (int) post.get("sample_width");
                     sampleHeight = image.previewWidth = (int) post.get("sample_height");
                 } else {
-                    sampleURL = image.fileUrl;
+                    if (image.getFileExtension().equals("mp4") && apiEndpoint.contains("gelbooru")) {
+                        sampleURL = getVideoSampleURL(image.fileUrl, image.md5);
+                    } else {
+                        sampleURL = image.fileUrl;
+                    }
                     sampleWidth = image.width;
                     sampleHeight = image.height;
                 }
@@ -165,15 +185,19 @@ public class Gelbooru extends Danbooru {
                 image.sampleHeight = sampleHeight;
 
                 // Sources
-                image.source = post.get("source").toString();
+                try {
+                    image.source = post.get("source").toString();
+                } catch (JSONException e) {
+                    image.source = null;
+                }
 
                 // TODO - Use Tag API to get tag types
                 image.tags = Tag.arrayFromString(post.get("tags").toString());
 
                 image.webUrl = webUrlFromId(image.id);
                 image.parentId = post.get("parent_id").toString();
-//
-//                // Score attributes
+
+                // Score attributes
                 image.score = (int) post.get("score");
 
                 imageList.add(image);
@@ -199,8 +223,27 @@ public class Gelbooru extends Danbooru {
         return null;
     }
 
-    protected static String getSampleURL(String file_url, String filename, String hash) {
-        file_url = file_url.replace("images", "samples").replace(filename, "sample_" + hash + ".jpg");
-        return file_url;
+    protected static String getSampleURL(String fileUrl, String filename, String hash) {
+        fileUrl = fileUrl.replace("images", "samples")
+                .replace(filename, "sample_" + hash + ".jpg");
+        return fileUrl;
+    }
+
+    protected static String getVideoSampleURL(String fileUrl, String hash) {
+        String[] urlParts = fileUrl.split("/");
+        String fileName = "thumbnail_" + hash + ".jpg";
+        // Gelbooru file URLs are in the format
+        // <subdomain>.gelbooru.com/images/<2 character alphanumeric string>/<2 character alphanumeric string>/<hash>.<extension>
+        // The thumbnail URL can be worked out by swapping out the sub-domain with "thumbs"
+        // and the file name with "thumbnail_hash.jpg"
+        String subdirOne = urlParts[urlParts.length - 3];
+        String subdirTwo = urlParts[urlParts.length - 2];
+
+        return String.format(
+                "https://thumbs.gelbooru.com/%s/%s/%s",
+                subdirOne,
+                subdirTwo,
+                fileName
+        );
     }
 }
