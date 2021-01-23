@@ -149,7 +149,7 @@ public class Gelbooru extends Danbooru {
                 image.height = Integer.parseInt(post.get("height").toString());
 
                 // Sample attributes
-                boolean sampleBoolean = false;
+                boolean sampleBoolean;
                 try {
                     // Gelbooru returns an integer here while...
                     sampleBoolean = (int) post.get("sample") == 1;
@@ -206,7 +206,7 @@ public class Gelbooru extends Danbooru {
             Log.e("nori", Objects.requireNonNull(e.getMessage()));
         }
 
-        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
+        return new SearchResult(imageList.toArray(new Image[0]), Tag.arrayFromString(tags), offset);
     }
 
     /**

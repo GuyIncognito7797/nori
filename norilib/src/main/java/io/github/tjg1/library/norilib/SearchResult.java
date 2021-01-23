@@ -195,7 +195,7 @@ public class SearchResult implements Parcelable {
         Collection<Image> selectedImages = CollectionUtils.select(
                 images, image -> (image.searchPage != null && image.searchPage == page)
         );
-        return new SearchResult(selectedImages.toArray(new Image[selectedImages.size()]), this.query, page);
+        return new SearchResult(selectedImages.toArray(new Image[0]), this.query, page);
     }
     //endregion
 
@@ -207,7 +207,7 @@ public class SearchResult implements Parcelable {
      * @return {@link Image}s returned by this SearchResult.
      */
     public Image[] getImages() {
-        return images.toArray(new Image[images.size()]);
+        return images.toArray(new Image[0]);
     }
 
     /**

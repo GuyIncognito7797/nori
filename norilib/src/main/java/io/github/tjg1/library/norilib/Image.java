@@ -309,7 +309,7 @@ public class Image implements Parcelable {
                 }
             }
 
-            return ratingList.toArray(new SafeSearchRating[ratingList.size()]);
+            return ratingList.toArray(new SafeSearchRating[0]);
         }
 
         /**

@@ -178,14 +178,11 @@ public class Flickr implements SearchClient {
                 .load(createSearchURL(tags, pid))
                 .userAgent(SearchClient.USER_AGENT)
                 .as(new SearchResultParser(tags, pid))
-                .setCallback(new FutureCallback<SearchResult>() {
-                    @Override
-                    public void onCompleted(Exception e, SearchResult result) {
-                        if (e != null) {
-                            callback.onFailure(new IOException(e));
-                        } else {
-                            callback.onSuccess(result);
-                        }
+                .setCallback((e, result) -> {
+                    if (e != null) {
+                        callback.onFailure(new IOException(e));
+                    } else {
+                        callback.onSuccess(result);
                     }
                 });
     }
@@ -338,7 +335,7 @@ public class Flickr implements SearchClient {
             throw new IOException(e);
         }
 
-        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
+        return new SearchResult(imageList.toArray(new Image[0]), Tag.arrayFromString(tags), offset);
     }
 
 

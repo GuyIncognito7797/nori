@@ -10,7 +10,7 @@ package io.github.tjg1.library.norilib.test;
  * Tests for the Shimmie2 API client.
  */
 public class ShimmieTests /*extends SearchClientTestCase*/ {
-    /** DISABLE DOLLBOORU TESTS TEMPORARILY
+    /* DISABLE DOLLBOORU TESTS TEMPORARILY
      @Override protected SearchClient createSearchClient() {
      return new Shimmie(getInstrumentation().getContext(), "Dollbooru", "http://dollbooru.org");
      }

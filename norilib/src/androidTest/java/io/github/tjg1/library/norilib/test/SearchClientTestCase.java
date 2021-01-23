@@ -79,27 +79,24 @@ public abstract class SearchClientTestCase extends InstrumentationTestCase {
         final SearchResult[] searchResults = new SearchResult[1];
 
         // Run search requests on the UI thread.
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                final SearchClient client = createSearchClient();
-                // Retrieve a search result.
-                client.search(getDefaultTag(), new SearchClient.SearchCallback() {
-                    @Override
-                    public void onFailure(IOException e) {
-                        error[0] = e;
-                        // Clear the lock.
-                        lock.countDown();
-                    }
+        runTestOnUiThread((Runnable) () -> {
+            final SearchClient client = createSearchClient();
+            // Retrieve a search result.
+            client.search(getDefaultTag(), new SearchClient.SearchCallback() {
+                @Override
+                public void onFailure(IOException e) {
+                    error[0] = e;
+                    // Clear the lock.
+                    lock.countDown();
+                }
 
-                    @Override
-                    public void onSuccess(SearchResult searchResult) {
-                        searchResults[0] = searchResult;
-                        // Clear the lock.
-                        lock.countDown();
-                    }
-                });
-            }
+                @Override
+                public void onSuccess(SearchResult searchResult) {
+                    searchResults[0] = searchResult;
+                    // Clear the lock.
+                    lock.countDown();
+                }
+            });
         });
 
         // Wait 30 seconds for the async response.

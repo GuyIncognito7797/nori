@@ -202,7 +202,7 @@ public class E621 extends Danbooru {
             e.printStackTrace();
         }
 
-        return new SearchResult(imageList.toArray(new Image[imageList.size()]), Tag.arrayFromString(tags), offset);
+        return new SearchResult(imageList.toArray(new Image[0]), Tag.arrayFromString(tags), offset);
     }
 
     String[] stringArrayFromJSONArray(JSONArray jsonArray) throws JSONException {

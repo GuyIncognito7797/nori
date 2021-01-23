@@ -25,7 +25,7 @@ public interface HashUtils {
      * @param salt      Salt to append to the plaintext before hashing.
      * @return Hashed hex string.
      */
-    public static String sha512(String plaintext, String salt) {
+    static String sha512(String plaintext, String salt) {
         final String s = !TextUtils.isEmpty(salt) ? plaintext + salt : plaintext;
 
         try {
