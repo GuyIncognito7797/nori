@@ -57,6 +57,9 @@ public class DanbooruLegacy implements SearchClient {
      * Best to use a large value to minimize number of unique HTTP requests.
      */
     private static final int DEFAULT_LIMIT = 100;
+
+    private static final DateFormat DATE_FORMAT_DEFAULT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+
     //endregion
 
     //region Service configuration instance fields
@@ -194,14 +197,11 @@ public class DanbooruLegacy implements SearchClient {
     public void search(final String tags, final int pid, final SearchCallback callback) {
         // Define the ion callback. Not using FutureCallbacks as parameters, so the method signatures
         // are not tied to a single download library.
-        FutureCallback<SearchResult> futureCallback = new FutureCallback<SearchResult>() {
-            @Override
-            public void onCompleted(Exception e, SearchResult result) {
-                if (e != null) {
-                    callback.onFailure(new IOException(e));
-                } else {
-                    callback.onSuccess(result);
-                }
+        FutureCallback<SearchResult> futureCallback = (e, result) -> {
+            if (e != null) {
+                callback.onFailure(new IOException(e));
+            } else {
+                callback.onSuccess(result);
             }
         };
 
@@ -404,8 +404,6 @@ public class DanbooruLegacy implements SearchClient {
      */
     protected Date dateFromString(String date) throws ParseException {
         // Parser for the date format used by upstream Danbooru 1.x.
-        final DateFormat DATE_FORMAT_DEFAULT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-
         if (TextUtils.isDigitsOnly(date)) {
             // Moebooru-based boards (Danbooru 1.x fork) use Unix timestamps.
             return new Date(Integer.parseInt(date));

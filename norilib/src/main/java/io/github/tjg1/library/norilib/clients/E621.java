@@ -43,7 +43,7 @@ public class E621 extends Danbooru {
      * Number of images to fetch with each search.
      */
     private static final int DEFAULT_LIMIT = 100;
-    final static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US);
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US);
     //endregion
 
     //region Constructors

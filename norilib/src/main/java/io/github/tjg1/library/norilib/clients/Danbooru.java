@@ -17,7 +17,6 @@ import com.koushikdutta.async.DataEmitter;
 import com.koushikdutta.async.DataSink;
 import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.future.Future;
-import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.async.future.TransformFuture;
 import com.koushikdutta.async.parser.AsyncParser;
 import com.koushikdutta.async.parser.StringParser;
@@ -210,14 +209,11 @@ public class Danbooru implements SearchClient {
                 .load(createSearchURL(tags, pid, DEFAULT_LIMIT))
                 .userAgent(SearchClient.USER_AGENT)
                 .as(new SearchResultParser(tags, pid))
-                .setCallback(new FutureCallback<SearchResult>() {
-                    @Override
-                    public void onCompleted(Exception e, SearchResult result) {
-                        if (e != null) {
-                            callback.onFailure(new IOException(e));
-                        } else {
-                            callback.onSuccess(result);
-                        }
+                .setCallback((e, result) -> {
+                    if (e != null) {
+                        callback.onFailure(new IOException(e));
+                    } else {
+                        callback.onSuccess(result);
                     }
                 });
     }

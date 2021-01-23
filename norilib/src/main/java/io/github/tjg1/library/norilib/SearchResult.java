@@ -140,13 +140,9 @@ public class SearchResult implements Parcelable {
         final Collection<Tag> tagList = CollectionUtils.removeAll(Arrays.asList(tags), Arrays.asList(query));
 
         // Remove images containing filtered tags.
-        CollectionUtils.filter(images, new Predicate<Image>() {
-            @Override
-            public boolean evaluate(Image image) {
-                return !CollectionUtils.containsAny(Arrays.asList(image.tags), tagList);
-            }
-        });
-
+        CollectionUtils.filter(
+                images, image -> !CollectionUtils.containsAny(Arrays.asList(image.tags), tagList)
+        );
         reorderImagePageOffsets();
     }
 
@@ -164,12 +160,7 @@ public class SearchResult implements Parcelable {
         // Concert filtered rating array to List
         final List<Image.SafeSearchRating> ratingList = Arrays.asList(safeSearchRatings);
         // Remove images containing filtered ratings.
-        CollectionUtils.filter(images, new Predicate<Image>() {
-            @Override
-            public boolean evaluate(Image image) {
-                return ratingList.contains(image.safeSearchRating);
-            }
-        });
+        CollectionUtils.filter(images, image -> ratingList.contains(image.safeSearchRating));
 
         reorderImagePageOffsets();
     }
@@ -202,13 +193,9 @@ public class SearchResult implements Parcelable {
      * @return A {@link SearchResult} containing only {@link Image}s for the given search paging offset.
      */
     public SearchResult getSearchResultForPage(final int page) {
-        Collection<Image> selectedImages = CollectionUtils.select(images, new Predicate<Image>() {
-            @Override
-            public boolean evaluate(Image image) {
-                return (image.searchPage != null && image.searchPage == page);
-            }
-        });
-
+        Collection<Image> selectedImages = CollectionUtils.select(
+                images, image -> (image.searchPage != null && image.searchPage == page)
+        );
         return new SearchResult(selectedImages.toArray(new Image[selectedImages.size()]), this.query, page);
     }
     //endregion
