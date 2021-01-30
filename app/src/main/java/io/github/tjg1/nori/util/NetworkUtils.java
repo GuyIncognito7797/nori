@@ -87,7 +87,7 @@ public abstract class NetworkUtils {
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private static boolean isActiveNetworkMetered(ConnectivityManager cm) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && cm.isActiveNetworkMetered();
+        return cm.isActiveNetworkMetered();
     }
 
     /**

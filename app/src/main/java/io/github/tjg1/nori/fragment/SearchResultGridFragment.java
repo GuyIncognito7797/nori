@@ -110,15 +110,7 @@ public class SearchResultGridFragment extends Fragment implements AdapterView.On
                 imageView = new SquareImageView(getContext());
                 imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
-
-            int previewSize;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                // Resize thumbnails to actual GridView column width on Jelly Bean and above.
-                previewSize = gridView.getColumnWidth();
-            } else {
-                // Fallback to requested column width on older versions.
-                previewSize = getGridViewColumnWidth();
-            }
+            int previewSize = gridView.getColumnWidth();
 
             // Load image into view.
             Ion.with(getContext())
