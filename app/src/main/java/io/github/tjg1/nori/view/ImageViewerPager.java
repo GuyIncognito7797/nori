@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 /**
  * View pager used in {@link io.github.tjg1.nori.ImageViewerActivity}. Gives touch event precedence to
- * multi-touch events sent to the {@link uk.co.senab.photoview.PhotoView} in the contained fragment.
+ * multi-touch events sent to the {@link com.github.chrisbanes.photoview.PhotoView} in the contained fragment.
  */
 public class ImageViewerPager extends ViewPager {
 

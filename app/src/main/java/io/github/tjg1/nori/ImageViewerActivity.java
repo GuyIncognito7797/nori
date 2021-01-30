@@ -87,7 +87,7 @@ public class ImageViewerActivity extends AppCompatActivity implements ViewPager.
      */
     private ImageViewerPager viewPager;
     /**
-     * Search result shown by the {@link androidx.core.app.FragmentStatePagerAdapter}.
+     * Search result shown by the {@link androidx.fragment.app.FragmentStatePagerAdapter}.
      */
     private SearchResult searchResult;
     /**
