@@ -57,9 +57,9 @@ dependencies {
     implementation 'com.koushikdutta.ion:ion:2.2.1'
     // Implementation of ImageView for Android that supports zooming, by various touch gestures.
     // >=2.2.0 requires AndroidX to build.
-    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     // Crash reporting library.
-    implementation 'ch.acra:acra:4.11'
+    implementation 'ch.acra:acra:4.11.1'
     // Utility library for easier unit testing.
     androidTestImplementation 'org.easytesting:fest-assert-core:2.0M10'
 
